@@ -5,11 +5,11 @@
 Design system de Stahl, v0.1.0. Dos capas completamente independientes:
 
 1. **CSS/SCSS universal** (`style/`) — funciona con cualquier framework o HTML puro. Sin dependencias JS.
-2. **Componentes Svelte 5** (`src/lib/`) — consumidos por bn-web. Requieren Svelte 5.
+2. **Componentes Svelte 5** (`src/lib/`) — consumidos por los productos de Stahl. Requieren Svelte 5.
 
-**Bender es la fuente canónica.** La versión definitiva de Inox UI v0.1.0 vive en `bender/inox-ui/`. No existe un paquete npm publicado aún.
+**La fuente canónica es este repo Git** (`github.com/ruizmarselo94-wq/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/ruizmarselo94-wq/inox-ui.git#v0.1.0`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Bender) decide cuándo actualizar su referencia.
 
-**Versión:** permanece en `0.1.0` hasta la primera puesta en producción de Bender.
+**Versión:** todos los consumidores permanecen en `0.1.0` hasta el primer release conjunto a producción (Inox UI + RustKnight + Bender). Después de ese release, Inox UI versiona independiente como librería; cada producto sigue su propio camino.
 
 ## Prefijos
 
@@ -117,7 +117,7 @@ Colores (vacíos, el consumidor los llena):
 2. **Aggregator** — agregar `@forward 'components/nombre-componente'` en `style/components.scss`
 3. **Svelte** — crear `src/lib/components/categoria/IxNombreComponente.svelte` usando runes
 4. **Export** — agregar `export { default as IxNombreComponente } from '...'` en `src/lib/index.ts`
-5. **Catálogo** — agregar demo y código de ejemplo en `bn-web/src/routes/inox-ui/+page.svelte`
+5. **Catálogo** — agregar demo y código de ejemplo en `web/src/routes/inox-ui/+page.svelte` (Bender)
 
 ## Cómo agregar un ícono
 

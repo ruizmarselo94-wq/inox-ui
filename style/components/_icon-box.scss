@@ -1,0 +1,32 @@
+// ── Icon box ──────────────────────────────────────────────────
+// Contenedor de ícono con fondo suave + color saturado a juego,
+// para feature cards / destacados (patrón sidebar-icon de Zoho).
+// Variantes: --primary, --accent, --neutral, --success, --danger,
+//   --warning, --info
+// Tokens: --ix-color-{primary,accent}-subtle, --ix-color-overlay,
+//   --ix-color-{success,danger,warning,info}-bg, --ix-r-md
+// El color de fondo y de ícono salen de los mismos tokens que ya
+// usa IxBadge — no se introduce color-mix() para mantener un único
+// mecanismo de "tinte suave" en todo el design system. IxIcon usa
+// stroke="currentColor", así que cualquier <IxIcon> anidado hereda
+// el color sin props extra.
+// Ejemplo:
+//   <div class="ix-icon-box ix-icon-box--primary">
+//     <IxIcon name="rocket" ariaHidden />
+//   </div>
+.ix-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--ix-r-md);
+}
+.ix-icon-box--primary { background: var(--ix-color-primary-subtle); color: var(--ix-color-primary); }
+.ix-icon-box--accent  { background: var(--ix-color-accent-subtle);  color: var(--ix-color-accent); }
+.ix-icon-box--neutral { background: var(--ix-color-overlay);        color: var(--ix-color-text-muted); }
+.ix-icon-box--success { background: var(--ix-color-success-bg);     color: var(--ix-color-success); }
+.ix-icon-box--danger  { background: var(--ix-color-danger-bg);      color: var(--ix-color-danger); }
+.ix-icon-box--warning { background: var(--ix-color-warning-bg);     color: var(--ix-color-warning); }
+.ix-icon-box--info    { background: var(--ix-color-info-bg);        color: var(--ix-color-info); }

@@ -18,6 +18,11 @@ Versionado: [Semantic Versioning](https://semver.org/).
 - Íconos `hard-drive` y `rocket` al catálogo Lucide (`src/lib/icons.ts`).
   Consumidos por el onboarding de Bender. Aparecen automáticamente en el
   catálogo `/inox-ui` vía `ICON_NAMES`.
+- Utilidad `.ix-icon-box` (`_icon-box.scss`): contenedor de ícono con fondo
+  suave + color saturado a juego, para feature cards / destacados. Variantes
+  `--primary/--accent/--neutral/--success/--danger/--warning/--info`, todas
+  vía tokens `--ix-color-*-subtle`/`-bg` ya existentes (mismo mecanismo que
+  `IxBadge`, sin `color-mix()`).
 
 ---
 

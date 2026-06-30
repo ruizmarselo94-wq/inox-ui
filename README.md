@@ -3,9 +3,10 @@
 Design system de Stahl. **Carbono · Acero · Óxido.**
 
 Provee tokens CSS, clases `ix-*` y componentes Svelte 5 para construir
-interfaces consistentes en todos los productos del estudio. **Bender es el
-primer consumidor y la fuente canónica** de Inox UI v0.1.0 — la versión
-definitiva vive en `bender/inox-ui/`. No hay paquete npm publicado todavía.
+interfaces consistentes en todos los productos del estudio. **La fuente
+canónica es este repo** (`github.com/ruizmarselo94-wq/inox-ui`). Los
+consumidores (RustKnight, Bender) lo agregan como dependencia Git fijada a
+un tag o commit — no hay paquete npm publicado todavía.
 
 - Prefijo de clases CSS: `ix-`
 - Prefijo de tokens CSS: `--ix-`
@@ -115,6 +116,24 @@ Svelte 5. Detalle de props en el catálogo en vivo `/inox-ui` y en `CHANGELOG.md
 **Tipos exportados:** `Theme`, `LayoutMode`, `AccentColor`, `BadgeVariant`,
 `BtnVariant`, `BtnSize`, `ToastKind`, `NavItem`, `NavSection`, `UserProfile`,
 `DataColumn`, `AlertItem`, `AlertVariant`.
+
+### Icon box
+
+`.ix-icon-box` — contenedor de ícono con fondo suave + color saturado a
+juego (patrón sidebar-icon de feature cards / destacados). El color sale de
+los tokens de tema del consumidor, nunca hardcodeado:
+
+```svelte
+<div class="ix-icon-box ix-icon-box--primary">
+  <IxIcon name="rocket" ariaHidden />
+</div>
+```
+
+Variantes: `--primary | --accent | --neutral | --success | --danger |
+--warning | --info`. Reusan los mismos tokens `-subtle`/`-bg` que ya define
+`IxBadge` — no hay `color-mix()` de por medio. `IxIcon` usa
+`stroke="currentColor"`, así que el ícono hereda el color del contenedor sin
+props extra.
 
 ### IxBtn (ejemplo)
 
@@ -236,12 +255,17 @@ Svelte gestiona el estado.
 
 ## Distribución y versioning
 
-- **v0.1.0 (actual)** — Inox UI vive dentro de `bender/` como paquete del
-  workspace npm (`@stahl/inox-ui`), consumido por path. Desarrollo activo: los
-  cambios llegan de inmediato al consumidor.
-- **Post v0.1.0** — se evalúa moverlo a su propio repositorio en la organización
-  Stahl, con ciclo de versioning independiente.
-- **Futuro** — eventual publicación en un registro npm, si Stahl decide abrirlo.
-  Decisión de negocio, sin fecha.
-
-`v0.1.0` está atado a Bender v0.1.0 y a Svelte 5.
+- **Fuente canónica** — repo Git propio en GitHub
+  (`github.com/ruizmarselo94-wq/inox-ui`). Quien cambia Inox UI sube el
+  commit a `main` ahí; cada consumidor decide cuándo traerlo.
+- **Consumo** — dependencia Git fijada (tag o commit), no por path ni
+  workspace local. Ejemplo (`package.json` del consumidor):
+  ```json
+  "@stahl/inox-ui": "git+ssh://git@github.com/ruizmarselo94-wq/inox-ui.git#v0.1.0"
+  ```
+- **Versión congelada pre-prod** — todos los consumidores (Inox UI,
+  RustKnight, Bender) permanecen en `0.1.0` hasta el primer release conjunto
+  a producción. Después de ese release, Inox UI versiona independiente como
+  librería; cada producto sigue su propio camino de versiones.
+- **Futuro** — eventual publicación en un registro npm, si Stahl decide
+  abrirlo. Decisión de negocio, sin fecha.
