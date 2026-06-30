@@ -81,9 +81,10 @@ style/
 │   ├── _forms.scss      _toggle.scss     _table.scss      _stat-card.scss
 │   ├── _spinner.scss    _skeleton.scss   _avatar.scss     _modal.scss
 │   ├── _toast.scss      _states.scss     _notification-bell.scss
+│   ├── _icon-box.scss
 ├── themes/              # temas universales opt-in
-│   ├── _tema-neutro.scss   # grises minimalistas, sin color de marca
-│   └── _tema-oscuro.scss   # dark mode universal
+│   ├── _theme-neutral.scss # grises minimalistas, sin color de marca
+│   └── _theme-dark.scss    # dark mode universal
 └── fonts/               # catálogo opt-in, un parcial por familia
     ├── _inter.scss      _jetbrains-mono.scss   _ubuntu.scss
     └── _pirata-one.scss _eb-garamond.scss

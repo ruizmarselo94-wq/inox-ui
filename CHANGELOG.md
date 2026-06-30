@@ -24,6 +24,12 @@ Versionado: [Semantic Versioning](https://semver.org/).
   vía tokens `--ix-color-*-subtle`/`-bg` ya existentes (mismo mecanismo que
   `IxBadge`, sin `color-mix()`).
 
+### Changed
+- Renombrados los temas opt-in a inglés, consistente con el resto de nombres
+  de archivo del repo: `_tema-neutro.scss` → `_theme-neutral.scss`,
+  `_tema-oscuro.scss` → `_theme-dark.scss`. Actualizar los `@use
+  'inox-ui/style/themes/tema-*'` existentes a `theme-neutral`/`theme-dark`.
+
 ---
 
 ## [0.1.0] — 2026-05-19
