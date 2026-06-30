@@ -1,0 +1,9 @@
+// ── IxFlag ────────────────────────────────────────────────────
+// Bandera nacional inline, SVG resolución-independiente, colores
+// fijos. Sin borde — limpia sobre el topbar oscuro de Bender.
+// El redondeo de esquinas vive en el clipPath del propio SVG.
+// Uso: <IxFlag country="PY" width={22} />
+.ix-flag {
+  display: block;
+  flex-shrink: 0;
+}

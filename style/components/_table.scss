@@ -1,0 +1,57 @@
+// ── Table ─────────────────────────────────────────────────────
+// Tabla con header pequeño en uppercase y filas con hover.
+// Helpers de celda: __cell--primary, __cell--mono, __actions.
+// Wrap obligatorio (ix-table-wrap) para scroll horizontal en mobile.
+// Tokens: --ix-color-surface-alt/border/text/text-muted,
+//   --ix-font-brand, --ix-font-mono
+// Ejemplo:
+//   <div class="ix-table-wrap">
+//     <table class="ix-table">
+//       <thead><tr><th>Jugador</th><th>ELO</th></tr></thead>
+//       <tbody><tr><td class="ix-table__cell--primary">García</td>
+//         <td class="ix-table__cell--mono">1350</td></tr></tbody>
+//     </table>
+//   </div>
+.ix-table-wrap {
+  overflow-x: auto;
+  position: relative;
+}
+.ix-table-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ix-sp-10);
+}
+.ix-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    font-family: var(--ix-font-brand);
+    font-size: 0.77rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ix-color-text-muted);
+    padding: 7px var(--ix-sp-4);
+    text-align: left;
+    background: var(--ix-color-surface-alt);
+    border-bottom: 1px solid var(--ix-color-border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 8px var(--ix-sp-4);
+    border-bottom: 1px solid var(--ix-color-border);
+    font-size: 0.92rem;
+    color: var(--ix-color-text-muted);
+    vertical-align: middle;
+  }
+  tbody tr {
+    &:last-child td { border-bottom: none; }
+    &:hover td { background: var(--ix-color-surface-alt); }
+  }
+  .ix-table__cell--primary { color: var(--ix-color-text); font-weight: 500; }
+  .ix-table__cell--mono    { font-family: var(--ix-font-mono); font-size: 0.88rem; }
+  .ix-table__actions       { display: flex; align-items: center; gap: var(--ix-sp-1); }
+  .ix-table__empty         { text-align: center; color: var(--ix-color-text-muted); padding: var(--ix-sp-8); }
+}

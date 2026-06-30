@@ -1,0 +1,110 @@
+// ── Toggle ────────────────────────────────────────────────────
+// Switch semántico on/off. IxToggle renderiza:
+//   <span class="ix-toggle">
+//     <input class="ix-toggle__input" type="checkbox" role="switch">
+//     <span class="ix-toggle__track" aria-hidden="true">
+//       <span class="ix-toggle__thumb"></span>
+//     </span>
+//   </span>
+// Tokens: --ix-color-overlay/primary/border-focus/text-inverse,
+//   --ix-r-full, --ix-t-fast, --ix-shadow-sm
+// Ejemplo CSS-only: <span class="ix-toggle"><input class="ix-toggle__input" ...>
+//   <span class="ix-toggle__track"><span class="ix-toggle__thumb"></span></span></span>
+.ix-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 34px;
+  height: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.ix-toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: inherit;
+}
+.ix-toggle__track {
+  width: 34px;
+  height: 20px;
+  border-radius: var(--ix-r-full);
+  background: var(--ix-color-overlay);
+  transition: background var(--ix-t-fast);
+  pointer-events: none;
+  position: relative;
+}
+.ix-toggle__thumb {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--ix-color-text-inverse);
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform var(--ix-t-fast);
+  box-shadow: var(--ix-shadow-sm);
+}
+
+// Checked state — :has() (Chrome 105+, Firefox 121+, Safari 15.4+)
+.ix-toggle:has(.ix-toggle__input:checked) .ix-toggle__track {
+  background: var(--ix-color-primary);
+}
+.ix-toggle:has(.ix-toggle__input:checked) .ix-toggle__thumb {
+  transform: translateX(14px);
+}
+
+// Disabled state
+.ix-toggle:has(.ix-toggle__input:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+// Focus ring visible por teclado
+.ix-toggle:has(.ix-toggle__input:focus-visible) {
+  outline: 2px solid var(--ix-color-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--ix-r-full);
+}
+
+// ── IxToggleRow ───────────────────────────────────────────────
+// Fila label + toggle. IxToggleRow renderiza:
+//   <div class="ix-toggle-row">
+//     <label class="ix-toggle-row__label">
+//       <span class="ix-toggle-row__text">
+//         <span class="ix-toggle-row__title">label</span>
+//         <span class="ix-toggle-row__desc">description</span>
+//       </span>
+//       <IxToggle />
+//     </label>
+//   </div>
+.ix-toggle-row {
+  display: flex;
+  align-items: center;
+  padding: var(--ix-sp-3) 0;
+}
+.ix-toggle-row__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ix-sp-4);
+  width: 100%;
+  cursor: pointer;
+}
+.ix-toggle-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.ix-toggle-row__title {
+  font-size: var(--ix-font-size-md);
+  font-weight: 500;
+  color: var(--ix-color-text);
+}
+.ix-toggle-row__desc {
+  font-size: var(--ix-font-size-sm);
+  color: var(--ix-color-text-muted);
+}

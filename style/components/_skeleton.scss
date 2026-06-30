@@ -1,0 +1,13 @@
+// ── Skeleton ─────────────────────────────────────────────────
+// Placeholder pulsante para estados de carga.
+// Tokens: --ix-color-skeleton-base, --ix-r-sm, --ix-ease
+// Ejemplo: <div class="ix-skeleton" style="height: 16px; width: 120px;"></div>
+@keyframes ix-pulse {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 0.9; }
+}
+.ix-skeleton {
+  background: var(--ix-color-skeleton-base);
+  border-radius: var(--ix-r-sm);
+  animation: ix-pulse 1.6s var(--ix-ease) infinite;
+}

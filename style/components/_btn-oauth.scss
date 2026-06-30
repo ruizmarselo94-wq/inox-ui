@@ -1,0 +1,118 @@
+// ── OAuth buttons ────────────────────────────────────────────────────
+// Botón de proveedor OAuth — diseño consistente para Google, Facebook,
+// VK y GitHub. En reposo todos lucen iguales (sepia sobre fondo neutro);
+// al hover cada uno toma la identidad de su marca: borde + color del
+// ícono. El nombre del proveedor permanece sepia (la identidad la lleva
+// el ícono, no el texto).
+//
+// Caso Google: el SVG oficial tiene cuatro `<path>` en orden estándar
+// (azul, verde, amarillo, rojo). En reposo todos heredan `currentColor`
+// del SVG (sepia); al hover se pintan vía `:nth-child(n)` con los
+// hex oficiales de Google brand.
+//
+// Tokens: --ix-color-text-muted, --ix-r-sm, --ix-font-ui,
+//   --ix-transition-normal, --ix-ease, --ix-color-primary,
+//   --ix-color-border
+//
+// Ejemplo HTML:
+//   <a class="ix-btn-oauth ix-btn-oauth--google" href="/v1/auth/oauth/google">
+//     <svg class="ix-btn-oauth__svg" viewBox="0 0 24 24" fill="currentColor">…</svg>
+//     Google
+//   </a>
+//
+// El SVG debe tener `fill="currentColor"` para que el rest state herede
+// sepia. Para Google los `<path>` deben estar en orden: azul, verde,
+// amarillo, rojo (matching `:nth-child(1..4)`).
+
+.ix-btn-oauth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  // Touch target WCAG 2.5.5.
+  min-height: 44px;
+  background: var(--ix-color-surface-alt);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-sm);
+  font-family: var(--ix-font-ui);
+  font-size: 11px;
+  color: var(--ix-color-text-muted);
+  text-decoration: none;
+  // El fondo NO transiciona — el hover solo cambia borde y color del
+  // ícono. Cualquier cambio de bg rompería la sensación de "el botón
+  // no se mueve" que el spec pide.
+  transition: border-color var(--ix-transition-normal) var(--ix-ease);
+
+  // WCAG 2.4.7 — el outline natural del navegador puede no contrastar
+  // sobre el fondo claro. Forzamos óxido para que sea visible al tab.
+  &:focus-visible {
+    outline: 2px solid var(--ix-color-border-focus);
+    outline-offset: 2px;
+  }
+}
+
+// El SVG declara su propio `color` para que se pueda pintar el ícono
+// sin tocar el color del texto del padre. Las `<path>` transicionan
+// `fill` suavemente (el navegador interpola colores de fill desde
+// CSS Colors L3). El tamaño es fijo — el hover nunca lo toca.
+.ix-btn-oauth__svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: inherit;
+  transition: color var(--ix-transition-normal) var(--ix-ease);
+
+  path { transition: fill var(--ix-transition-normal) var(--ix-ease); }
+}
+
+// ── Hover por marca ──────────────────────────────────────────────────
+// Cada modificador pinta solo lo necesario: borde + ícono (para los
+// mono-color) o las cuatro paths individuales (para Google).
+
+.ix-btn-oauth--google:hover {
+  border-color: #4285F4;
+  // Orden oficial de los `<path>` en el logo de Google.
+  .ix-btn-oauth__svg path:nth-child(1) { fill: #4285F4; } // azul
+  .ix-btn-oauth__svg path:nth-child(2) { fill: #34A853; } // verde
+  .ix-btn-oauth__svg path:nth-child(3) { fill: #FBBC05; } // amarillo
+  .ix-btn-oauth__svg path:nth-child(4) { fill: #EA4335; } // rojo
+}
+
+.ix-btn-oauth--facebook:hover {
+  border-color: #1877F2;
+  .ix-btn-oauth__svg { color: #1877F2; }
+}
+
+.ix-btn-oauth--vk:hover {
+  border-color: #0077FF;
+  .ix-btn-oauth__svg { color: #0077FF; }
+}
+
+.ix-btn-oauth--github:hover {
+  border-color: #24292E;
+  .ix-btn-oauth__svg { color: #24292E; }
+}
+
+// ── Estado deshabilitado ─────────────────────────────────────────────
+// Proveedor presente en la UI pero todavía no implementado (FB, VK
+// previo a configurar el lado del proveedor). El botón se sigue viendo
+// para sembrar la marca y reservar el espacio, pero deja de sugerir
+// interactividad: opacidad atenuada, sin hover de marca, cursor de
+// "no permitido". Se combina con `aria-disabled="true"` y
+// `tabindex="-1"` en el markup para que asistivas y teclado lo
+// salteen sin romper la grilla.
+.ix-btn-oauth--disabled,
+.ix-btn-oauth--disabled:hover {
+  opacity: 0.45;
+  cursor: not-allowed;
+  border-color: var(--ix-color-border);
+
+  // Anula los hover de marca cuando el modifier se compone con
+  // `--facebook` / `--vk` / etc.
+  .ix-btn-oauth__svg,
+  .ix-btn-oauth__svg path {
+    color: var(--ix-color-text-muted);
+    fill: currentColor;
+  }
+}

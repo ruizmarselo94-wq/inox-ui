@@ -1,0 +1,22 @@
+// ── Main container / Page slot / Container ───────────────────
+// Geometría del área principal a la derecha del sidebar (o debajo
+// del topbar). page-slot tiene scroll vertical interno; container
+// centra el contenido y limita el ancho.
+// Tokens: --ix-page-padding, --ix-container-xl
+.ix-main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+.ix-page-slot {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--ix-page-padding);
+}
+.ix-container {
+  max-width: var(--ix-container-xl);
+  margin: 0 auto;
+  width: 100%;
+}

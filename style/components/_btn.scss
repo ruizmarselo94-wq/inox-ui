@@ -1,0 +1,125 @@
+// ── Buttons ───────────────────────────────────────────────────
+// Botón principal de Inox UI. Siempre inline-flex con contenido
+// centrado y gap entre ícono y texto.
+//
+// Variantes: --primary, --secondary, --outline, --ghost, --danger
+// Tamaños:   --sm (6×14 / 11px), --md (10×20 / 13px, default), --lg (13×28 / 14px)
+// Ancho:     --full (width: 100%)
+//
+// Tokens: --ix-color-primary/accent/danger (+ -hover/-text/-bg/-border),
+//   --ix-color-surface-alt/text/text-muted/border/border-strong/border-focus,
+//   --ix-r-sm, --ix-shadow-md, --ix-t-fast, --ix-focus-ring
+//
+// Ejemplo HTML:
+//   <button class="ix-btn ix-btn--primary">Guardar</button>
+//   <button class="ix-btn ix-btn--outline ix-btn--lg">Cancelar</button>
+.ix-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ix-sp-2);
+  padding: 10px 20px;
+  // Touch target mínimo WCAG 2.5.5 (44×44 CSS px). El padding base
+  // alcanza ~33px de alto natural — min-height fuerza el piso.
+  // Las variantes --sm hacen override explícito porque sirven en
+  // toolbars y topbars de escritorio.
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: var(--ix-r-sm);
+  font-family: var(--ix-font-ui);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--ix-t-fast) var(--ix-ease);
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1;
+  vertical-align: middle;
+
+  // Foco accesible: anillo visible aún si box-shadow es invisible
+  // por contraste de fondo. Cumple WCAG 2.4.7 (focus visible).
+  &:focus-visible {
+    outline: 2px solid var(--ix-color-border-focus);
+    outline-offset: 2px;
+    box-shadow: var(--ix-focus-ring);
+  }
+  &:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+}
+// --sm: tamaño compacto para topbars/toolbars de escritorio donde
+// 44px es demasiado. Override explícito a 32px — no apto para
+// targets primarios en interfaces mobile.
+.ix-btn--sm   { padding: 6px 14px;  font-size: 0.85rem; min-height: 32px; min-width: 0; }
+.ix-btn--md   { padding: 10px 20px; font-size: 1rem; }
+.ix-btn--lg   { padding: 13px 28px; font-size: 1.08rem; letter-spacing: 0.05em; }
+.ix-btn--full { width: 100%; }
+
+.ix-btn--primary {
+  background: var(--ix-color-primary);
+  color: var(--ix-color-primary-text);
+  box-shadow: var(--ix-shadow-md);
+  &:hover:not(:disabled)  { background: var(--ix-color-primary-hover); }
+  &:active:not(:disabled) { background: var(--ix-color-primary-hover); transform: scale(0.99); }
+}
+.ix-btn--secondary {
+  background: var(--ix-color-accent);
+  color: var(--ix-color-accent-text);
+  &:hover:not(:disabled)  { background: var(--ix-color-accent-hover); }
+}
+.ix-btn--outline {
+  background: transparent;
+  border-color: var(--ix-color-border);
+  color: var(--ix-color-text);
+  &:hover:not(:disabled) { background: var(--ix-color-surface-alt); border-color: var(--ix-color-border-strong); }
+}
+.ix-btn--ghost {
+  background: transparent;
+  border-color: var(--ix-color-border);
+  color: var(--ix-color-text-muted);
+  // Hover pensado para fantasmas sobre fondos oscuros (topbar LDT,
+  // sección JUGAR del lobby): fondo crema translúcido + borde y
+  // texto un poco más visibles. La armonía con superficies claras
+  // se mantiene porque el alpha es bajo.
+  &:hover:not(:disabled) {
+    background: var(--ix-color-ghost-hover-bg);
+    border-color: var(--ix-color-ghost-hover-border);
+    color: var(--ix-color-text-inverse);
+  }
+}
+.ix-btn--danger {
+  background: var(--ix-color-danger-bg);
+  border-color: var(--ix-color-danger-border);
+  color: var(--ix-color-danger);
+  &:hover:not(:disabled) { background: var(--ix-color-danger); color: var(--ix-color-primary-text); }
+}
+
+// Botón cuadrado de sólo ícono. Útil en topbars y toolbars.
+// Tokens: --ix-color-border/text-muted/primary/primary-subtle, --ix-t-fast
+// Ejemplo: <button class="ix-btn-icon" title="Eliminar"><svg>…</svg></button>
+// IxBtnIcon: 28×28 visual. Cuando se use en superficies táctiles
+// envolverlo en un contenedor de 44×44 o usar padding del padre —
+// el botón en sí es chico a propósito (toolbars densas).
+.ix-btn-icon {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-sm);
+  background: transparent;
+  color: var(--ix-color-text-muted);
+  cursor: pointer;
+  transition: all var(--ix-t-fast);
+  flex-shrink: 0;
+  &:hover { border-color: var(--ix-color-primary); color: var(--ix-color-primary); background: var(--ix-color-primary-subtle); }
+  &:focus-visible {
+    outline: 2px solid var(--ix-color-border-focus);
+    outline-offset: 2px;
+  }
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+.ix-btn-icon--danger {
+  border-color: var(--ix-color-danger-border);
+  color: var(--ix-color-danger);
+  background: var(--ix-color-danger-bg);
+  &:hover { border-color: var(--ix-color-danger); color: var(--ix-color-primary-text); background: var(--ix-color-danger); }
+}

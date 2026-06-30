@@ -1,0 +1,78 @@
+// ── Modal ─────────────────────────────────────────────────────
+// Diálogo centrado sobre backdrop oscuro.
+// Estructura: ix-backdrop > ix-modal[--sm|--lg|--xl]
+//   > ix-modal__header, ix-modal__title
+//   > ix-modal__body
+//   > ix-modal__footer
+// Tokens: --ix-color-surface/text/border/backdrop,
+//   --ix-r-lg, --ix-shadow-md, --ix-z-modal
+// Ejemplo:
+//   <div class="ix-backdrop">
+//     <div class="ix-modal">
+//       <div class="ix-modal__header">
+//         <h2 class="ix-modal__title">Confirmar</h2>
+//       </div>
+//       <div class="ix-modal__body">…</div>
+//       <div class="ix-modal__footer">
+//         <button class="ix-btn ix-btn--primary">OK</button>
+//       </div>
+//     </div>
+//   </div>
+.ix-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--ix-color-backdrop);
+  z-index: var(--ix-z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ix-sp-4);
+}
+.ix-modal {
+  background: var(--ix-color-surface);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-lg);
+  box-shadow: var(--ix-shadow-md);
+  width: 100%;
+  max-width: 480px;
+  animation: ix-modal-in var(--ix-t-normal) var(--ix-ease);
+}
+@keyframes ix-modal-in {
+  from { transform: translateY(-8px) scale(0.98); opacity: 0; }
+  to   { transform: translateY(0) scale(1);       opacity: 1; }
+}
+
+// Variantes de ancho
+.ix-modal--sm { max-width: 340px; }
+.ix-modal--lg { max-width: 680px; }
+.ix-modal--xl { max-width: 900px; }
+
+// En mobile todos los modales ocupan el ancho disponible
+@media (max-width: 767px) {
+  .ix-modal,
+  .ix-modal--sm,
+  .ix-modal--lg,
+  .ix-modal--xl { max-width: 100%; }
+}
+
+.ix-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ix-sp-4);
+  border-bottom: 1px solid var(--ix-color-border);
+}
+.ix-modal__title {
+  font-family: var(--ix-font-brand);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--ix-color-text);
+}
+.ix-modal__body { padding: var(--ix-sp-4); }
+.ix-modal__footer {
+  padding: var(--ix-sp-3) var(--ix-sp-4);
+  border-top: 1px solid var(--ix-color-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ix-sp-2);
+}

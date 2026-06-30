@@ -1,0 +1,19 @@
+// ── Reset ─────────────────────────────────────────────────────
+// Base mínima: box-sizing universal, sin márgenes/padding por
+// defecto, fuente y colores del tema en <html>, alto mínimo en <body>.
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-family: var(--ix-font-ui);
+  // 81.25% = 13px al 100% del navegador (16px × 0.8125).
+  // Escala con las preferencias de accesibilidad del usuario (WCAG 1.4.4).
+  font-size: 81.25%;
+  color: var(--ix-color-text);
+  background: var(--ix-color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body { min-height: 100dvh; }
+
+// Marca un cambio de tema momentáneo donde no queremos animaciones.
+.no-trans * { transition: none !important; }

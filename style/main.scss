@@ -1,0 +1,18 @@
+// ============================================================
+// INOX UI — Entrada universal
+//
+// Importa tokens base y componentes. Las fuentes NO se cargan
+// aquí: son opt-in por familia desde inox-ui/style/fonts/_*.scss.
+//
+// Uso desde un proyecto consumidor:
+//
+//   @use 'inox-ui/style/main';
+//   @use 'inox-ui/style/fonts/inter';       // sólo las que se usen
+//   @use 'inox-ui/style/fonts/jetbrains-mono';
+//
+//   // Override de tokens (tema del proyecto)
+//   @use 'base/mi-tema';
+// ============================================================
+
+@use 'tokens';
+@use 'components';

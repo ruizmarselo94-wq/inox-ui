@@ -1,0 +1,35 @@
+// ── Spinner ───────────────────────────────────────────────────
+// Indicador circular de carga. IxSpinner renderiza:
+//   <span class="ix-spinner" role="status" style="--ix-spinner-size: {n}px">
+//     <span class="ix-spinner__ring" aria-hidden="true"></span>
+//     <span class="ix-sr-only">label</span>
+//   </span>
+// Tokens: --ix-color-border, --ix-color-primary
+// CSS-only: añadir .ix-spinner--sm/md/lg o pasar --ix-spinner-size inline.
+// Ejemplo: <span class="ix-spinner ix-spinner--md" role="status"><span class="ix-spinner__ring"></span></span>
+@keyframes ix-spin { to { transform: rotate(360deg); } }
+
+.ix-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ix-spinner-size, 20px);
+  height: var(--ix-spinner-size, 20px);
+  flex-shrink: 0;
+}
+.ix-spinner__ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--ix-color-border);
+  border-top-color: var(--ix-color-primary);
+  animation: ix-spin 0.6s linear infinite;
+}
+
+// CSS-only size modifiers
+.ix-spinner--sm { --ix-spinner-size: 16px; }
+.ix-spinner--md { --ix-spinner-size: 24px; }
+.ix-spinner--lg {
+  --ix-spinner-size: 36px;
+  .ix-spinner__ring { border-width: 3px; }
+}

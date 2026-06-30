@@ -1,0 +1,54 @@
+// ── Stat Card ─────────────────────────────────────────────────
+// Card especializada para mostrar una métrica destacada (valor +
+// label opcional + sub).
+// Slots: __accent (línea superior 2px), __label, __value, __unit, __sub.
+// Tokens: --ix-color-surface/border/text/text-muted, --ix-font-brand
+// Ejemplo:
+//   <div class="ix-stat-card">
+//     <div class="ix-stat-card__accent" style="background: var(--ix-color-primary);"></div>
+//     <div class="ix-stat-card__label">Partidas</div>
+//     <div class="ix-stat-card__value">847</div>
+//     <div class="ix-stat-card__sub">+12% vs ayer</div>
+//   </div>
+.ix-stat-card {
+  background: var(--ix-color-surface);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-md);
+  padding: var(--ix-sp-4);
+  position: relative;
+  overflow: hidden;
+}
+.ix-stat-card__accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+.ix-stat-card__label {
+  font-size: 0.73rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ix-color-text-muted);
+  margin-bottom: var(--ix-sp-1);
+  font-family: var(--ix-font-brand);
+}
+.ix-stat-card__value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-size: 1.69rem;
+  font-weight: 700;
+  color: var(--ix-color-text);
+  font-family: var(--ix-font-brand);
+  line-height: 1.1;
+}
+.ix-stat-card__unit {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ix-color-text-muted);
+}
+.ix-stat-card__sub {
+  font-size: 0.85rem;
+  margin-top: var(--ix-sp-2);
+  color: var(--ix-color-text-muted);
+}

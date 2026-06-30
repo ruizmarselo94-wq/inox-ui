@@ -1,0 +1,129 @@
+// ── Notification Bell ─────────────────────────────────────────
+// Campana de alertas en el topbar: botón + badge + dropdown panel.
+// Estado open controlado con la clase --open en ix-notification-bell.
+.ix-notification-bell {
+  position: relative;
+}
+
+.ix-notification-bell__btn {
+  position: relative;
+}
+
+.ix-notification-bell__badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--ix-r-full);
+  background: var(--ix-color-danger);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  pointer-events: none;
+  font-family: var(--ix-font-ui);
+}
+
+.ix-notification-bell__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--ix-z-overlay) - 1);
+}
+
+.ix-notification-bell__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: var(--ix-z-overlay);
+  min-width: 280px;
+  max-width: 340px;
+  background: var(--ix-color-surface);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-md);
+  box-shadow: var(--ix-shadow-lg);
+  overflow: hidden;
+}
+
+.ix-notification-bell__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ix-sp-3) var(--ix-sp-4);
+  border-bottom: 1px solid var(--ix-color-border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ix-color-text-muted);
+  font-family: var(--ix-font-brand);
+}
+
+.ix-notification-bell__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--ix-sp-1) 0;
+}
+
+.ix-notification-bell__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ix-sp-3);
+  padding: var(--ix-sp-3) var(--ix-sp-4);
+  text-decoration: none;
+  color: var(--ix-color-text);
+  font-size: 0.88rem;
+  transition: background var(--ix-t-fast);
+
+  &:hover {
+    background: var(--ix-color-surface-alt);
+  }
+
+  &--warn {
+    .ix-notification-bell__item-dot { background: var(--ix-color-warning); }
+  }
+  &--err {
+    .ix-notification-bell__item-dot { background: var(--ix-color-danger); }
+  }
+  &--info {
+    .ix-notification-bell__item-dot { background: var(--ix-color-info); }
+  }
+}
+
+.ix-notification-bell__item-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--ix-r-full);
+  background: var(--ix-color-border);
+}
+
+.ix-notification-bell__item-label {
+  flex: 1;
+  line-height: 1.3;
+}
+
+.ix-notification-bell__item-count {
+  flex-shrink: 0;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--ix-r-full);
+  background: var(--ix-color-surface-alt);
+  border: 1px solid var(--ix-color-border);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 20px;
+  color: var(--ix-color-text);
+  font-family: var(--ix-font-brand);
+}
+
+.ix-notification-bell__empty {
+  padding: var(--ix-sp-6) var(--ix-sp-4);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ix-color-text-muted);
+}

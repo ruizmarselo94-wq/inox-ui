@@ -1,0 +1,41 @@
+// ── Toast ─────────────────────────────────────────────────────
+// Notificación efímera en esquina inferior derecha.
+// Container fijo (.ix-toast-container) — provisto por IxToastProvider.
+// Variantes: --ok, --warn, --err, --info (borde izquierdo coloreado).
+// Tokens: --ix-color-overlay/border/text/success/warning/danger/info,
+//   --ix-r-md, --ix-shadow-md, --ix-z-toast
+// Ejemplo: <IxToastProvider>{@render children()}</IxToastProvider>
+.ix-toast-container {
+  position: fixed;
+  bottom: var(--ix-sp-5);
+  right: var(--ix-sp-5);
+  z-index: var(--ix-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ix-sp-2);
+  pointer-events: none;
+}
+.ix-toast {
+  background: var(--ix-color-overlay);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-md);
+  padding: var(--ix-sp-3) var(--ix-sp-4);
+  font-size: 0.96rem;
+  color: var(--ix-color-text);
+  box-shadow: var(--ix-shadow-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ix-sp-2);
+  min-width: 260px;
+  max-width: 380px;
+  pointer-events: all;
+  animation: ix-toast-in var(--ix-t-normal) var(--ix-ease);
+}
+@keyframes ix-toast-in {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+.ix-toast--ok   { border-left: 3px solid var(--ix-color-success); }
+.ix-toast--err  { border-left: 3px solid var(--ix-color-danger);  }
+.ix-toast--warn { border-left: 3px solid var(--ix-color-warning); }
+.ix-toast--info { border-left: 3px solid var(--ix-color-info);    }

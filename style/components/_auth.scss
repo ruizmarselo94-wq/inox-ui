@@ -1,0 +1,80 @@
+// ── Auth split-screen ──────────────────────────────────────────
+// Layout de dos columnas para pantallas públicas (login, setup,
+// signup): aside de marca a la izquierda + panel centrado a la
+// derecha. Colapsa a una columna (aside oculto) bajo 768px.
+// El contenido del aside y el max-width del card son libres —
+// cada página los define.
+// Tokens: --ix-color-bg/surface/surface-alt/border/text/text-muted/
+//   danger/danger-bg/danger-border, --ix-sp-*, --ix-r-xl, --ix-r-md,
+//   --ix-shadow-lg, --ix-font-size-xl/sm
+.ix-auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100dvh;
+  background: var(--ix-color-bg);
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ix-auth__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ix-sp-8);
+  background: var(--ix-color-surface-alt);
+  border-right: 1px solid var(--ix-color-border);
+  padding: var(--ix-sp-8);
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.ix-auth__panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ix-sp-8);
+
+  @media (max-width: 767px) {
+    padding: var(--ix-sp-6) var(--ix-sp-4);
+  }
+}
+
+.ix-auth__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ix-sp-6);
+  width: 100%;
+  max-width: 440px;
+  padding: var(--ix-sp-8);
+  background: var(--ix-color-surface);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-xl);
+  box-shadow: var(--ix-shadow-lg);
+}
+
+.ix-auth__title {
+  font-size: var(--ix-font-size-xl);
+  font-weight: 600;
+  color: var(--ix-color-text);
+  margin: 0;
+}
+
+.ix-auth__error {
+  padding: var(--ix-sp-3) var(--ix-sp-4);
+  background: var(--ix-color-danger-bg);
+  border: 1px solid var(--ix-color-danger-border);
+  border-radius: var(--ix-r-md);
+  color: var(--ix-color-danger);
+  font-size: var(--ix-font-size-sm);
+}
+
+.ix-auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ix-sp-4);
+}

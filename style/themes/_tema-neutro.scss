@@ -1,0 +1,90 @@
+// ============================================================
+// INOX UI — Tema neutro
+// Paleta minimalista basada en grises + un azul de acción.
+//
+// Pensado como punto de partida para proyectos internos o
+// herramientas administrativas donde la marca no necesita
+// expresarse con color.
+//
+// Uso:
+//   @use 'inox-ui/style/tokens';
+//   @use 'inox-ui/style/themes/tema-neutro';
+//
+// Para activar el tema en runtime, no hace falta nada — al
+// importar este archivo el `:root` queda con la paleta neutra.
+// ============================================================
+
+:root {
+  // Primario — gris profundo
+  --ix-color-primary:          #2D2D2D;
+  --ix-color-primary-hover:    #1A1A1A;
+  --ix-color-primary-text:     #FFFFFF;
+  --ix-color-primary-subtle:   rgba(45, 45, 45, 0.10);
+
+  // Secundario — gris medio
+  --ix-color-secondary:        #4A4A4A;
+  --ix-color-secondary-hover:  #383838;
+  --ix-color-secondary-text:   #FFFFFF;
+
+  // Acento — azul de acción
+  --ix-color-accent:           #0066CC;
+  --ix-color-accent-hover:     #0052A3;
+  --ix-color-accent-text:      #FFFFFF;
+  --ix-color-accent-subtle:    rgba(0, 102, 204, 0.10);
+
+  // Neutral ornamental
+  --ix-color-neutral:          #888888;
+  --ix-color-neutral-text:     #1A1A1A;
+
+  // Semánticos
+  --ix-color-success:          #2D7D46;
+  --ix-color-success-bg:       #F0FAF4;
+  --ix-color-success-border:   rgba(45, 125, 70, 0.30);
+  --ix-color-danger:           #CC2200;
+  --ix-color-danger-bg:        #FFF0EE;
+  --ix-color-danger-border:    rgba(204, 34, 0, 0.30);
+  --ix-color-warning:          #B07800;
+  --ix-color-warning-bg:       #FFFBF0;
+  --ix-color-warning-border:   rgba(176, 120, 0, 0.30);
+  --ix-color-info:             #0066CC;
+  --ix-color-info-bg:          #F0F5FF;
+  --ix-color-info-border:      rgba(0, 102, 204, 0.30);
+
+  // Superficies
+  --ix-color-bg:               #F5F5F5;
+  --ix-color-surface:          #FFFFFF;
+  --ix-color-surface-alt:      #EEEEEE;
+  --ix-color-surface-raised:   #FFFFFF;
+  --ix-color-overlay:          #FAFAFA;
+
+  // Texto
+  --ix-color-text:             #1A1A1A;
+  --ix-color-text-muted:       #666666;
+  --ix-color-text-disabled:    #AAAAAA;
+  --ix-color-text-inverse:     #FFFFFF;
+  --ix-color-text-inverse-muted: rgba(255, 255, 255, 0.72);
+
+  // Bordes
+  --ix-color-border:           rgba(0, 0, 0, 0.12);
+  --ix-color-border-focus:     #0066CC;
+  --ix-color-border-strong:    rgba(0, 0, 0, 0.30);
+
+  // Skeleton
+  --ix-color-skeleton-base:    #E5E5E5;
+  --ix-color-skeleton-shine:   #F0F0F0;
+
+  // Sombras
+  --ix-shadow-sm:              0 1px 3px rgba(0, 0, 0, 0.08);
+  --ix-shadow-md:              0 4px 12px rgba(0, 0, 0, 0.10);
+  --ix-shadow-lg:              0 8px 24px rgba(0, 0, 0, 0.14);
+
+  // Backdrop
+  --ix-color-backdrop:         rgba(0, 0, 0, 0.50);
+
+  // Ghost button hover
+  --ix-color-ghost-hover-bg:     rgba(255, 255, 255, 0.10);
+  --ix-color-ghost-hover-border: rgba(255, 255, 255, 0.50);
+
+  // Focus ring
+  --ix-focus-ring:             0 0 0 2px #FFFFFF, 0 0 0 4px var(--ix-color-border-focus);
+}

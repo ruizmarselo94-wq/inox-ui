@@ -1,0 +1,59 @@
+// ============================================================
+// INOX UI — Agregador de componentes
+//
+// Cada componente vive en su propio parcial bajo `components/`.
+// Este archivo los reúne en el orden de cascada correcto:
+//   1. reset y base
+//   2. animaciones / loaders
+//   3. layout estructural (shell, sidebar, topbar, container)
+//   4. primitives (avatar, card, btn, badge, spinner)
+//   5. datos (stat-card, table)
+//   6. formularios (forms, toggle)
+//   7. feedback (toast, modal)
+//   8. page composition (page layout, grid)
+//   9. utilities (helpers + scrollbar global)
+//
+// API estable: `@use 'inox-ui/style/components';` sigue funcionando.
+// Imports selectivos:
+//   `@use 'inox-ui/style/components/btn';`
+//   `@use 'inox-ui/style/components/forms';`
+//
+// Reglas:
+//   - Prefijo de clases: ix-
+//   - Nada hardcodeado: todo color/espacio/radio/transición sale
+//     de tokens. Si un valor se repite y no tiene token, agregarlo
+//     a tokens.scss antes de usarlo aquí.
+// ============================================================
+
+@forward 'components/reset';
+@forward 'components/skeleton';
+
+@forward 'components/shell';
+@forward 'components/sidebar';
+@forward 'components/topbar';
+@forward 'components/layout';
+@forward 'components/auth';
+
+@forward 'components/avatar';
+@forward 'components/flag';
+@forward 'components/card';
+@forward 'components/btn';
+@forward 'components/btn-oauth';
+@forward 'components/badge';
+@forward 'components/spinner';
+
+@forward 'components/stat-card';
+@forward 'components/table';
+
+@forward 'components/forms';
+@forward 'components/toggle';
+
+@forward 'components/toast';
+@forward 'components/modal';
+
+@forward 'components/page';
+@forward 'components/grid';
+@forward 'components/states';
+@forward 'components/notification-bell';
+
+@forward 'utilities';

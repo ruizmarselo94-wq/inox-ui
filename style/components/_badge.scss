@@ -1,0 +1,24 @@
+// ── Badge ─────────────────────────────────────────────────────
+// Etiqueta pill con color semántico.
+// Variantes: --ok, --warn, --err, --info, --neutral
+// Tokens: --ix-color-{success,warning,danger,info}{-bg,-border},
+//   --ix-color-overlay, --ix-color-text-muted, --ix-color-border,
+//   --ix-r-full, --ix-font-mono
+// Ejemplo: <span class="ix-badge ix-badge--ok">Activo</span>
+.ix-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: var(--ix-r-full);
+  font-family: var(--ix-font-mono);
+  font-size: 0.77rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.ix-badge--ok      { background: var(--ix-color-success-bg); color: var(--ix-color-success); border-color: var(--ix-color-success-border); }
+.ix-badge--warn    { background: var(--ix-color-warning-bg); color: var(--ix-color-warning); border-color: var(--ix-color-warning-border); }
+.ix-badge--err     { background: var(--ix-color-danger-bg);  color: var(--ix-color-danger);  border-color: var(--ix-color-danger-border); }
+.ix-badge--info    { background: var(--ix-color-info-bg);    color: var(--ix-color-info);    border-color: var(--ix-color-info-border); }
+.ix-badge--neutral { background: var(--ix-color-overlay);    color: var(--ix-color-text-muted); border-color: var(--ix-color-border); }

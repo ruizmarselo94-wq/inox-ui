@@ -1,0 +1,86 @@
+// ============================================================
+// INOX UI — Tema oscuro
+// Dark mode universal, base zinc + azul de acción.
+//
+// Pensado para proyectos que necesitan dark mode genérico sin
+// identidad de marca específica.
+//
+// Uso:
+//   @use 'inox-ui/style/tokens';
+//   @use 'inox-ui/style/themes/tema-oscuro';
+// ============================================================
+
+:root {
+  // Primario — azul de acción
+  --ix-color-primary:          #4D9EFF;
+  --ix-color-primary-hover:    #3385E0;
+  --ix-color-primary-text:     #FFFFFF;
+  --ix-color-primary-subtle:   rgba(77, 158, 255, 0.12);
+
+  // Secundario — superficie oscura intermedia
+  --ix-color-secondary:        #2A2A2A;
+  --ix-color-secondary-hover:  #383838;
+  --ix-color-secondary-text:   #F0F0F0;
+
+  // Acento — verde positivo
+  --ix-color-accent:           #3DBA6E;
+  --ix-color-accent-hover:     #2E9E5B;
+  --ix-color-accent-text:      #FFFFFF;
+  --ix-color-accent-subtle:    rgba(61, 186, 110, 0.12);
+
+  // Neutral ornamental — latón
+  --ix-color-neutral:          #C9A961;
+  --ix-color-neutral-text:     #1A1A1A;
+
+  // Semánticos
+  --ix-color-success:          #3DBA6E;
+  --ix-color-success-bg:       rgba(61, 186, 110, 0.12);
+  --ix-color-success-border:   rgba(61, 186, 110, 0.30);
+  --ix-color-danger:           #FF5555;
+  --ix-color-danger-bg:        rgba(255, 85, 85, 0.12);
+  --ix-color-danger-border:    rgba(255, 85, 85, 0.30);
+  --ix-color-warning:          #FFB347;
+  --ix-color-warning-bg:       rgba(255, 179, 71, 0.12);
+  --ix-color-warning-border:   rgba(255, 179, 71, 0.30);
+  --ix-color-info:             #4D9EFF;
+  --ix-color-info-bg:          rgba(77, 158, 255, 0.12);
+  --ix-color-info-border:      rgba(77, 158, 255, 0.30);
+
+  // Superficies
+  --ix-color-bg:               #121212;
+  --ix-color-surface:          #1E1E1E;
+  --ix-color-surface-alt:      #2A2A2A;
+  --ix-color-surface-raised:   #252525;
+  --ix-color-overlay:          #2F2F2F;
+
+  // Texto
+  --ix-color-text:             #F0F0F0;
+  --ix-color-text-muted:       #A8A8A8;
+  --ix-color-text-disabled:    #555555;
+  --ix-color-text-inverse:     #121212;
+  --ix-color-text-inverse-muted: rgba(18, 18, 18, 0.72);
+
+  // Bordes
+  --ix-color-border:           rgba(255, 255, 255, 0.10);
+  --ix-color-border-focus:     #4D9EFF;
+  --ix-color-border-strong:    rgba(255, 255, 255, 0.25);
+
+  // Skeleton
+  --ix-color-skeleton-base:    #2A2A2A;
+  --ix-color-skeleton-shine:   #3A3A3A;
+
+  // Sombras
+  --ix-shadow-sm:              0 1px 2px rgba(0, 0, 0, 0.40);
+  --ix-shadow-md:              0 4px 12px rgba(0, 0, 0, 0.50);
+  --ix-shadow-lg:              0 8px 24px rgba(0, 0, 0, 0.60);
+
+  // Backdrop
+  --ix-color-backdrop:         rgba(0, 0, 0, 0.70);
+
+  // Ghost button hover
+  --ix-color-ghost-hover-bg:     rgba(255, 255, 255, 0.08);
+  --ix-color-ghost-hover-border: rgba(255, 255, 255, 0.35);
+
+  // Focus ring
+  --ix-focus-ring:             0 0 0 2px var(--ix-color-surface), 0 0 0 4px var(--ix-color-border-focus);
+}

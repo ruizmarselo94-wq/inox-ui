@@ -1,0 +1,46 @@
+// ── Card ──────────────────────────────────────────────────────
+// Contenedor con borde sutil y radio. Slots: __head, __title,
+// __sub, __body, __foot.
+// Tokens: --ix-color-surface/text/text-muted/border, --ix-r-md,
+//   --ix-font-brand, --ix-font-mono
+// Ejemplo:
+//   <div class="ix-card">
+//     <div class="ix-card__head">
+//       <div><div class="ix-card__title">Título</div><div class="ix-card__sub">Subtítulo</div></div>
+//     </div>
+//     <div class="ix-card__body">Contenido…</div>
+//   </div>
+.ix-card {
+  background: var(--ix-color-surface);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-md);
+  overflow: hidden;
+}
+.ix-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px var(--ix-sp-4);
+  border-bottom: 1px solid var(--ix-color-border);
+  gap: var(--ix-sp-3);
+}
+.ix-card__title {
+  font-family: var(--ix-font-brand);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ix-color-text);
+}
+.ix-card__sub {
+  font-family: var(--ix-font-mono);
+  font-size: 0.77rem;
+  color: var(--ix-color-text-muted);
+  margin-top: 2px;
+}
+.ix-card__body { padding: var(--ix-sp-4); }
+.ix-card__foot {
+  padding: var(--ix-sp-3) var(--ix-sp-4);
+  border-top: 1px solid var(--ix-color-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ix-sp-2);
+}

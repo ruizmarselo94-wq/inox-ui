@@ -1,0 +1,182 @@
+// ============================================================
+// INOX UI — DESIGN TOKENS
+// Prefijo: --ix-
+//
+// Filosofía: Inox UI no sabe qué proyecto la consume.
+// Define la estructura de tokens (espaciado, radios, transiciones,
+// tipografía, layout, z-index, y nombres semánticos de color) sin
+// asignar valores cromáticos. Cada proyecto carga un tema que
+// llena los `--ix-color-*` y `--ix-shadow-*`.
+//
+// Temas base provistos por Inox UI (opt-in, en `style/themes/`):
+//   - _tema-neutro.scss   (minimalista, grises)
+//   - _tema-oscuro.scss   (dark mode universal)
+//
+// Las familias tipográficas se cargan opt-in desde
+// `style/fonts/_<familia>.scss`. Este archivo SOLO declara los
+// tokens; los @font-face viven aparte para que el consumidor
+// elija qué fuentes cargar.
+// ============================================================
+
+:root {
+  // ── Espaciado (escala 4px) ────────────────────────────────
+  --ix-sp-1:  0.25rem;
+  --ix-sp-2:  0.5rem;
+  --ix-sp-3:  0.75rem;
+  --ix-sp-4:  1rem;
+  --ix-sp-5:  1.25rem;
+  --ix-sp-6:  1.5rem;
+  --ix-sp-8:  2rem;
+  --ix-sp-10: 2.5rem;
+  --ix-sp-12: 3rem;
+
+  // ── Radios ───────────────────────────────────────────────
+  --ix-r-xs:   3px;
+  --ix-r-sm:   4px;
+  --ix-r-md:   6px;
+  --ix-r-lg:   8px;
+  --ix-r-xl:   12px;
+  --ix-r-full: 9999px;
+  --ix-radius-sm:   var(--ix-r-sm);
+  --ix-radius-md:   var(--ix-r-md);
+  --ix-radius-lg:   var(--ix-r-lg);
+  --ix-radius-xl:   var(--ix-r-xl);
+  --ix-radius-pill: var(--ix-r-full);
+
+  // ── Transiciones ─────────────────────────────────────────
+  --ix-t-fast:   100ms;
+  --ix-t-normal: 200ms;
+  --ix-t-slow:   300ms;
+  --ix-ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ix-transition-fast:   var(--ix-t-fast);
+  --ix-transition-normal: var(--ix-t-normal);
+  --ix-transition-slow:   var(--ix-t-slow);
+
+  // ── Tipografía — roles ───────────────────────────────────
+  // Cada proyecto consumidor sobreescribe estos roles según su marca.
+  --ix-font-wordmark: 'Pirata One', serif;
+  --ix-font-brand:    'EB Garamond', Georgia, serif;
+  --ix-font-ui:       'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ix-font-mono:     'JetBrains Mono', 'Cascadia Code', monospace;
+  --ix-font-ubuntu:      'Ubuntu', system-ui, sans-serif;
+  --ix-font-ubuntu-mono: 'Ubuntu Mono', monospace;
+
+  // ── Escala tipográfica ───────────────────────────────────
+  // Base: 1rem = 13px (html font-size: 81.25% × 16px browser default).
+  // Escala con preferencias del usuario (WCAG 1.4.4).
+  --ix-font-size-xs:  0.77rem;  // ≈10px
+  --ix-font-size-sm:  0.92rem;  // ≈12px
+  --ix-font-size-md:  1.08rem;  // ≈14px
+  --ix-font-size-lg:  1.23rem;  // ≈16px
+  --ix-font-size-xl:  1.54rem;  // ≈20px
+  --ix-font-size-2xl: 2rem;     // =26px
+  --ix-font-size-3xl: 2.46rem;  // ≈32px
+  --ix-font-size-4xl: 3.08rem;  // ≈40px
+
+  // ── Layout ───────────────────────────────────────────────
+  --ix-sidebar-w:     220px;
+  --ix-sidebar-w-col: 52px;
+  --ix-topbar-h:      48px;
+  --ix-container-xl:  1280px;
+  --ix-page-padding:  var(--ix-sp-6);
+
+  // ── Z-index ──────────────────────────────────────────────
+  --ix-z-base:    0;
+  --ix-z-raised:  10;
+  --ix-z-overlay: 100;
+  --ix-z-modal:   200;
+  --ix-z-toast:   300;
+  --ix-z-topbar:  400;
+
+  // ============================================================
+  // ── COLORES SEMÁNTICOS ──────────────────────────────────────
+  // Estructura sin valores — cada proyecto define su tema.
+  // Cargar un tema desde `style/themes/` o desde el SCSS propio
+  // del proyecto consumidor (p. ej. `bender-tema.scss`).
+  //
+  // Si ningún tema está cargado, los componentes Inox UI quedan
+  // sin color (las propiedades caen a `initial`). Es intencional:
+  // obliga a que el consumidor decida la identidad cromática.
+  // ============================================================
+
+  // ── Primarios ────────────────────────────────────────────
+  // Identidad y acciones principales.
+  --ix-color-primary:          ;
+  --ix-color-primary-hover:    ;
+  --ix-color-primary-text:     ;   // texto legible sobre --ix-color-primary
+  --ix-color-primary-subtle:   ;   // fondo translúcido del primario (10–15%)
+
+  // ── Secundario ───────────────────────────────────────────
+  // Estructura, bloques oscuros cálidos, CTAs alternos.
+  --ix-color-secondary:        ;
+  --ix-color-secondary-hover:  ;
+  --ix-color-secondary-text:   ;
+
+  // ── Acento ───────────────────────────────────────────────
+  // Complementario, segunda acción positiva, highlights.
+  --ix-color-accent:           ;
+  --ix-color-accent-hover:     ;
+  --ix-color-accent-text:      ;
+  --ix-color-accent-subtle:    ;
+
+  // ── Neutral ──────────────────────────────────────────────
+  // Ornamental — datos, números, badges sin carga semántica.
+  --ix-color-neutral:          ;
+  --ix-color-neutral-text:     ;
+
+  // ── Semánticos universales ───────────────────────────────
+  --ix-color-success:          ;
+  --ix-color-success-bg:       ;   // fondo sutil éxito
+  --ix-color-success-border:   ;
+  --ix-color-danger:           ;
+  --ix-color-danger-bg:        ;
+  --ix-color-danger-border:    ;
+  --ix-color-warning:          ;
+  --ix-color-warning-bg:       ;
+  --ix-color-warning-border:   ;
+  --ix-color-info:             ;
+  --ix-color-info-bg:          ;
+  --ix-color-info-border:      ;
+
+  // ── Superficies ──────────────────────────────────────────
+  --ix-color-bg:               ;   // fondo de página
+  --ix-color-surface:          ;   // fondo de cards
+  --ix-color-surface-alt:      ;   // fondo alternativo (zebra, hover)
+  --ix-color-surface-raised:   ;   // card elevada
+  --ix-color-overlay:          ;   // modales, dropdowns
+
+  // ── Texto ────────────────────────────────────────────────
+  --ix-color-text:             ;   // texto principal
+  --ix-color-text-muted:       ;   // secundario / hints
+  --ix-color-text-disabled:    ;   // deshabilitado
+  --ix-color-text-inverse:     ;   // sobre fondos oscuros
+  --ix-color-text-inverse-muted: ; // muted sobre oscuros (cumple ≥4.5:1)
+
+  // ── Bordes ───────────────────────────────────────────────
+  --ix-color-border:           ;
+  --ix-color-border-focus:     ;
+  --ix-color-border-strong:    ;
+
+  // ── Skeleton (loaders) ───────────────────────────────────
+  --ix-color-skeleton-base:    ;
+  --ix-color-skeleton-shine:   ;
+
+  // ── Sombras ──────────────────────────────────────────────
+  --ix-shadow-sm:              ;
+  --ix-shadow-md:              ;
+  --ix-shadow-lg:              ;
+
+  // ── Backdrop (scrim de modales) ───────────────────────────
+  // Semi-transparente sobre el contenido. Siempre oscuro.
+  --ix-color-backdrop:         ;
+
+  // ── Ghost button hover sobre fondos oscuros ───────────────
+  // El botón fantasma necesita un fondo traslúcido claro cuando
+  // se sitúa sobre superficies oscuras (topbar, sección JUGAR).
+  --ix-color-ghost-hover-bg:     ;
+  --ix-color-ghost-hover-border: ;
+
+  // ── Focus ring (composite) ───────────────────────────────
+  // Por convención, doble box-shadow para destacar sobre el fondo.
+  --ix-focus-ring:             ;
+}

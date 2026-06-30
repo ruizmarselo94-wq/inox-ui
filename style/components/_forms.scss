@@ -1,0 +1,102 @@
+// ── Forms ─────────────────────────────────────────────────────
+// Campo de formulario completo: label + control + hint/error.
+// Controles: .ix-input, .ix-select (con flecha custom), .ix-textarea.
+// Modificadores: .ix-input--error, :disabled (auto), :focus (auto).
+// Slots auxiliares: .ix-label, .ix-req (asterisco en color primario — señal de importancia, no de error),
+//   .ix-field__hint, .ix-field__error.
+// Tokens: --ix-color-surface-alt/text/text-muted/border/border-focus/danger,
+//   --ix-r-sm, --ix-font-brand, --ix-font-mono, --ix-focus-ring
+// Ejemplo:
+//   <div class="ix-field">
+//     <label class="ix-label">Usuario <span class="ix-req">*</span></label>
+//     <input class="ix-input" placeholder="garcia_py"/>
+//     <span class="ix-field__hint">Sólo letras y guiones bajos.</span>
+//   </div>
+.ix-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ix-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ix-color-text-muted);
+  font-family: var(--ix-font-brand);
+}
+// Marca de campo requerido. Standalone para que cualquier label —el de un
+// componente o uno custom— muestre el asterisco con el mismo color de marca.
+.ix-req { color: var(--ix-color-primary); margin-left: 2px; }
+.ix-input,
+.ix-select,
+.ix-textarea {
+  background: var(--ix-color-surface-alt);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-sm);
+  padding: 7px var(--ix-sp-3);
+  // Touch target mínimo WCAG 2.5.5 — los inputs son focusables y
+  // típicamente reciben tap en mobile. .ix-textarea define su
+  // propio alto por rows; el min-height se ignora si rows > 1.
+  min-height: 44px;
+  font-size: 0.92rem;
+  color: var(--ix-color-text);
+  font-family: var(--ix-font-mono);
+  outline: none;
+  width: 100%;
+  transition: border-color var(--ix-t-fast), box-shadow var(--ix-t-fast);
+
+  &::placeholder { color: var(--ix-color-text-muted); }
+  &:focus { border-color: var(--ix-color-border-focus); box-shadow: var(--ix-focus-ring); }
+  &:focus-visible {
+    outline: 2px solid var(--ix-color-border-focus);
+    outline-offset: 1px;
+  }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+  &.ix-input--error { border-color: var(--ix-color-danger); }
+}
+.ix-select { appearance: none; cursor: pointer; padding-right: calc(var(--ix-sp-3) + 20px); }
+
+// Wrapper del select — provee la flecha custom via ::after.
+// IxSelect envuelve el <select> en <div class="ix-select-wrapper">.
+.ix-select-wrapper {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    right: var(--ix-sp-3);
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--ix-color-text-muted);
+  }
+  &:has(select:disabled)::after { opacity: 0.5; }
+  &:has(select:focus)::after    { border-top-color: var(--ix-color-border-focus); }
+}
+// Wrapper para password con botón mostrar/ocultar (IxInput revealable).
+.ix-input-reveal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  .ix-input { padding-right: calc(var(--ix-sp-3) + 22px); }
+}
+.ix-input-reveal__toggle {
+  position: absolute;
+  right: var(--ix-sp-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ix-color-text-muted);
+  line-height: 1;
+
+  &:hover { color: var(--ix-color-text); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+  &:focus-visible { outline: 2px solid var(--ix-color-border-focus); outline-offset: 2px; border-radius: var(--ix-r-xs); }
+}
+
+.ix-field__hint  { font-size: 0.85rem; color: var(--ix-color-text-muted); }
+.ix-field__error { font-size: 0.85rem; color: var(--ix-color-danger); }

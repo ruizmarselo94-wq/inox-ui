@@ -1,0 +1,45 @@
+// ── Page layout ───────────────────────────────────────────────
+// Layout estándar de una vista interna: header con título + acciones
+// y stack vertical de secciones.
+// Tokens: --ix-color-text, --ix-color-text-muted, --ix-sp-*,
+//   --ix-font-brand
+// Ejemplo:
+//   <div class="ix-page">
+//     <header class="ix-page__header">
+//       <div><h1 class="ix-page__title">Jugadores</h1>
+//         <p class="ix-page__sub">1.2K registrados</p></div>
+//       <div class="ix-page__actions">…</div>
+//     </header>
+//     <section class="ix-grid-stats">…</section>
+//   </div>
+.ix-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ix-sp-5);
+}
+.ix-page__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--ix-sp-4);
+  flex-wrap: wrap;
+}
+.ix-page__title {
+  font-family: var(--ix-font-brand);
+  font-size: 1.38rem;
+  font-weight: 600;
+  color: var(--ix-color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.ix-page__sub {
+  font-size: 0.92rem;
+  color: var(--ix-color-text-muted);
+  margin-top: var(--ix-sp-1);
+}
+.ix-page__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ix-sp-2);
+  flex-shrink: 0;
+}

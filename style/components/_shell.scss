@@ -1,0 +1,42 @@
+// ── Shell ─────────────────────────────────────────────────────
+// Contenedor raíz que define la geometría de la app: sidebar + main
+// (default) o topbar arriba + main (modo `[data-layout="topbar"]`).
+// Tokens: --ix-color-bg
+// Ejemplo: <div class="ix-shell"><aside class="ix-sidebar">…</aside>…</div>
+.ix-shell {
+  display: flex;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--ix-color-bg);
+}
+[data-layout="topbar"] .ix-shell { flex-direction: column; }
+
+// Variante topbar-only: columna sin overflow oculto.
+// overflow: visible es necesario — un padre con overflow: hidden
+// impide que position: sticky funcione en el topbar.
+.ix-shell--topbar {
+  flex-direction: column;
+  height: auto;
+  min-height: 100dvh;
+  overflow: visible;
+  background: var(--ix-color-bg);
+}
+
+// Overlay de backdrop para sidebar mobile
+.ix-shell__backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--ix-color-backdrop);
+  z-index: calc(var(--ix-z-overlay) - 1);
+}
+
+// Mobile: sidebar como drawer lateral
+@media (max-width: 767px) {
+  .ix-shell {
+    overflow: visible;
+  }
+  .ix-shell__backdrop--visible {
+    display: block;
+  }
+}

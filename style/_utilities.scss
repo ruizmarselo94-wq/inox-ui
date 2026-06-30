@@ -1,0 +1,147 @@
+// ============================================================
+// INOX UI — Utilidades atómicas v0.1.0
+// Prefijo: ix-
+// Todas las propiedades se resuelven vía tokens --ix- o --ix-color-.
+// Sin valores hardcodeados.
+// ============================================================
+
+// ── Display ───────────────────────────────────────────────────
+.ix-hidden { display: none !important; }
+.ix-flex   { display: flex !important; }
+.ix-grid   { display: grid !important; }
+.ix-block  { display: block !important; }
+.ix-inline { display: inline !important; }
+.ix-inline-flex { display: inline-flex !important; }
+
+// ── Flex helpers ──────────────────────────────────────────────
+.ix-flex-col        { flex-direction: column; }
+.ix-flex-row        { flex-direction: row; }
+.ix-items-center    { align-items: center; }
+.ix-items-start     { align-items: flex-start; }
+.ix-items-end       { align-items: flex-end; }
+.ix-items-stretch   { align-items: stretch; }
+.ix-justify-center  { justify-content: center; }
+.ix-justify-between { justify-content: space-between; }
+.ix-justify-end     { justify-content: flex-end; }
+.ix-justify-start   { justify-content: flex-start; }
+.ix-flex-wrap       { flex-wrap: wrap; }
+.ix-flex-1          { flex: 1; }
+.ix-flex-auto       { flex: 1 1 auto; }
+.ix-flex-shrink-0   { flex-shrink: 0; }
+.ix-self-start      { align-self: flex-start; }
+.ix-self-center     { align-self: center; }
+.ix-self-end        { align-self: flex-end; }
+
+// ── Gap ───────────────────────────────────────────────────────
+.ix-gap-1 { gap: var(--ix-sp-1); }
+.ix-gap-2 { gap: var(--ix-sp-2); }
+.ix-gap-3 { gap: var(--ix-sp-3); }
+.ix-gap-4 { gap: var(--ix-sp-4); }
+.ix-gap-6 { gap: var(--ix-sp-6); }
+.ix-gap-8 { gap: var(--ix-sp-8); }
+
+// ── Width / Height ────────────────────────────────────────────
+.ix-w-full   { width: 100%; }
+.ix-w-auto   { width: auto; }
+.ix-h-full   { height: 100%; }
+.ix-min-w-0  { min-width: 0; }
+.ix-max-w-xl { max-width: var(--ix-container-xl); }
+
+// ── Overflow ──────────────────────────────────────────────────
+.ix-overflow-hidden { overflow: hidden; }
+.ix-overflow-auto   { overflow: auto; }
+.ix-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ── Position ──────────────────────────────────────────────────
+.ix-relative { position: relative; }
+.ix-absolute { position: absolute; }
+.ix-sticky   { position: sticky; }
+
+// ── Escala tipográfica ────────────────────────────────────────
+.ix-text-xs  { font-size: var(--ix-font-size-xs); }
+.ix-text-sm  { font-size: var(--ix-font-size-sm); }
+.ix-text-md  { font-size: var(--ix-font-size-md); }
+.ix-text-lg  { font-size: var(--ix-font-size-lg); }
+.ix-text-xl  { font-size: var(--ix-font-size-xl); }
+.ix-text-2xl { font-size: var(--ix-font-size-2xl); }
+.ix-text-3xl { font-size: var(--ix-font-size-3xl); }
+
+// ── Peso tipográfico ──────────────────────────────────────────
+.ix-font-normal   { font-weight: 400; }
+.ix-font-medium   { font-weight: 500; }
+.ix-font-semibold { font-weight: 600; }
+.ix-font-bold     { font-weight: 700; }
+
+// ── Estilo y transformación tipográfica ───────────────────────
+.ix-italic      { font-style: italic; }
+.ix-uppercase   { text-transform: uppercase; }
+.ix-text-center { text-align: center; }
+.ix-text-left   { text-align: left; }
+.ix-text-right  { text-align: right; }
+
+// ── Interlineado ─────────────────────────────────────────────
+.ix-leading-none   { line-height: 1; }
+.ix-leading-tight  { line-height: 1.25; }
+.ix-leading-snug   { line-height: 1.375; }
+.ix-leading-normal { line-height: 1.5; }
+
+// ── Familias (aliases de tokens de rol) ──────────────────────
+// Los existentes en _utility.scss se conservan con !important para
+// poder forzar fuente en componentes; aquí la versión sin !important
+// para composición más suave.
+.ix-font-ui    { font-family: var(--ix-font-ui); }
+.ix-font-brand { font-family: var(--ix-font-brand); }
+.ix-font-mono  { font-family: var(--ix-font-mono); }
+
+// ── Color de texto semántico ──────────────────────────────────
+.ix-color-text         { color: var(--ix-color-text); }
+.ix-color-text-muted   { color: var(--ix-color-text-muted); }
+.ix-color-text-disabled { color: var(--ix-color-text-disabled); }
+.ix-color-primary      { color: var(--ix-color-primary); }
+.ix-color-success      { color: var(--ix-color-success); }
+.ix-color-danger       { color: var(--ix-color-danger); }
+.ix-color-warning      { color: var(--ix-color-warning); }
+.ix-color-info         { color: var(--ix-color-info); }
+
+// ── Fondo semántico ───────────────────────────────────────────
+.ix-bg-ground   { background: var(--ix-color-bg); }
+.ix-bg-surface  { background: var(--ix-color-surface); }
+.ix-bg-alt      { background: var(--ix-color-surface-alt); }
+
+// ── Bordes ────────────────────────────────────────────────────
+.ix-border        { border: 1px solid var(--ix-color-border); }
+.ix-border-top    { border-top: 1px solid var(--ix-color-border); }
+.ix-border-bottom { border-bottom: 1px solid var(--ix-color-border); }
+
+// ── Radio de borde ────────────────────────────────────────────
+.ix-rounded-sm   { border-radius: var(--ix-r-sm); }
+.ix-rounded-md   { border-radius: var(--ix-r-md); }
+.ix-rounded-lg   { border-radius: var(--ix-r-lg); }
+.ix-rounded-xl   { border-radius: var(--ix-r-xl); }
+.ix-rounded-full { border-radius: var(--ix-r-full); }
+
+// ── Accesibilidad ─────────────────────────────────────────────
+// Oculta visualmente pero accesible a lectores de pantalla (WCAG 1.3.1).
+.ix-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ── Scrollbar global ──────────────────────────────────────────
+// Thin + armonía con el tema activo. Consolidado aquí para que
+// se cargue tanto con @use 'components' como con @use 'main'.
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ix-color-overlay) transparent;
+}
