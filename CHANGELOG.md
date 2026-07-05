@@ -30,6 +30,10 @@ Versionado: [Semantic Versioning](https://semver.org/).
   `_tema-oscuro.scss` → `_theme-dark.scss`. Actualizar los `@use
   'inox-ui/style/themes/tema-*'` existentes a `theme-neutral`/`theme-dark`.
 
+### Fixed
+- `ix-label`: font-size hardcodeado (0.85rem, fuera de la escala de tokens)
+  reemplazado por `--ix-font-size-sm`.
+
 ---
 
 ## [0.1.0] — 2026-05-19
