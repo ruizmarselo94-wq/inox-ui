@@ -31,8 +31,10 @@ Versionado: [Semantic Versioning](https://semver.org/).
   'inox-ui/style/themes/tema-*'` existentes a `theme-neutral`/`theme-dark`.
 
 ### Fixed
-- `ix-label`: font-size hardcodeado (0.85rem, fuera de la escala de tokens)
-  reemplazado por `--ix-font-size-sm`.
+- `ix-label` e `ix-input`/`ix-select`/`ix-textarea`: font-size hardcodeado
+  (0.85rem y 0.92rem respectivamente, fuera de la escala de tokens)
+  reemplazado por `--ix-font-size-md` en ambos — quedan igualados en tamaño
+  (un label más chico que su input invierte la jerarquía visual).
 
 ---
 

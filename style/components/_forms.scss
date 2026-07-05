@@ -18,7 +18,11 @@
   gap: 4px;
 }
 .ix-label {
-  font-size: var(--ix-font-size-sm);   // antes: 0.85rem hardcodeado, fuera de la escala
+  // md, no sm: iguala al font-size del propio input (línea de abajo) —
+  // un label más chico que su input invierte la jerarquía (lo accesorio
+  // se lee más chico que el contenido, no al revés). antes: 0.85rem
+  // hardcodeado, fuera de la escala.
+  font-size: var(--ix-font-size-md);
   font-weight: 500;
   color: var(--ix-color-text-muted);
   font-family: var(--ix-font-brand);
@@ -37,7 +41,7 @@
   // típicamente reciben tap en mobile. .ix-textarea define su
   // propio alto por rows; el min-height se ignora si rows > 1.
   min-height: 44px;
-  font-size: 0.92rem;
+  font-size: var(--ix-font-size-md);   // antes: 0.92rem hardcodeado — ahora pareja con .ix-label
   color: var(--ix-color-text);
   font-family: var(--ix-font-mono);
   outline: none;
