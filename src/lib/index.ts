@@ -21,6 +21,7 @@ export { default as IxFlag }         from './components/primitives/IxFlag.svelte
 export { default as IxThemePicker }  from './components/primitives/IxThemePicker.svelte';
 export { default as IxBtn }          from './components/primitives/IxBtn.svelte';
 export { default as IxBtnIcon } from './components/primitives/IxBtnIcon.svelte';
+export { default as IxBtnOauth } from './components/primitives/IxBtnOauth.svelte';
 export { default as IxCard }    from './components/primitives/IxCard.svelte';
 export { default as IxIcon }    from './components/primitives/IxIcon.svelte';
 export { default as IxSpinner }           from './components/primitives/IxSpinner.svelte';

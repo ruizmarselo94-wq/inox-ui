@@ -23,6 +23,17 @@ Versionado: [Semantic Versioning](https://semver.org/).
   `--primary/--accent/--neutral/--success/--danger/--warning/--info`, todas
   vía tokens `--ix-color-*-subtle`/`-bg` ya existentes (mismo mecanismo que
   `IxBadge`, sin `color-mix()`).
+- `IxBtnOauth` (`primitives/IxBtnOauth.svelte`): encapsula el botón OAuth
+  sobre `.ix-btn-oauth` — el SVG de marca vive en el componente, no en cada
+  consumidor. Providers soportados hoy: `google`, `github` (los únicos con
+  logo verificado; el CSS ya tiene tratamiento hover para facebook/vk pero
+  el componente no les inventa un ícono hasta tener el SVG confirmado).
+  Prop `disabled` para "proveedor visible, todavía no wireado" (`aria-disabled`
+  + `tabindex="-1"`, sin `href`). El `href` lo decide el consumidor — el
+  componente no asume ninguna convención de ruteo de backend.
+- `.ix-divider` (`_divider.scss`): separador con texto centrado (línea a
+  cada lado). Utilidad CSS pura, sin componente Svelte — mismo criterio que
+  `.ix-icon-box`.
 
 ### Changed
 - Renombrados los temas opt-in a inglés, consistente con el resto de nombres

@@ -1,0 +1,27 @@
+// ── Divider ───────────────────────────────────────────────────────────
+// Separador con texto centrado — línea a cada lado. Utilidad CSS pura,
+// sin componente Svelte (mismo criterio que .ix-icon-box): el consumidor
+// arma su propio contenedor y le pone el texto adentro.
+//
+// Tokens: --ix-color-border, --ix-color-text-muted, --ix-font-ui,
+//   --ix-font-size-sm, --ix-sp-3
+//
+// Ejemplo:
+//   <div class="ix-divider"><span>o continuá con</span></div>
+
+.ix-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--ix-sp-3);
+  color: var(--ix-color-text-muted);
+  font-family: var(--ix-font-ui);
+  font-size: var(--ix-font-size-sm);
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ix-color-border);
+  }
+}
