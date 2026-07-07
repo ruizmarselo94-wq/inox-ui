@@ -15,5 +15,16 @@ html {
 
 body { min-height: 100dvh; }
 
+// Anillo de foco de marca para cualquier <a> suelto — sin esto, un link que
+// no sea .ix-btn/.ix-btn-oauth (ej. wordmark, links de footer, "¿Sos
+// nuevo?") cae al outline azul por defecto del navegador, inconsistente
+// contra el resto de los controles (botones/inputs ya usan
+// --ix-color-border-focus). Cumple WCAG 2.4.7 igual sin esto — esto es
+// consistencia visual, no un fix de accesibilidad.
+a:focus-visible {
+  outline: 2px solid var(--ix-color-border-focus);
+  outline-offset: 2px;
+}
+
 // Marca un cambio de tema momentáneo donde no queremos animaciones.
 .no-trans * { transition: none !important; }

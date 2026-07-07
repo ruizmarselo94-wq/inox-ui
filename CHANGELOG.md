@@ -46,6 +46,11 @@ Versionado: [Semantic Versioning](https://semver.org/).
   (0.85rem y 0.92rem respectivamente, fuera de la escala de tokens)
   reemplazado por `--ix-font-size-md` en ambos — quedan igualados en tamaño
   (un label más chico que su input invierte la jerarquía visual).
+- `a:focus-visible` global (`_reset.scss`): cualquier link suelto (no
+  `.ix-btn`/`.ix-btn-oauth`) caía al outline azul por defecto del
+  navegador. Ahora usa el mismo anillo de marca (`--ix-color-border-focus`)
+  que ya tenían botones e inputs. Consistencia visual, no un fix de
+  accesibilidad — WCAG 2.4.7 ya se cumplía con el outline nativo.
 
 ---
 
