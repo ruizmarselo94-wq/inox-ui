@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import IxIcon from '../primitives/IxIcon.svelte';
 
   interface Props {
@@ -14,6 +15,10 @@
     id?: string;
     name?: string;
     autocomplete?: AutoFill;
+    /** Foco automático al montar — solo en desktop/puntero fino. En touch
+     * (`hover: none` + `pointer: coarse`) no hace nada, para no disparar el
+     * teclado virtual apenas carga la página. Válido en el campo primario
+     * de una página de propósito único (ej. login). */
     autofocus?: boolean;
     /** En campos `password`, agrega un botón mostrar/ocultar. */
     revealable?: boolean;
@@ -52,6 +57,19 @@
   const wrapperCls = $derived(
     ['ix-field', error ? 'ix-field--error' : '', extraClass].filter(Boolean).join(' '),
   );
+
+  let inputEl: HTMLInputElement | undefined = $state();
+
+  // `autofocus` is handled in JS, not the native HTML attribute: on touch
+  // devices it pops the virtual keyboard the instant the page loads, before
+  // the user has done anything — invasive rather than helpful. Desktop
+  // (no coarse pointer) keeps the expected "land on the page ready to
+  // type" behavior.
+  onMount(() => {
+    if (!autofocus) return;
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if (!isTouch) inputEl?.focus();
+  });
 </script>
 
 <div class={wrapperCls}>
@@ -62,8 +80,8 @@
   {/if}
 
   {#snippet control()}
-    <!-- svelte-ignore a11y_autofocus — válido cuando el llamador lo usa en el elemento primario de la página (ej. login) -->
     <input
+      bind:this={inputEl}
       class="ix-input"
       type={currentType}
       id={inputId}
@@ -73,7 +91,6 @@
       readonly={readonlyProp}
       {required}
       {autocomplete}
-      {autofocus}
       bind:value
       {oninput}
       {onchange}

@@ -40,6 +40,10 @@ Versionado: [Semantic Versioning](https://semver.org/).
   de archivo del repo: `_tema-neutro.scss` → `_theme-neutral.scss`,
   `_tema-oscuro.scss` → `_theme-dark.scss`. Actualizar los `@use
   'inox-ui/style/themes/tema-*'` existentes a `theme-neutral`/`theme-dark`.
+- `IxInput`: `autofocus` deja de ser el atributo HTML nativo — ahora se
+  aplica en JS al montar, y **solo si el dispositivo no es touch**
+  (`hover: none` + `pointer: coarse`). Antes disparaba el teclado virtual
+  apenas cargaba la página en mobile, sin que el usuario hiciera nada.
 
 ### Fixed
 - `ix-label` e `ix-input`/`ix-select`/`ix-textarea`: font-size hardcodeado
