@@ -8,6 +8,9 @@ Versionado: [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `IxIcon`: agregados `cpu` y `swords` (Lucide). LDT los usa en el lobby
+  ("Contra la máquina" = motor de cálculo; "Contra un amigo" = duelo).
+  Bender/Cthulhu los heredan automáticamente vía el set compartido.
 - `IxModal` (`primitives/IxModal.svelte`): diálogo modal sobre `<dialog>`
   nativo — `showModal()` aporta top-layer, focus-trap, Esc y `::backdrop`
   sin JS extra. Props: `open` (bindable), `title`, `size` (`sm/md/lg/xl`),
