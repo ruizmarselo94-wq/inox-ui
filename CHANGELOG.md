@@ -8,6 +8,16 @@ Versionado: [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `IxModal` (`primitives/IxModal.svelte`): diálogo modal sobre `<dialog>`
+  nativo — `showModal()` aporta top-layer, focus-trap, Esc y `::backdrop`
+  sin JS extra. Props: `open` (bindable), `title`, `size` (`sm/md/lg/xl`),
+  `onclose`, snippet `footer`. Reutiliza la caja `.ix-modal` que ya vivía en
+  `_modal.scss`; se agregó `dialog.ix-modal` + `::backdrop` + botón
+  `.ix-modal__close`. Cierra por Esc, clic en el backdrop o el botón. LDT lo
+  usa para configurar partida (vs-máquina / desafío a un amigo); Bender
+  también lo va a necesitar.
+- Ícono `robot` al catálogo Lucide (`src/lib/icons.ts`). Para "Contra la
+  máquina" en LDT. Aparece automáticamente en el catálogo vía `ICON_NAMES`.
 - `IxInput` ahora soporta `revealable`: en campos `password` agrega un botón
   mostrar/ocultar (clases `ix-input-reveal` / `ix-input-reveal__toggle`).
   Reemplaza el markup custom que `/login` y `/setup` duplicaban.

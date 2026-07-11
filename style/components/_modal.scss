@@ -76,3 +76,45 @@
   justify-content: flex-end;
   gap: var(--ix-sp-2);
 }
+
+// ── IxModal — <dialog> nativo ─────────────────────────────────
+// El componente IxModal usa un <dialog> con showModal(): top layer,
+// focus-trap, Esc y backdrop nativos. Reutiliza la caja .ix-modal; el
+// backdrop lo aporta ::backdrop en vez del div .ix-backdrop.
+dialog.ix-modal {
+  padding: 0;                 // el header/body/footer aportan su padding
+  margin: auto;               // centrado en el top layer
+  color: var(--ix-color-text);
+  max-height: calc(100dvh - var(--ix-sp-8));
+  overflow: auto;
+
+  &::backdrop { background: var(--ix-color-backdrop); }
+
+  @media (max-width: 767px) {
+    margin: var(--ix-sp-4);   // respiro contra los bordes en mobile
+  }
+}
+
+// Botón cerrar del header (el header usa space-between: título ↔ cerrar).
+.ix-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: 0;
+  background: transparent;
+  border-radius: var(--ix-r-md);
+  color: var(--ix-color-text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover { background: var(--ix-color-surface-alt); color: var(--ix-color-text); }
+
+  &:focus-visible {
+    outline: 2px solid var(--ix-color-border-focus);
+    outline-offset: 2px;
+  }
+}

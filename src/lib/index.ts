@@ -25,6 +25,7 @@ export { default as IxBtnOauth } from './components/primitives/IxBtnOauth.svelte
 export { default as IxCard }    from './components/primitives/IxCard.svelte';
 export { default as IxIcon }    from './components/primitives/IxIcon.svelte';
 export { default as IxSpinner }           from './components/primitives/IxSpinner.svelte';
+export { default as IxModal }             from './components/primitives/IxModal.svelte';
 export { default as IxNotificationBell }  from './components/primitives/IxNotificationBell.svelte';
 
 // ── Formularios ───────────────────────────────────────────────────────────────
