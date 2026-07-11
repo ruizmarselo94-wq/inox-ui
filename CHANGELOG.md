@@ -8,6 +8,9 @@ Versionado: [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `.ix-avatar--lg` (40px, font-size 1.08rem): tercer tamaño de avatar, sigue
+  la misma proporción que `--sm`/`--md`. LDT lo usa en el mini-perfil del
+  lobby.
 - `IxIcon`: agregados `cpu` y `swords` (Lucide). LDT los usa en el lobby
   ("Contra la máquina" = motor de cálculo; "Contra un amigo" = duelo).
   Bender/Cthulhu los heredan automáticamente vía el set compartido.
