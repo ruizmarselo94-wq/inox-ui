@@ -7,6 +7,17 @@
     placeholder?: string;
     value?: string;
     type?: 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url';
+    /** Sólo `type="number"`: límites y paso del control nativo. Sin ellos el
+     * input acepta cualquier número (negativos incluidos). */
+    min?: number;
+    max?: number;
+    step?: number;
+    /** Teclado virtual sugerido en mobile — útil en `type="number"`. */
+    inputmode?: 'numeric' | 'decimal' | 'text' | 'tel';
+    /** Sólo `type="number"`: reemplaza las flechas nativas por botones −/+
+     * consistentes (respeta `min`/`max`/`step`). El input sigue aceptando
+     * las flechas del teclado para el usuario que teclea. */
+    stepper?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     required?: boolean;
@@ -33,6 +44,11 @@
     placeholder,
     value = $bindable(''),
     type = 'text',
+    min,
+    max,
+    step,
+    inputmode,
+    stepper = false,
     disabled = false,
     readonly: readonlyProp = false,
     required = false,
@@ -52,6 +68,23 @@
   let revealed = $state(false);
   const showReveal  = $derived(revealable && type === 'password');
   const currentType = $derived(showReveal && revealed ? 'text' : type);
+
+  // Stepper numérico: botones −/+ que reemplazan las flechas nativas.
+  const showStepper = $derived(stepper && type === 'number');
+  const numValue = $derived(value === '' ? Number.NaN : Number(value));
+  const atMin = $derived(min !== undefined && !Number.isNaN(numValue) && numValue <= min);
+  const atMax = $derived(max !== undefined && !Number.isNaN(numValue) && numValue >= max);
+
+  // Suma/resta `step` (o 1) partiendo del valor actual (o `min`/0 si está
+  // vacío), clampeando a `min`/`max`. Escribe de vuelta en el binding.
+  function nudge(dir: 1 | -1) {
+    const s = step ?? 1;
+    const base = Number.isNaN(numValue) ? (min ?? 0) : numValue;
+    let next = base + dir * s;
+    if (min !== undefined && next < min) next = min;
+    if (max !== undefined && next > max) next = max;
+    value = String(next);
+  }
 
   const inputId = $derived(id ?? `ix-input-${Math.random().toString(36).slice(2, 7)}`);
   const wrapperCls = $derived(
@@ -91,6 +124,10 @@
       readonly={readonlyProp}
       {required}
       {autocomplete}
+      {min}
+      {max}
+      {step}
+      {inputmode}
       bind:value
       {oninput}
       {onchange}
@@ -113,6 +150,28 @@
       >
         <IxIcon name={revealed ? 'eye-off' : 'eye'} size={16} ariaHidden />
       </button>
+    </div>
+  {:else if showStepper}
+    <!-- Botones −/+ para puntero/touch; el input queda operable por teclado
+         (flechas nativas), por eso los botones son tabindex="-1". -->
+    <div class="ix-stepper">
+      <button
+        type="button"
+        class="ix-stepper__btn"
+        onclick={() => nudge(-1)}
+        disabled={disabled || atMin}
+        aria-label="Disminuir"
+        tabindex="-1"
+      >−</button>
+      {@render control()}
+      <button
+        type="button"
+        class="ix-stepper__btn"
+        onclick={() => nudge(1)}
+        disabled={disabled || atMax}
+        aria-label="Aumentar"
+        tabindex="-1"
+      >+</button>
     </div>
   {:else}
     {@render control()}

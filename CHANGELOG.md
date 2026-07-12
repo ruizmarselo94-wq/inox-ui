@@ -8,6 +8,13 @@ Versionado: [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- `IxInput`: props `min`/`max`/`step`/`inputmode` (reenviadas al `<input>`) y
+  modo `stepper` para `type="number"`. `stepper` reemplaza las flechas nativas
+  (feas e inconsistentes entre navegadores) por botones −/+ que respetan
+  `min`/`max`/`step` (clases `.ix-stepper` / `.ix-stepper__btn`); el input sigue
+  operable por teclado. Antes el number no podía acotarse (aceptaba negativos).
+  LDT lo usa en la cadencia de partida; cualquier consumidor con campos
+  numéricos lo hereda.
 - `.ix-avatar--lg` (40px, font-size 1.08rem): tercer tamaño de avatar, sigue
   la misma proporción que `--sm`/`--md`. LDT lo usa en el mini-perfil del
   lobby.

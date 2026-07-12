@@ -102,5 +102,47 @@
   &:focus-visible { outline: 2px solid var(--ix-color-border-focus); outline-offset: 2px; border-radius: var(--ix-r-xs); }
 }
 
+// Stepper numérico — IxInput con stepper=true envuelve el input entre botones
+// −/+ y oculta las flechas nativas de <input type=number> (feas e inconsistentes
+// entre navegadores). El input mantiene su comportamiento de teclado.
+.ix-stepper {
+  display: flex;
+  align-items: stretch;
+  gap: var(--ix-sp-2);
+
+  .ix-input {
+    text-align: center;
+    appearance: textfield;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button { appearance: none; margin: 0; }
+  }
+}
+.ix-stepper__btn {
+  flex: 0 0 auto;
+  width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ix-color-surface-alt);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-sm);
+  color: var(--ix-color-text);
+  font-size: var(--ix-font-size-lg);
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color var(--ix-t-fast), background var(--ix-t-fast);
+
+  &:hover:not(:disabled) {
+    border-color: var(--ix-color-border-strong);
+    background: var(--ix-color-ghost-hover-bg);
+  }
+  &:active:not(:disabled) { background: var(--ix-color-ghost-hover-border); }
+  &:focus-visible { outline: 2px solid var(--ix-color-border-focus); outline-offset: 1px; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
 .ix-field__hint  { font-size: 0.85rem; color: var(--ix-color-text-muted); }
 .ix-field__error { font-size: 0.85rem; color: var(--ix-color-danger); }
