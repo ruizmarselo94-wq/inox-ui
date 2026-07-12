@@ -88,11 +88,28 @@ dialog.ix-modal {
   max-height: calc(100dvh - var(--ix-sp-8));
   overflow: auto;
 
-  &::backdrop { background: var(--ix-color-backdrop); }
+  // El backdrop hace fade-in con el MISMO timing que la caja (ix-modal-in).
+  // Sin esto el fondo oscuro aparecía de golpe (instantáneo) mientras la caja
+  // entraba suave — esa disonancia se lee como un "pestañeo" chocante al abrir.
+  &::backdrop {
+    background: var(--ix-color-backdrop);
+    animation: ix-backdrop-in var(--ix-t-normal) var(--ix-ease);
+  }
 
   @media (max-width: 767px) {
     margin: var(--ix-sp-4);   // respiro contra los bordes en mobile
   }
+}
+@keyframes ix-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+// Accesibilidad: sin animación de entrada si el usuario prefiere menos
+// movimiento (la caja y el backdrop aparecen sin transición).
+@media (prefers-reduced-motion: reduce) {
+  .ix-modal,
+  dialog.ix-modal::backdrop { animation: none; }
 }
 
 // Botón cerrar del header (el header usa space-between: título ↔ cerrar).

@@ -7,6 +7,13 @@ Versionado: [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- `IxModal`: el `::backdrop` ahora hace fade-in con el mismo timing/easing que
+  la caja (`ix-modal-in`). Antes el fondo oscuro aparecía de golpe mientras la
+  caja entraba suave — esa disonancia se leía como un "pestañeo" chocante al
+  abrir. Se agregó además respeto a `prefers-reduced-motion` (sin animación de
+  entrada para quien lo prefiere).
+
 ### Added
 - `IxInput`: props `min`/`max`/`step`/`inputmode` (reenviadas al `<input>`) y
   modo `stepper` para `type="number"`. `stepper` reemplaza las flechas nativas
