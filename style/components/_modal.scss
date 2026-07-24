@@ -97,7 +97,22 @@ dialog.ix-modal {
   }
 
   @media (max-width: 767px) {
-    margin: var(--ix-sp-4);   // respiro contra los bordes en mobile
+    // Respiro contra los bordes en mobile SIN romper el centrado.
+    //
+    // Ojo con la tentación de poner `margin: var(--ix-sp-4)` acá: no funciona.
+    // Un <dialog> abierto con showModal() se posiciona con `inset: 0` sobre el
+    // viewport, y como .ix-modal trae `width: 100%`, unos márgenes laterales
+    // sobre-restringen la ecuación horizontal:
+    //     left(0) + margin(sp-4) + width(100%) + margin(sp-4) + right(0) > 100%
+    // El CSS la resuelve ignorando `right` (en LTR), así que el diálogo queda
+    // con aire a la izquierda y PASADO del borde derecho — asimétrico y
+    // recortado. `box-sizing: border-box` no salva: incluye padding y borde,
+    // nunca el margen.
+    //
+    // La forma correcta es dejar el `margin: auto` de arriba (que centra) y
+    // descontar el respiro del ancho máximo. Gana sobre el `max-width: 100%`
+    // de .ix-modal por especificidad (dialog.ix-modal > .ix-modal).
+    max-width: calc(100% - var(--ix-sp-8));
   }
 }
 @keyframes ix-backdrop-in {
