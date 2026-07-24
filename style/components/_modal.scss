@@ -120,6 +120,23 @@ dialog.ix-modal {
   to   { opacity: 1; }
 }
 
+// Con un modal abierto, el fondo no scrollea.
+//
+// showModal() deja el resto de la página `inert` (ni clickeable ni enfocable),
+// pero NO bloquea el scroll — es una suposición habitual y equivocada. Hay que
+// pedirlo explícitamente.
+//
+// Se usa `dialog:modal` y no `dialog[open]`: `[open]` también matchea los
+// diálogos abiertos con .show() (no modales), donde el fondo SÍ debe poder
+// scrollear. `:modal` matchea solo los de showModal().
+//
+// Sin `scrollbar-gutter: stable` a propósito: en desktop, al ocultar la barra
+// hay un saltito de layout, pero reservar el canal de forma global mete una
+// banda vacía permanente en toda la app. Es un intercambio consciente.
+html:has(dialog:modal) {
+  overflow: hidden;
+}
+
 // Accesibilidad: sin animación de entrada si el usuario prefiere menos
 // movimiento (la caja y el backdrop aparecen sin transición).
 @media (prefers-reduced-motion: reduce) {
