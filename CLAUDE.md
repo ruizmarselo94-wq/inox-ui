@@ -7,9 +7,11 @@ Design system de Stahl, v0.1.0. Dos capas completamente independientes:
 1. **CSS/SCSS universal** (`style/`) — funciona con cualquier framework o HTML puro. Sin dependencias JS.
 2. **Componentes Svelte 5** (`src/lib/`) — consumidos por los productos de Stahl. Requieren Svelte 5.
 
-**La fuente canónica es este repo Git** (`github.com/ruizmarselo94-wq/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/ruizmarselo94-wq/inox-ui.git#v0.1.0`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Bender) decide cuándo actualizar su referencia.
+**La fuente canónica es este repo Git** (`github.com/stahlsoft/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/stahlsoft/inox-ui.git#<sha>`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Bender) decide cuándo actualizar su referencia.
 
-**Versión:** `0.2.0`. La nota anterior decía que todo permanecía en `0.1.0` hasta el primer release a producción, y que después Inox UI versionaría independiente — **ese momento ya llegó**: RustKnight/LDT está en producción (ligadetorreones.com), así que Inox UI versiona por su cuenta desde acá y cada producto sigue su propio camino. En `0.x`, MINOR carga features (un componente nuevo), PATCH arregla. La versión es **informativa**: los consumidores pinean por **commit SHA** (no por rango de versión), así que describe el estado de la librería, no controla la resolución.
+**Versión:** `0.1.1`. Inox UI versiona de forma **independiente** de LDT/RustKnight y de los demás proyectos. Durante la etapa de bases se usa **versionado incremental simple** (`0.1.x`) por conveniencia — pasos chicos, sin semver estricto. **Revisar y formalizar la política de versionado cuando un segundo proyecto (Bender) consuma Inox UI en producción**: ese es el disparador, igual que los usuarios reales dispararon el flujo de ramas en RustKnight.
+
+La versión es **informativa**: los consumidores pinean por **commit SHA** (no por rango de versión), así que describe el estado de la librería, no controla la resolución.
 
 ## Prefijos
 

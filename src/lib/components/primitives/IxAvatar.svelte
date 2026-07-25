@@ -4,8 +4,10 @@
   interface Props {
     /** Nombre del que se derivan la inicial y el texto accesible. Requerido. */
     name:   string;
-    /** URL de la foto. Si carga bien se muestra; si falla, cae a la inicial. */
-    src?:   string;
+    /** URL de la foto. Si carga bien se muestra; si falla, cae a la inicial.
+     *  Acepta `null` además de `undefined`: los DTOs de los consumidores suelen
+     *  exponer el avatar como `string | null`, y así no necesitan `?? undefined`. */
+    src?:   string | null;
     /** Tamaño del círculo. Compatible con `.ix-avatar--sm/md/lg`. */
     size?:  AvatarSize;
     /** Texto alternativo. Por defecto el `name`; pasar `""` para decorativo. */
