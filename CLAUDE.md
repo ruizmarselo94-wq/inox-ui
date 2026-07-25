@@ -126,9 +126,13 @@ Colores (vacíos, el consumidor los llena):
 
 Inox UI usa un catálogo inline de íconos Lucide (licencia ISC). Para agregar uno:
 
-1. Copiar los `<path>` del SVG de Lucide a `src/lib/icons.ts` en el objeto `icons`
-2. Agregar el nombre al tipo `IconName` en el mismo archivo
-3. Agregar una demo en la sección "Íconos" del catálogo `/inox-ui`
+1. Agregar una entrada al objeto `ICONS` de `src/lib/icons.ts`, con la forma
+   `'nombre-kebab': ['<markup interno del SVG>', 'Etiqueta en español']`. El
+   markup admite `<path>`, `<circle>`, `<polyline>` y `<line>` (ver `user-cog`),
+   no solo paths. **No** hay que tocar ningún tipo: `ICONS` es
+   `Record<string, [string, string]>` y `ICON_NAMES` se deriva de `Object.keys`,
+   así que el ícono queda disponible solo.
+2. Agregar una demo en la sección "Íconos" del catálogo `/inox-ui`
 
 Los íconos se renderizan via `IxIcon` con `name="nombre-del-icono"` — nunca como archivos SVG externos.
 
