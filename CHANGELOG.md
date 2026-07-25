@@ -21,6 +21,12 @@ mientras se sientan las bases.
   `string | undefined`). Los DTOs de los consumidores exponen `avatar_url` como
   `string | null`, así que cada call site necesitaba un `?? undefined`. Amplía lo
   aceptado, no rompe nada.
+- `IxIcon`: agregado `user-plus` (persona + signo más, Lucide). Es el ícono
+  canónico de "agregar contacto/amigo" y era un hueco real de la familia
+  `user-*`, que tenía `check`, `cog`, `edit` y `x` —aprobar, configurar, editar,
+  quitar— pero no **agregar**, la operación más común de una capa social.
+  Sigue la generación de sus hermanos (`user-check`/`user-x`: torso clásico +
+  `<line>`), no la variante nueva de Lucide, para que el trazo case con el set.
 - `IxIcon`: agregado `user-edit` (persona + lápiz, Lucide `user-pen`). El set no
   tenía un ícono de editar-identidad — solo `pencil` genérico, `cog` y
   `settings`; `user-cog` era lo más cercano pero comunica "configuración". LDT lo
