@@ -15,6 +15,18 @@ Versionado: [Semantic Versioning](https://semver.org/).
   entrada para quien lo prefiere).
 
 ### Added
+- `IxAvatar` (`primitives/IxAvatar.svelte`): componente de avatar con foto +
+  fallback a inicial. Props: `name` (requerido — deriva inicial y texto
+  accesible), `src?` (URL de foto), `size?` (`sm/md/lg`), `alt?`, `class?`.
+  Muestra la `<img>` si hay `src` y carga bien (circular, `object-fit: cover`,
+  no deforma fotos no cuadradas); si no hay `src` **o la imagen falla al cargar**
+  (`onerror`), cae a la inicial sobre el gradiente de marca — clave para URLs de
+  proveedor (Google/GitHub) que pueden morir sin dejar el avatar roto. Reutiliza
+  `.ix-avatar` (se le sumó `overflow: hidden` para recortar la foto, más
+  `.ix-avatar__img`); los avatares solo-inicial existentes no cambian.
+  Accesible: `alt` en la imagen, `role="img"`+`aria-label` en la inicial (o
+  `aria-hidden` si `alt=""`). Reemplaza las copias inline del círculo que los
+  consumidores (LDT: perfil/topbar/mini-perfil) hoy duplican.
 - `IxInput`: props `min`/`max`/`step`/`inputmode` (reenviadas al `<input>`) y
   modo `stepper` para `type="number"`. `stepper` reemplaza las flechas nativas
   (feas e inconsistentes entre navegadores) por botones −/+ que respetan

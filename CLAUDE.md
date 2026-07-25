@@ -20,6 +20,7 @@ Design system de Stahl, v0.1.0. Dos capas completamente independientes:
 ## Componentes disponibles (17)
 
 **Primitivos** (`src/lib/components/primitives/`):
+- `IxAvatar` — avatar con foto + fallback a inicial, props: `name`, `src?`, `size?` (`sm | md | lg`), `alt?`. Muestra la foto si carga; cae a la inicial sobre gradiente de marca si no hay `src` o la imagen falla (`onerror`)
 - `IxBtn` — botón con variants: `primary | outline | secondary | ghost | danger`, sizes: `sm | md | lg`
 - `IxBtnIcon` — botón de solo ícono, props: `title` (a11y), `danger`, `disabled`
 - `IxBadge` — etiqueta de estado, variants: `ok | warn | err | info | neutral`
@@ -86,7 +87,7 @@ Componentes CSS:
   ix-modal, ix-modal__header, ix-modal__body, ix-modal__footer
   ix-modal--sm/lg/xl
   ix-toast
-  ix-avatar, ix-avatar--sm/lg
+  ix-avatar, ix-avatar--sm/md/lg, ix-avatar__img
   ix-spinner
   ix-skeleton, ix-skeleton--text/circle/rect
 ```

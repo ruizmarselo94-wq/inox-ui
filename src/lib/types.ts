@@ -4,6 +4,7 @@ export type LayoutMode = 'sidebar' | 'topbar';
 export type BadgeVariant = 'ok' | 'warn' | 'err' | 'info' | 'neutral';
 export type BtnVariant = 'primary' | 'outline' | 'secondary' | 'ghost' | 'danger';
 export type BtnSize = 'sm' | 'md' | 'lg';
+export type AvatarSize = 'sm' | 'md' | 'lg';
 export type ToastKind = 'ok' | 'err' | 'warn' | 'info';
 
 export interface NavItem {

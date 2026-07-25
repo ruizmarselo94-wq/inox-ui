@@ -1,10 +1,14 @@
 // ── Avatar ────────────────────────────────────────────────────
-// Círculo con gradiente de marca y iniciales en blanco.
+// Círculo con foto (si hay) o iniciales sobre gradiente de marca. El componente
+// IxAvatar decide cuál mostrar; la clase sirve también suelta para solo-inicial.
 // Tamaños: --sm (26px), --md (32px), --lg (40px)
 // Tokens: --ix-color-primary, --ix-color-accent
 // Ejemplo: <div class="ix-avatar ix-avatar--sm">MG</div>
 .ix-avatar {
   border-radius: 50%;
+  // Recorta la <img> al círculo. En el caso solo-inicial no cambia nada (el
+  // texto centrado siempre entra), así que los avatares existentes se ven igual.
+  overflow: hidden;
   background: linear-gradient(135deg, var(--ix-color-primary), var(--ix-color-accent));
   display: flex;
   align-items: center;
@@ -18,3 +22,13 @@
 .ix-avatar--sm { width: 26px; height: 26px; }
 .ix-avatar--md { width: 32px; height: 32px; font-size: 0.92rem; }
 .ix-avatar--lg { width: 40px; height: 40px; font-size: 1.08rem; }
+
+// Foto: llena el círculo sin deformarse — `cover` recorta el excedente en vez de
+// estirar una foto no cuadrada. El `overflow: hidden` del contenedor la recorta.
+.ix-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
