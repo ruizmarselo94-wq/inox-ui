@@ -21,6 +21,41 @@ mientras se sientan las bases.
   `string | undefined`). Los DTOs de los consumidores exponen `avatar_url` como
   `string | null`, así que cada call site necesitaba un `?? undefined`. Amplía lo
   aceptado, no rompe nada.
+- `IxIcon`: agregado `user-edit` (persona + lápiz, Lucide `user-pen`). El set no
+  tenía un ícono de editar-identidad — solo `pencil` genérico, `cog` y
+  `settings`; `user-cog` era lo más cercano pero comunica "configuración". LDT lo
+  usa en el botón "Editar perfil". Aparece automáticamente en `ICON_NAMES`.
+- El script `build` pasa a ser un alias de `package`. Antes corría
+  `vite build && npm run package`, y `vite build` **fallaba siempre**
+  (`src/app.html does not exist`): Inox UI es una librería, no una app, y nadie
+  consume la salida de Vite. `package` (`svelte-package` + `publint`) queda como
+  el comando canónico.
+- `@sveltejs/kit` pasa a `peerDependencies`. La librería importa `$app/*`
+  (`IxTopbar`, `IxSidebar`, `IxNotificationBell`), así que SvelteKit lo provee el
+  consumidor — `svelte-package` lo reportaba como dependencia no declarada.
+- `tsconfig.json` extiende `./.svelte-kit/tsconfig.json` y deja de declarar
+  `include`/`types` propios. Sin eso los tipos ambientales de `$app/*` no
+  resolvían (y un `include` local los habría vuelto a tapar, porque reemplaza el
+  del generado en vez de sumarse).
+
+### Added
+- **`src/app.html`** (causa raíz del build roto): `svelte-kit sync` lo exige para
+  generar `.svelte-kit/`, y sin él fallaban `npm run package` **y**
+  `npm run check`. Nadie sirve ese HTML —Inox UI es solo `src/lib/`—; existe por
+  el mismo motivo por el que lo incluye la plantilla de librería de SvelteKit.
+- **CI** (`.github/workflows/ci.yml`): en push y PR a `main` corre `check`
+  (svelte-check) y `package`. El repo no tenía ninguno, y como los consumidores
+  usan la **fuente**, nada impedía que un error de tipos llegara a LDT al bumpear
+  el pin. Sin `lint` (el script existe pero prettier/eslint no están instalados)
+  y sin `npm ci`/`cache: npm` (no hay lockfile).
+
+### Fixed
+- `IxSidebar`: `pathname` se tipa explícitamente como `string`. SvelteKit lo tipa
+  según la tabla de rutas del proyecto y esta librería no tiene rutas propias, así
+  que quedaba como ``"/" | `/${string}/` `` y comparar con una ruta del consumidor
+  (`'/dashboard'`) se reportaba como "sin solapamiento". Para una librería el
+  pathname **es** un string arbitrario. El error estaba latente: solo se hizo
+  visible cuando los tipos de `$app/*` empezaron a resolver.
 
 ### Fixed
 - `IxModal`: el `::backdrop` ahora hace fade-in con el mismo timing/easing que

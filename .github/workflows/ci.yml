@@ -1,0 +1,38 @@
+name: CI
+
+# Inox UI se consume por FUENTE (los `exports` apuntan a `./src/lib`, no a un
+# `dist/`), así que un error de sintaxis o de tipos acá llega directo a los
+# consumidores (LDT, Bender) al bumpear el pin. Este workflow es lo que lo evita.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verificar:
+    name: Tipos y empaquetado
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Sin `cache: npm` a propósito: el cacheo de setup-node necesita un
+      # package-lock.json, y este repo no tiene (por eso también se usa
+      # `npm install` y no `npm ci`).
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: npm install
+
+      # Lo que de verdad protege al consumidor: que la fuente typechequee.
+      - name: svelte-check
+        run: npm run check
+
+      # Que la librería se empaquete sin error (svelte-package + publint).
+      - name: Empaquetado
+        run: npm run package
+
+# Nota: no se corre `npm run lint` — el script existe pero prettier y eslint no
+# están en devDependencies, así que fallaría por comando inexistente. Agregarlos
+# es una decisión aparte.
