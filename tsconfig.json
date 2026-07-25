@@ -1,4 +1,13 @@
 {
+  // Extiende el tsconfig que genera `svelte-kit sync` (.svelte-kit/tsconfig.json):
+  // de ahí salen los tipos ambientales de `$app/*` y los alias `$lib`. Sin esto,
+  // svelte-check no resolvía `$app/navigation`/`$app/stores` y marcaba errores en
+  // IxTopbar, IxSidebar e IxNotificationBell.
+  //
+  // No se declara `include` a propósito: el generado ya incluye `ambient.d.ts` y
+  // los tipos de rutas, y un `include` local los REEMPLAZARÍA (volviendo a romper
+  // la resolución de `$app/*`).
+  "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
@@ -13,8 +22,6 @@
     "sourceMap": true,
     "strict": true,
     "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "types": ["node"]
-  },
-  "include": ["src/lib/**/*.ts", "src/lib/**/*.svelte", "src/lib/**/*.svelte.ts"]
+    "isolatedModules": true
+  }
 }

@@ -32,7 +32,13 @@
     ].filter(Boolean).join(' '),
   );
   const avatarLetra = $derived(user?.name?.charAt(0)?.toUpperCase() ?? 'U');
-  const pathname = $derived($page.url.pathname);
+  // `string` explícito: SvelteKit tipa `pathname` según la tabla de rutas del
+  // proyecto, y esta librería no tiene rutas propias — así queda como
+  // `"/" | `/${string}/``, y cualquier comparación con una ruta del consumidor
+  // (ej. '/dashboard') se reporta como "sin solapamiento". Para una librería el
+  // pathname ES un string arbitrario: el DS no puede conocer las rutas de quien
+  // lo consume.
+  const pathname: string = $derived($page.url.pathname);
 
   function esActivo(href: string): boolean {
     if (href === '/dashboard') return pathname === '/dashboard';
