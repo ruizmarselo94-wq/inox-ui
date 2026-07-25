@@ -7,6 +7,14 @@ Versionado: [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-07-25
+
+Primer release desde que RustKnight/LDT salió a producción. Cierra el ciclo de
+`IxAvatar` (el consumidor visual que ADR-0011 de LDT esperaba para poblar la
+foto de perfil) y publica todo lo que se venía acumulando en `[Unreleased]`, que
+ya estaba corriendo en prod vía pin por commit. Desde acá Inox UI versiona
+independiente.
+
 ### Fixed
 - `IxModal`: el `::backdrop` ahora hace fade-in con el mismo timing/easing que
   la caja (`ix-modal-in`). Antes el fondo oscuro aparecía de golpe mientras la

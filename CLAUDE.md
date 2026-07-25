@@ -9,7 +9,7 @@ Design system de Stahl, v0.1.0. Dos capas completamente independientes:
 
 **La fuente canónica es este repo Git** (`github.com/ruizmarselo94-wq/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/ruizmarselo94-wq/inox-ui.git#v0.1.0`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Bender) decide cuándo actualizar su referencia.
 
-**Versión:** todos los consumidores permanecen en `0.1.0` hasta el primer release conjunto a producción (Inox UI + RustKnight + Bender). Después de ese release, Inox UI versiona independiente como librería; cada producto sigue su propio camino.
+**Versión:** `0.2.0`. La nota anterior decía que todo permanecía en `0.1.0` hasta el primer release a producción, y que después Inox UI versionaría independiente — **ese momento ya llegó**: RustKnight/LDT está en producción (ligadetorreones.com), así que Inox UI versiona por su cuenta desde acá y cada producto sigue su propio camino. En `0.x`, MINOR carga features (un componente nuevo), PATCH arregla. La versión es **informativa**: los consumidores pinean por **commit SHA** (no por rango de versión), así que describe el estado de la librería, no controla la resolución.
 
 ## Prefijos
 
@@ -17,7 +17,7 @@ Design system de Stahl, v0.1.0. Dos capas completamente independientes:
 - Tokens CSS: `--ix-*` — ejemplo: `--ix-sp-4`, `--ix-color-primary`, `--ix-r-md`
 - Inox UI **no define colores**. Los tokens `--ix-color-*` son variables vacías. El consumidor (Bender) las llena en su propio archivo de tema.
 
-## Componentes disponibles (17)
+## Componentes disponibles (18)
 
 **Primitivos** (`src/lib/components/primitives/`):
 - `IxAvatar` — avatar con foto + fallback a inicial, props: `name`, `src?`, `size?` (`sm | md | lg`), `alt?`. Muestra la foto si carga; cae a la inicial sobre gradiente de marca si no hay `src` o la imagen falla (`onerror`)
