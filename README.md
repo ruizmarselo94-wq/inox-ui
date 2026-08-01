@@ -1,6 +1,6 @@
 # Inox UI
 
-Design system de Stahl. **Carbono · Acero · Óxido.**
+Design system de Stahl. **Estructura sin color: la identidad la pone cada producto.**
 
 Provee tokens CSS, clases `ix-*` y componentes Svelte 5 para construir
 interfaces consistentes en todos los productos del estudio. **La fuente
@@ -32,8 +32,8 @@ Las dos pueden usarse juntas o por separado.
 
 ## Agregar a un proyecto
 
-Inox UI es un paquete del workspace npm (`@stahl/inox-ui`). En un monorepo con
-workspaces, el consumidor lo declara y lo importa directo:
+Inox UI se declara como dependencia Git fijada (`@stahl/inox-ui`, ver
+"Distribución y versioning") y se importa directo:
 
 ```ts
 // Componentes Svelte
@@ -114,7 +114,7 @@ Svelte 5. Detalle de props en el catálogo en vivo `/inox-ui` y en `CHANGELOG.md
   drawer mobile).
 - `provideToast()` / `useToast()` → `ToastContext` (`{ ok, warn, err, info }`).
 
-**Tipos exportados:** `Theme`, `LayoutMode`, `AccentColor`, `BadgeVariant`,
+**Tipos exportados:** `Theme` (`dark | light`), `LayoutMode`, `BadgeVariant`,
 `BtnVariant`, `BtnSize`, `ToastKind`, `NavItem`, `NavSection`, `UserProfile`,
 `DataColumn`, `AlertItem`, `AlertVariant`.
 

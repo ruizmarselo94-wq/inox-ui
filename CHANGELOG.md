@@ -7,6 +7,27 @@ Versionado: [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.2] — 2026-08-01
+
+El sistema de temas vuelve a su forma universal: **dos temas, `dark` y
+`light`**, sin dimensión de acento. Los temas extra y los acentos que se
+acumularon eran identidad de un consumidor filtrada dentro de la librería —
+nombres de tema y valores hex de un producto no pueden vivir en Inox UI. Cada
+producto define su paleta en su propio archivo de tema (`--ix-color-*` bajo
+`[data-theme]`); la librería solo conoce el par semántico oscuro/claro.
+
+### Changed
+- **`Theme` es `'dark' | 'light'`** (antes incluía tres temas de producto).
+  `AccentColor` se elimina, junto con `data-accent`, `shell.setAccent()` y la
+  clave `accent` de `localStorage`. Breaking para quien usara esos valores;
+  los consumidores pinean por SHA, así que nadie se rompe sin bumpear.
+- **`IxThemePicker` pasa de panel desplegable a toggle** sol/luna
+  (`shell.toggleTheme()`). Un botón `ix-btn-icon` simple: con dos temas, un
+  panel con grupos, backdrop y swatches era sobre-ingeniería. El CSS del panel
+  (`.ix-theme-picker__*`) se elimina de `_topbar.scss`.
+- `shell.loadFromStorage()` solo acepta `dark`/`light` como valores guardados
+  de `theme`; cualquier otro valor persistido cae al default.
+
 ## [0.1.1] — 2026-07-25
 
 Primer release desde que RustKnight/LDT salió a producción. Cierra el ciclo de

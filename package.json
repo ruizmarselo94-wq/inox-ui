@@ -1,6 +1,6 @@
 {
   "name": "@stahl/inox-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Design system Stahl — tokens CSS universales + componentes Svelte",
   "license": "UNLICENSED",
   "private": true,

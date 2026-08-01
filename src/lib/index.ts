@@ -1,6 +1,6 @@
 // ── Tipos ─────────────────────────────────────────────────────────────────────
 export type {
-  Theme, LayoutMode, AccentColor, BadgeVariant, BtnVariant, BtnSize, AvatarSize,
+  Theme, LayoutMode, BadgeVariant, BtnVariant, BtnSize, AvatarSize,
   ToastKind, NavItem, NavSection, UserProfile, DataColumn, AlertItem, AlertVariant,
 } from './types.js';
 

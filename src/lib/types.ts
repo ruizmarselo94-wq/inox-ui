@@ -1,5 +1,4 @@
-export type Theme = 'dark' | 'light' | 'carbon' | 'stainless' | 'titanium';
-export type AccentColor = 'rust' | 'steel';
+export type Theme = 'dark' | 'light';
 export type LayoutMode = 'sidebar' | 'topbar';
 export type BadgeVariant = 'ok' | 'warn' | 'err' | 'info' | 'neutral';
 export type BtnVariant = 'primary' | 'outline' | 'secondary' | 'ghost' | 'danger';

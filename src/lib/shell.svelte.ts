@@ -1,5 +1,5 @@
 import { setContext, getContext } from 'svelte';
-import type { Theme, LayoutMode, AccentColor } from './types.js';
+import type { Theme, LayoutMode } from './types.js';
 
 const SHELL_KEY = Symbol('ix-shell');
 
@@ -21,28 +21,20 @@ function writeStorage(key: string, value: string) {
 
 function createShellContext(initial: {
   theme?:     Theme;
-  accent?:    AccentColor;
   layout?:    LayoutMode;
   collapsed?: boolean;
 }) {
   let theme      = $state<Theme>(initial.theme    ?? 'dark');
-  let accent     = $state<AccentColor>(initial.accent ?? 'rust');
   let layout     = $state<LayoutMode>(initial.layout  ?? 'sidebar');
   let collapsed  = $state(initial.collapsed ?? false);
   let mobileOpen = $state(false);
 
-  function applyToDOM(t: Theme, a: AccentColor) {
+  function applyToDOM(t: Theme) {
     document.documentElement.dataset['theme'] = t;
-    if (t === 'carbon' || t === 'stainless' || t === 'titanium') {
-      delete document.documentElement.dataset['accent'];
-    } else {
-      document.documentElement.dataset['accent'] = a;
-    }
   }
 
   return {
     get theme()      { return theme; },
-    get accent()     { return accent; },
     get layout()     { return layout; },
     get collapsed()  { return collapsed; },
     get mobileOpen() { return mobileOpen; },
@@ -50,12 +42,7 @@ function createShellContext(initial: {
     setTheme(v: Theme) {
       theme = v;
       writeStorage('theme', v);
-      applyToDOM(v, accent);
-    },
-    setAccent(v: AccentColor) {
-      accent = v;
-      writeStorage('accent', v);
-      applyToDOM(theme, v);
+      applyToDOM(v);
     },
     setLayout(v: LayoutMode) {
       layout = v;
@@ -77,14 +64,12 @@ function createShellContext(initial: {
 
     loadFromStorage() {
       const t = readStorage('theme');
-      if (t === 'dark' || t === 'light' || t === 'carbon' || t === 'stainless' || t === 'titanium') theme = t;
-      const a = readStorage('accent');
-      if (a === 'rust' || a === 'steel') accent = a;
+      if (t === 'dark' || t === 'light') theme = t;
       const lm = readStorage('layout_mode');
       if (lm === 'topbar' || lm === 'sidebar') layout = lm as LayoutMode;
       const col = readStorage('sidebar_collapsed');
       if (col !== null) collapsed = col === '1';
-      applyToDOM(theme, accent);
+      applyToDOM(theme);
     },
   };
 }
@@ -93,7 +78,6 @@ export type ShellContext = ReturnType<typeof createShellContext>;
 
 export function provideShell(initial: {
   theme?:     Theme;
-  accent?:    AccentColor;
   layout?:    LayoutMode;
   collapsed?: boolean;
 }): ShellContext {
