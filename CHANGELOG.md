@@ -7,6 +7,26 @@ Versionado: [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.3] — 2026-08-01
+
+La API pública de los componentes queda íntegramente en inglés americano —
+props en español eran una fuga del idioma de un consumidor dentro de la
+librería, y obligaban a todo producto nuevo a mezclar idiomas en sus templates.
+
+### Changed
+- **Props renombradas (breaking):** `IxSelect` `opciones` → `options`;
+  `IxStatCard` `valor`/`unidad`/`subtexto`/`acento` →
+  `value`/`unit`/`subtext`/`accent`. Tipos internos `OpcionSelect` →
+  `SelectOption`, `AcentoColor` → `StatAccent`. Los consumidores pinean por
+  SHA — nadie se rompe sin bumpear.
+- Identificadores internos en inglés: `avatarLetra` → `avatarInitial`
+  (IxTopbar, IxSidebar), `esActivo` → `isActive`, `seccion` → `section`
+  (IxSidebar). Sin cambio de comportamiento.
+
+### Added
+- `.ix-row--inactive` en `_table.scss` — fila apagada para registros
+  inactivos; los consumidores la redefinían localmente en cada página.
+
 ## [0.1.2] — 2026-08-01
 
 El sistema de temas vuelve a su forma universal: **dos temas, `dark` y

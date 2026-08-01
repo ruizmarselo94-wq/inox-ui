@@ -55,3 +55,6 @@
   .ix-table__actions       { display: flex; align-items: center; gap: var(--ix-sp-1); }
   .ix-table__empty         { text-align: center; color: var(--ix-color-text-muted); padding: var(--ix-sp-8); }
 }
+
+// Fila apagada — registros inactivos/deshabilitados en cualquier tabla.
+.ix-row--inactive { opacity: 0.5; }

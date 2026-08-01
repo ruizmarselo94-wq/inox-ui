@@ -17,7 +17,7 @@
   let { nav = [], user, onSignOut, actions }: Props = $props();
 
   const shell       = useShell();
-  const avatarLetra = $derived(user?.name?.charAt(0)?.toUpperCase() ?? 'U');
+  const avatarInitial = $derived(user?.name?.charAt(0)?.toUpperCase() ?? 'U');
 
   // ── Command palette ─────────────────────────────────────────
   let paletteOpen = $state(false);
@@ -141,7 +141,7 @@
           {#if user.avatarSrc}
             <img src={user.avatarSrc} alt="" width="28" height="28" style="width:100%;height:100%;object-fit:contain;border-radius:inherit" />
           {:else}
-            {avatarLetra}
+            {avatarInitial}
           {/if}
         </div>
         <div class="ix-topbar__user-info">

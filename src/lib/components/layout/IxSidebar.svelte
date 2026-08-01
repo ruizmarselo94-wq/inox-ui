@@ -31,7 +31,7 @@
       shell.mobileOpen ? 'ix-sidebar--mobile-open' : '',
     ].filter(Boolean).join(' '),
   );
-  const avatarLetra = $derived(user?.name?.charAt(0)?.toUpperCase() ?? 'U');
+  const avatarInitial = $derived(user?.name?.charAt(0)?.toUpperCase() ?? 'U');
   // `string` explícito: SvelteKit tipa `pathname` según la tabla de rutas del
   // proyecto, y esta librería no tiene rutas propias — así queda como
   // `"/" | `/${string}/``, y cualquier comparación con una ruta del consumidor
@@ -40,7 +40,7 @@
   // lo consume.
   const pathname: string = $derived($page.url.pathname);
 
-  function esActivo(href: string): boolean {
+  function isActive(href: string): boolean {
     if (href === '/dashboard') return pathname === '/dashboard';
     return pathname.startsWith(href);
   }
@@ -98,13 +98,13 @@
   {/if}
 
   <nav class="ix-nav" aria-label="Navegación principal">
-    {#each nav as seccion (seccion.label)}
+    {#each nav as section (section.label)}
       <div>
-        <div class="ix-nav__section-label">{seccion.label}</div>
-        {#each seccion.items as item (item.key)}
+        <div class="ix-nav__section-label">{section.label}</div>
+        {#each section.items as item (item.key)}
           <a
             href={item.href}
-            class={esActivo(item.href) ? 'ix-nav-item ix-nav-item--active' : 'ix-nav-item'}
+            class={isActive(item.href) ? 'ix-nav-item ix-nav-item--active' : 'ix-nav-item'}
             title={item.label}
           >
             <span class="ix-nav-item__icon" aria-hidden="true">

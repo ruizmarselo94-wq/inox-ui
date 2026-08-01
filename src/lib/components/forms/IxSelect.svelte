@@ -1,5 +1,5 @@
 <script lang="ts">
-  interface OpcionSelect {
+  interface SelectOption {
     value: string;
     label: string;
     disabled?: boolean;
@@ -7,7 +7,7 @@
 
   interface Props {
     label?: string;
-    opciones: OpcionSelect[];
+    options: SelectOption[];
     value?: string;
     disabled?: boolean;
     required?: boolean;
@@ -22,7 +22,7 @@
 
   let {
     label,
-    opciones,
+    options,
     value = $bindable(''),
     disabled = false,
     required = false,
@@ -61,7 +61,7 @@
       {#if placeholder}
         <option value="" disabled>{placeholder}</option>
       {/if}
-      {#each opciones as op (op.value)}
+      {#each options as op (op.value)}
         <option value={op.value} disabled={op.disabled}>{op.label}</option>
       {/each}
     </select>
