@@ -27,7 +27,7 @@
     layout = 'sidebar',
     collapsed = false,
     logoSrc,
-    appName = 'Bender',
+    appName = 'App',
     version = 'v0.1',
     onSignOut,
     actions,

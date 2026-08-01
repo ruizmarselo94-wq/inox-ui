@@ -4,13 +4,13 @@ Design system de Stahl. **Carbono · Acero · Óxido.**
 
 Provee tokens CSS, clases `ix-*` y componentes Svelte 5 para construir
 interfaces consistentes en todos los productos del estudio. **La fuente
-canónica es este repo** (`github.com/ruizmarselo94-wq/inox-ui`). Los
-consumidores (RustKnight, Bender) lo agregan como dependencia Git fijada a
-un tag o commit — no hay paquete npm publicado todavía.
+canónica es este repo** (`github.com/stahlsoft/inox-ui`). Los consumidores
+(RustKnight, Shijima) lo agregan como dependencia Git fijada a un tag o
+commit — no hay paquete npm publicado todavía.
 
 - Prefijo de clases CSS: `ix-`
 - Prefijo de tokens CSS: `--ix-`
-- Versión: permanece en `0.1.0` hasta la primera puesta en producción de Bender.
+- Versión: `0.1.x` incremental durante la etapa de bases, sin semver estricto.
 
 ---
 
@@ -90,21 +90,21 @@ style/
     └── _pirata-one.scss _eb-garamond.scss
 ```
 
-Cada proyecto puede ignorar los temas de `themes/` y proveer el suyo (Bender usa
-`web/src/styles/base/bender-tema.scss`). Las propiedades de color se aplican vía
+Cada proyecto puede ignorar los temas de `themes/` y proveer el suyo (Shijima usa
+`web/src/styles/base/shijima-tema.scss`). Las propiedades de color se aplican vía
 `[data-theme="dark"|"light"]` en el `<html>` raíz.
 
 ---
 
-## Componentes Svelte (21)
+## Componentes Svelte (25)
 
 Todos se importan desde la raíz del paquete (`@stahl/inox-ui`) y son componentes
 Svelte 5. Detalle de props en el catálogo en vivo `/inox-ui` y en `CHANGELOG.md`.
 
 | Categoría | Componentes |
 |---|---|
-| **Primitivos** | `IxBadge`, `IxBtn`, `IxBtnIcon`, `IxCard`, `IxIcon`, `IxSpinner`, `IxFlag`, `IxNotificationBell`, `IxThemePicker` |
-| **Formularios** | `IxInput`, `IxSelect`, `IxToggle`, `IxToggleRow` |
+| **Primitivos** | `IxAvatar`, `IxBadge`, `IxBtn`, `IxBtnIcon`, `IxBtnOauth`, `IxCard`, `IxFlag`, `IxIcon`, `IxModal`, `IxNotificationBell`, `IxSpinner`, `IxThemePicker` |
+| **Formularios** | `IxInput`, `IxInputTel`, `IxSelect`, `IxToggle`, `IxToggleRow` |
 | **Layout** | `IxShell`, `IxSidebar`, `IxTopbar` |
 | **Datos** | `IxBarChart`, `IxDataTable`, `IxStatCard` |
 | **Feedback** | `IxToast`, `IxToastProvider` |
@@ -200,14 +200,14 @@ tema que redefine los `--ix-color-*` para su identidad, aplicado por
 
 ```scss
 [data-theme="dark"] {
-  --ix-color-primary: #f97316;   // óxido (Bender)
+  --ix-color-primary: #f97316;   // óxido (Shijima)
   --ix-color-accent:  #38bdf8;   // cian metálico
   // ...
 }
 ```
 
 Solo redefinir tokens `--ix-*`. Los tokens exclusivos del proyecto usan prefijo
-propio (Bender: `--bn-*`).
+propio (Shijima: `--sh-*`).
 
 ---
 
@@ -257,16 +257,18 @@ Svelte gestiona el estado.
 ## Distribución y versioning
 
 - **Fuente canónica** — repo Git propio en GitHub
-  (`github.com/ruizmarselo94-wq/inox-ui`). Quien cambia Inox UI sube el
-  commit a `main` ahí; cada consumidor decide cuándo traerlo.
+  (`github.com/stahlsoft/inox-ui`). Quien cambia Inox UI sube el commit a
+  `main` ahí; cada consumidor decide cuándo traerlo.
 - **Consumo** — dependencia Git fijada (tag o commit), no por path ni
   workspace local. Ejemplo (`package.json` del consumidor):
   ```json
-  "@stahl/inox-ui": "git+ssh://git@github.com/ruizmarselo94-wq/inox-ui.git#v0.1.0"
+  "@stahl/inox-ui": "git+ssh://git@github.com/stahlsoft/inox-ui.git#<sha>"
   ```
-- **Versión congelada pre-prod** — todos los consumidores (Inox UI,
-  RustKnight, Bender) permanecen en `0.1.0` hasta el primer release conjunto
-  a producción. Después de ese release, Inox UI versiona independiente como
-  librería; cada producto sigue su propio camino de versiones.
+  La versión del `package.json` es **informativa**: los consumidores pinean
+  por commit SHA, así que describe el estado de la librería, no controla la
+  resolución.
+- **Versionado** — Inox UI versiona de forma independiente de los productos
+  que la consumen. Durante la etapa de bases, `0.1.x` incremental simple; la
+  política se formaliza cuando un segundo producto la consuma en producción.
 - **Futuro** — eventual publicación en un registro npm, si Stahl decide
   abrirlo. Decisión de negocio, sin fecha.

@@ -7,9 +7,9 @@ Design system de Stahl, v0.1.0. Dos capas completamente independientes:
 1. **CSS/SCSS universal** (`style/`) — funciona con cualquier framework o HTML puro. Sin dependencias JS.
 2. **Componentes Svelte 5** (`src/lib/`) — consumidos por los productos de Stahl. Requieren Svelte 5.
 
-**La fuente canónica es este repo Git** (`github.com/stahlsoft/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/stahlsoft/inox-ui.git#<sha>`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Bender) decide cuándo actualizar su referencia.
+**La fuente canónica es este repo Git** (`github.com/stahlsoft/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/stahlsoft/inox-ui.git#<sha>`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Shijima) decide cuándo actualizar su referencia.
 
-**Versión:** `0.1.1`. Inox UI versiona de forma **independiente** de LDT/RustKnight y de los demás proyectos. Durante la etapa de bases se usa **versionado incremental simple** (`0.1.x`) por conveniencia — pasos chicos, sin semver estricto. **Revisar y formalizar la política de versionado cuando un segundo proyecto (Bender) consuma Inox UI en producción**: ese es el disparador, igual que los usuarios reales dispararon el flujo de ramas en RustKnight.
+**Versión:** `0.1.1`. Inox UI versiona de forma **independiente** de LDT/RustKnight y de los demás proyectos. Durante la etapa de bases se usa **versionado incremental simple** (`0.1.x`) por conveniencia — pasos chicos, sin semver estricto. **Revisar y formalizar la política de versionado cuando un segundo proyecto (Shijima) consuma Inox UI en producción**: ese es el disparador, igual que los usuarios reales dispararon el flujo de ramas en RustKnight.
 
 La versión es **informativa**: los consumidores pinean por **commit SHA** (no por rango de versión), así que describe el estado de la librería, no controla la resolución.
 
@@ -17,7 +17,7 @@ La versión es **informativa**: los consumidores pinean por **commit SHA** (no p
 
 - Clases CSS: `ix-*` — ejemplo: `ix-btn`, `ix-page__header`, `ix-grid-stats`
 - Tokens CSS: `--ix-*` — ejemplo: `--ix-sp-4`, `--ix-color-primary`, `--ix-r-md`
-- Inox UI **no define colores**. Los tokens `--ix-color-*` son variables vacías. El consumidor (Bender) las llena en su propio archivo de tema.
+- Inox UI **no define colores**. Los tokens `--ix-color-*` son variables vacías. El consumidor (Shijima) las llena en su propio archivo de tema.
 
 ## Componentes disponibles (18)
 
@@ -120,7 +120,7 @@ Colores (vacíos, el consumidor los llena):
 2. **Aggregator** — agregar `@forward 'components/nombre-componente'` en `style/components.scss`
 3. **Svelte** — crear `src/lib/components/categoria/IxNombreComponente.svelte` usando runes
 4. **Export** — agregar `export { default as IxNombreComponente } from '...'` en `src/lib/index.ts`
-5. **Catálogo** — agregar demo y código de ejemplo en `web/src/routes/inox-ui/+page.svelte` (Bender)
+5. **Catálogo** — agregar demo y código de ejemplo en `web/src/routes/inox-ui/+page.svelte` (Shijima)
 
 ## Cómo agregar un ícono
 

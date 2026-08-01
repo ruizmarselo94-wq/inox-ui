@@ -17,7 +17,7 @@
     nav,
     user,
     logoSrc,
-    appName = 'Bender',
+    appName = 'App',
     version = 'v0.1',
     onSignOut,
   }: Props = $props();
