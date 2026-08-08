@@ -7,6 +7,39 @@ Versionado: [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.5] — 2026-08-08
+
+Un solo anillo de foco para todo lo enfocable, heredado, en vez de uno por
+componente. Convivían **cuatro variantes** del mismo anillo dentro de la propia
+librería (con halo, sin halo, `outline: none` + halo, offset de 1px) y cada
+consumidor sumaba las suyas encima.
+
+El problema no era la repetición sino su consecuencia: **elegir el color quedaba
+a criterio de quien escribía el componente**. Caso real en un consumidor: un
+control tomó el rojo luminoso pensado para fondos oscuros, terminó sobre un
+fondo claro y dio 2.90:1 — por debajo del 3:1 de WCAG 1.4.11. Con el anillo
+heredado ese componente no habría tenido motivo para declarar foco.
+
+### Changed
+- `_reset.scss` define el anillo canónico para
+  `a, button, summary, input, select, textarea, [tabindex]`, en **`:where()`**
+  (especificidad cero): es un piso, no una imposición, y cualquier componente lo
+  pisa sin `!important`.
+- El anillo es de **dos tonos** (`--ix-focus-ring` como halo claro + `outline`
+  por fuera). Funciona sobre cualquier fondo porque el borde entre los dos
+  tonos siempre existe: sobre claros contrasta el outline, sobre oscuros el
+  halo. Un color solo no puede garantizar eso.
+- `.ix-btn`, `.ix-btn-icon`, `.ix-btn-oauth` y `.ix-modal` dejan de declarar
+  foco: heredan. Se conservan solo las definiciones que **realmente difieren** —
+  anillos internos (`outline-offset: -2px`) en sidebar y topbar, offset de 1px
+  en inputs, el radio del botón desnudo de `_forms`, y el `:has()` del toggle
+  (su input está oculto, así que el anillo va en el envoltorio).
+
+### Notes
+- ⚠️ El halo se dibuja con `box-shadow` y por lo tanto **reemplaza** la sombra
+  en reposo de un control que tenga una. Si hay que conservarla, componer:
+  `box-shadow: <su sombra>, var(--ix-focus-ring)`.
+
 ## [0.1.4] — 2026-08-07
 
 El borde de los botones sin relleno pasa a cumplir WCAG 1.4.11. En un

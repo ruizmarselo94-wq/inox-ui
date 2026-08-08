@@ -99,7 +99,9 @@
 
   &:hover { color: var(--ix-color-text); }
   &:disabled { opacity: 0.5; cursor: not-allowed; }
-  &:focus-visible { outline: 2px solid var(--ix-color-border-focus); outline-offset: 2px; border-radius: var(--ix-r-xs); }
+  // Solo el radio: el anillo lo pone el reset. Redondearlo evita que un
+  // botón cuadrado reciba un anillo con esquinas vivas.
+  &:focus-visible { border-radius: var(--ix-r-xs); }
 }
 
 // Stepper numérico — IxInput con stepper=true envuelve el input entre botones

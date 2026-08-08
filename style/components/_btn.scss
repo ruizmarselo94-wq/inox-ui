@@ -38,13 +38,6 @@
   line-height: 1;
   vertical-align: middle;
 
-  // Foco accesible: anillo visible aún si box-shadow es invisible
-  // por contraste de fondo. Cumple WCAG 2.4.7 (focus visible).
-  &:focus-visible {
-    outline: 2px solid var(--ix-color-border-focus);
-    outline-offset: 2px;
-    box-shadow: var(--ix-focus-ring);
-  }
   &:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
 }
 // --sm: tamaño compacto para topbars/toolbars de escritorio donde
@@ -116,10 +109,6 @@
   transition: all var(--ix-t-fast);
   flex-shrink: 0;
   &:hover { border-color: var(--ix-color-primary); color: var(--ix-color-primary); background: var(--ix-color-primary-subtle); }
-  &:focus-visible {
-    outline: 2px solid var(--ix-color-border-focus);
-    outline-offset: 2px;
-  }
   &:disabled { opacity: 0.4; cursor: not-allowed; }
 }
 .ix-btn-icon--danger {

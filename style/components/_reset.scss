@@ -15,15 +15,36 @@ html {
 
 body { min-height: 100dvh; }
 
-// Anillo de foco de marca para cualquier <a> suelto — sin esto, un link que
-// no sea .ix-btn/.ix-btn-oauth (ej. wordmark, links de footer, "¿Sos
-// nuevo?") cae al outline azul por defecto del navegador, inconsistente
-// contra el resto de los controles (botones/inputs ya usan
-// --ix-color-border-focus). Cumple WCAG 2.4.7 igual sin esto — esto es
-// consistencia visual, no un fix de accesibilidad.
-a:focus-visible {
+// ── EL anillo de foco ─────────────────────────────────────────
+//
+// Uno solo, acá, para todo lo enfocable. Antes cada componente escribía el
+// suyo: en esta librería convivían CUATRO variantes del mismo anillo (con
+// halo, sin halo, `outline: none` + halo, offset de 1px), y un consumidor
+// sumaba las suyas encima. Que la definición esté repetida no es un problema
+// de prolijidad: es que **elegir el color queda a criterio de quien escribe
+// el componente**, y ahí es donde se rompe. Un caso real: un control con el
+// rojo luminoso pensado para fondos oscuros, colocado sobre un fondo claro,
+// dio 2.90:1 — por debajo del 3:1 de WCAG 1.4.11. Con el anillo heredado, ese
+// componente no habría tenido motivo para declarar foco.
+//
+// Va en `:where()` a propósito: especificidad CERO. Es un piso, no una
+// imposición — cualquier componente que necesite algo distinto lo pisa sin
+// pelear con `!important`.
+//
+// **Dos tonos, y por eso funciona sobre cualquier fondo.** `--ix-focus-ring`
+// es un halo claro pegado al elemento y el `outline` es el color de foco por
+// fuera. Sobre superficies claras contrasta el outline; sobre oscuras, el
+// halo. El borde entre los dos tonos siempre existe, así que el anillo se ve
+// sin importar dónde aterrice — que es justo lo que un color solo no puede
+// garantizar.
+//
+// ⚠️ El halo se dibuja con `box-shadow`, así que **reemplaza** la sombra en
+// reposo de un elemento que tenga una. Si un control necesita conservarla,
+// que componga: `box-shadow: <su sombra>, var(--ix-focus-ring)`.
+:where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
   outline: 2px solid var(--ix-color-border-focus);
   outline-offset: 2px;
+  box-shadow: var(--ix-focus-ring);
 }
 
 // Marca un cambio de tema momentáneo donde no queremos animaciones.

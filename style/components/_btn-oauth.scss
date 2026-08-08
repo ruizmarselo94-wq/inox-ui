@@ -46,10 +46,6 @@
 
   // WCAG 2.4.7 — el outline natural del navegador puede no contrastar
   // sobre el fondo claro. Forzamos óxido para que sea visible al tab.
-  &:focus-visible {
-    outline: 2px solid var(--ix-color-border-focus);
-    outline-offset: 2px;
-  }
 }
 
 // El SVG declara su propio `color` para que se pueda pintar el ícono
