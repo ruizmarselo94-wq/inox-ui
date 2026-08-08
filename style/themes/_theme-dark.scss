@@ -64,6 +64,11 @@
   --ix-color-border:           rgba(255, 255, 255, 0.10);
   --ix-color-border-focus:     #4D9EFF;
   --ix-color-border-strong:    rgba(255, 255, 255, 0.25);
+  // Ver la nota del tema neutral: borde que identifica un control sin relleno,
+  // 3:1 por WCAG 1.4.11. Medidos sobre bg/surface/surface-alt de este tema:
+  // 3.17 / 3.17 / 3.03, y en hover 5.08 / 4.89 / 4.55.
+  --ix-color-border-interactive:        rgba(255, 255, 255, 0.345);
+  --ix-color-border-interactive-strong: rgba(255, 255, 255, 0.485);
 
   // Skeleton
   --ix-color-skeleton-base:    #2A2A2A;

@@ -153,9 +153,29 @@
   --ix-color-text-inverse-muted: ; // muted sobre oscuros (cumple ≥4.5:1)
 
   // ── Bordes ───────────────────────────────────────────────
-  --ix-color-border:           ;
-  --ix-color-border-focus:     ;
-  --ix-color-border-strong:    ;
+  //
+  // `border` y `border-strong` son bordes ESTRUCTURALES: tarjetas, reglas de
+  // tabla, divisores. Son decorativos y no están sujetos al 3:1 de WCAG 1.4.11,
+  // así que un tema puede dejarlos tan suaves como quiera.
+  //
+  // `border-interactive` (+ su `-strong` para hover) es otra cosa: es el borde
+  // que IDENTIFICA un control cuando el borde es su única identidad visual —
+  // los botones `outline`, `ghost` y `btn-icon`, que no tienen relleno. Ese sí
+  // cae bajo 1.4.11 y necesita 3:1 contra la superficie donde se apoya.
+  //
+  // Están separados justamente para que un tema pueda subir el borde del botón
+  // sin engrosar cada línea fina del producto: al descubrirlo en LDT, `border`
+  // estaba en 1.42:1 y subirlo global habría triplicado el peso de todas las
+  // reglas decorativas.
+  //
+  // Los componentes los consumen con fallback —`var(--ix-color-border-
+  // interactive, var(--ix-color-border))`—, así que un tema que no los defina
+  // se comporta exactamente como antes.
+  --ix-color-border:                    ;
+  --ix-color-border-focus:              ;
+  --ix-color-border-strong:             ;
+  --ix-color-border-interactive:        ;
+  --ix-color-border-interactive-strong: ;
 
   // ── Skeleton (loaders) ───────────────────────────────────
   --ix-color-skeleton-base:    ;

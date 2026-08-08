@@ -68,6 +68,12 @@
   --ix-color-border:           rgba(0, 0, 0, 0.12);
   --ix-color-border-focus:     #0066CC;
   --ix-color-border-strong:    rgba(0, 0, 0, 0.30);
+  // Borde de los controles sin relleno (outline/ghost/btn-icon): ahí el borde
+  // es la única identidad visual del control, así que WCAG 1.4.11 pide 3:1
+  // contra la superficie. Medidos sobre bg/surface/surface-alt de este tema:
+  // 3.04 / 3.07 / 3.02, y en hover 4.61 / 4.67 / 4.53.
+  --ix-color-border-interactive:        rgba(0, 0, 0, 0.425);
+  --ix-color-border-interactive-strong: rgba(0, 0, 0, 0.545);
 
   // Skeleton
   --ix-color-skeleton-base:    #E5E5E5;

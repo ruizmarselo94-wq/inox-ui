@@ -7,6 +7,31 @@ Versionado: [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.4] — 2026-08-07
+
+El borde de los botones sin relleno pasa a cumplir WCAG 1.4.11. En un
+consumidor (LDT) se midió el borde de `outline`/`ghost`/`btn-icon` en **1.42:1**
+contra la superficie —menos de la mitad del 3:1 exigido— y el estado *hover* en
+2.11:1, o sea que el hover era todavía menos visible que el mínimo. El texto de
+esos botones pasaba de sobra: lo que no se leía era el botón COMO botón.
+
+### Added
+- `--ix-color-border-interactive` y `--ix-color-border-interactive-strong`
+  (hover). Existen separados de `--ix-color-border`/`-strong` a propósito: esos
+  son bordes **estructurales** —tarjetas, reglas de tabla, divisores—, son
+  decorativos y NO caen bajo 1.4.11, así que subirlos para arreglar los botones
+  habría engrosado cada línea fina del producto. El token nuevo cubre solo el
+  borde que **identifica** un control cuando es su única identidad visual.
+- Valores en los dos temas propios: neutral 3.04/3.07/3.02 sobre
+  bg/surface/surface-alt (hover 4.61/4.67/4.53); dark 3.17/3.17/3.03 (hover
+  5.08/4.89/4.55).
+
+### Changed
+- `.ix-btn--outline`, `.ix-btn--ghost` y `.ix-btn-icon` consumen el token nuevo
+  **con fallback** (`var(--ix-color-border-interactive, var(--ix-color-border))`),
+  así que un tema que no lo defina se comporta exactamente como antes. No hay
+  breaking change.
+
 ## [0.1.3] — 2026-08-01
 
 La API pública de los componentes queda íntegramente en inglés americano —
