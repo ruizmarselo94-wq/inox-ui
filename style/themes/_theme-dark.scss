@@ -39,6 +39,8 @@
   --ix-color-danger:           #FF5555;
   --ix-color-danger-bg:        rgba(255, 85, 85, 0.12);
   --ix-color-danger-border:    rgba(255, 85, 85, 0.30);
+  // 3.63 / 3.36 / 3.00 sobre bg / surface / surface-alt.
+  --ix-color-danger-border-interactive: rgba(255, 85, 85, 0.725);
   --ix-color-warning:          #FFB347;
   --ix-color-warning-bg:       rgba(255, 179, 71, 0.12);
   --ix-color-warning-border:   rgba(255, 179, 71, 0.30);

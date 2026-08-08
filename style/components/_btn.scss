@@ -91,7 +91,10 @@
 }
 .ix-btn--danger {
   background: var(--ix-color-danger-bg);
-  border-color: var(--ix-color-danger-border);
+  // El relleno de danger es un lavado translúcido: contra la superficie ronda
+  // 1.2:1, o sea que prácticamente no existe. Quien identifica al control es el
+  // borde, así que también acá va el token interactivo y no el de los avisos.
+  border-color: var(--ix-color-danger-border-interactive, var(--ix-color-danger-border));
   color: var(--ix-color-danger);
   &:hover:not(:disabled) { background: var(--ix-color-danger); color: var(--ix-color-primary-text); }
 }
@@ -120,7 +123,7 @@
   &:disabled { opacity: 0.4; cursor: not-allowed; }
 }
 .ix-btn-icon--danger {
-  border-color: var(--ix-color-danger-border);
+  border-color: var(--ix-color-danger-border-interactive, var(--ix-color-danger-border));
   color: var(--ix-color-danger);
   background: var(--ix-color-danger-bg);
   &:hover { border-color: var(--ix-color-danger); color: var(--ix-color-primary-text); background: var(--ix-color-danger); }

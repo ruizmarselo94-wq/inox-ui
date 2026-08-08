@@ -22,9 +22,16 @@ esos botones pasaba de sobra: lo que no se leía era el botón COMO botón.
   decorativos y NO caen bajo 1.4.11, así que subirlos para arreglar los botones
   habría engrosado cada línea fina del producto. El token nuevo cubre solo el
   borde que **identifica** un control cuando es su única identidad visual.
-- Valores en los dos temas propios: neutral 3.04/3.07/3.02 sobre
-  bg/surface/surface-alt (hover 4.61/4.67/4.53); dark 3.17/3.17/3.03 (hover
-  5.08/4.89/4.55).
+- `--ix-color-danger-border-interactive`, por lo mismo en rojo: el relleno de
+  un botón `danger` es un lavado translúcido que ronda 1.2:1, así que quien
+  identifica al control es el borde. `--ix-color-danger-border` se queda como
+  está porque además dibuja avisos y badges CON relleno (`.ix-badge--err`, la
+  caja de error de `_auth`), que no caen bajo 1.4.11 y deben poder quedarse
+  suaves — subirlo habría puesto un contorno rojo pesado en cada badge.
+- Valores en los dos temas propios, medidos sobre bg/surface/surface-alt de
+  cada uno: neutral 3.04/3.07/3.02 (hover 4.61/4.67/4.53), danger
+  3.10/3.24/3.01; dark 3.17/3.17/3.03 (hover 5.08/4.89/4.55), danger
+  3.63/3.36/3.00.
 
 ### Changed
 - `.ix-btn--outline`, `.ix-btn--ghost` y `.ix-btn-icon` consumen el token nuevo

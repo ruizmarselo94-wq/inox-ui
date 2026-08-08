@@ -131,6 +131,11 @@
   --ix-color-danger:           ;
   --ix-color-danger-bg:        ;
   --ix-color-danger-border:    ;
+  // Mismo motivo que --ix-color-border-interactive, en rojo: el borde de un
+  // botón `danger` lo identifica (su relleno es un lavado casi invisible),
+  // mientras que --ix-color-danger-border dibuja avisos y badges CON relleno,
+  // que no caen bajo 1.4.11 y deben poder quedarse suaves.
+  --ix-color-danger-border-interactive: ;
   --ix-color-warning:          ;
   --ix-color-warning-bg:       ;
   --ix-color-warning-border:   ;
