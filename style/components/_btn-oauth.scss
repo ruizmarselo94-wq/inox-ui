@@ -112,3 +112,54 @@
     fill: currentColor;
   }
 }
+
+// ── Estado ocupado ───────────────────────────────────────────────────
+// El flujo ya arrancó y la página se está yendo al proveedor.
+//
+// Estos botones son navegación COMPLETA, no XHR: entre el click y que
+// algo cambie en pantalla pasan segundos (el backend redirige, después
+// carga el proveedor). Sin señal el botón se lee como muerto — una
+// acción que parece ignorada es peor que una lenta.
+//
+// El spinner reemplaza al logo en su lugar exacto: el botón es flex con
+// `gap`, así que al ocultar el SVG el `::before` cae donde estaba, con
+// los MISMOS 18px y `flex-shrink: 0` de `.ix-btn-oauth__svg`. Ese
+// número no es libre — si cambia el tamaño del logo, cambia acá, o el
+// botón da un salto al tocarlo.
+//
+// `pointer-events: none` y NO `disabled`: el viaje ya está en curso y
+// apagar el `<a>` no lo cancela; solo evita que un segundo toque
+// dispare otra navegación. El markup acompaña con `aria-busy="true"`.
+.ix-btn-oauth--busy {
+  pointer-events: none;
+
+  .ix-btn-oauth__svg { display: none; }
+
+  &::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    // El cuarto transparente del aro es lo que hace ver el giro.
+    // `currentColor` para que sirva con cualquier proveedor.
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    animation: ix-btn-oauth-spin 0.7s linear infinite;
+  }
+}
+
+@keyframes ix-btn-oauth-spin {
+  to { transform: rotate(1turn); }
+}
+
+// Sin movimiento la señal tiene que seguir existiendo: el aro queda
+// quieto y completo. Un spinner detenido sigue diciendo "estoy
+// ocupado" — es lo que pide 2.3.3 sin apagar el feedback.
+@media (prefers-reduced-motion: reduce) {
+  .ix-btn-oauth--busy::before {
+    animation: none;
+    border-top-color: currentColor;
+    opacity: 0.6;
+  }
+}

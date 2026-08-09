@@ -18,10 +18,34 @@
     /** Provider shown in the UI but not wired up yet: renders inert
      * (`aria-disabled`, `tabindex="-1"`, no href) instead of a live link. */
     disabled?: boolean;
+    /** El flujo ya arrancó y la página se está yendo al proveedor.
+     *
+     * Existe porque estos botones son navegación COMPLETA, no XHR: entre el
+     * click y que algo cambie en pantalla pasan segundos (el backend
+     * redirige, después carga el proveedor) y sin señal el botón se lee como
+     * muerto. Muestra un spinner en el lugar exacto del logo — mismo tamaño,
+     * así el botón no se mueve — y bloquea el puntero para que un segundo
+     * click no dispare otra navegación.
+     *
+     * ⚠️ NO desactiva el enlace: el viaje ya está en curso y convertirlo en
+     * `<span>` no lo cancela. Sigue siendo `<a>`, con `aria-busy`.
+     *
+     * El aviso hablado queda del lado del consumidor (una región
+     * `aria-live` con su propia copy): el diseño no sabe en qué idioma ni
+     * con qué frase quiere anunciarlo cada producto.
+     *
+     * `disabled` gana si se pasan los dos: es el estado más restrictivo. */
+    busy?: boolean;
     class?: string;
   }
 
-  let { provider, href, disabled = false, class: extraClass = '' }: Props = $props();
+  let {
+    provider,
+    href,
+    disabled = false,
+    busy = false,
+    class: extraClass = '',
+  }: Props = $props();
 
   const label = $derived(provider === 'google' ? 'Google' : 'GitHub');
 
@@ -30,6 +54,7 @@
       'ix-btn-oauth',
       `ix-btn-oauth--${provider}`,
       disabled ? 'ix-btn-oauth--disabled' : '',
+      busy && !disabled ? 'ix-btn-oauth--busy' : '',
       extraClass,
     ]
       .filter(Boolean)
@@ -58,7 +83,7 @@
     {label}
   </span>
 {:else}
-  <a class={cls} {href}>
+  <a class={cls} {href} aria-busy={busy ? 'true' : undefined}>
     {@render icon()}
     {label}
   </a>
