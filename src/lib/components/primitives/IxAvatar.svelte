@@ -34,11 +34,27 @@
 
 {#if showImg}
   <span class={cls}>
+    <!--
+      `referrerpolicy="no-referrer"` no es una micro-optimización: es privacidad.
+      Estas fotos casi siempre son URLs de un proveedor externo (Google,
+      GitHub) que el navegador del visitante trae en directo. Sin esta línea,
+      cada carga le manda a ese proveedor la URL COMPLETA de la página donde
+      apareció el avatar, además de la IP de quien mira. O sea que el proveedor
+      va aprendiendo qué pantallas recorre cada persona dentro de la app, sin
+      que nadie se lo haya pedido. Los CDN de avatares no exigen `Referer`, así
+      que no cuesta nada.
+
+      No hacen falta `width`/`height`: el `<span>` contenedor tiene tamaño fijo
+      por CSS (`.ix-avatar--sm/md/lg`) y la imagen lo llena, así que la caja ya
+      está reservada y no hay salto de layout al cargar.
+    -->
     <img
       class="ix-avatar__img"
       src={src}
       alt={label}
       loading="lazy"
+      decoding="async"
+      referrerpolicy="no-referrer"
       onerror={() => (failed = true)}
     />
   </span>
