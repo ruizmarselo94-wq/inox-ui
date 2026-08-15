@@ -1,0 +1,21 @@
+// ── Enlace dentro de una frase ──────────────────────────────────────
+//
+// El caso más básico de la web y el que más se olvida de estilar, porque
+// "es un <a>, ya se ve". No: sin regla propia hereda el azul del navegador
+// —que pelea con cualquier paleta— o el color del párrafo, y entonces no se
+// distingue de la prosa que lo rodea.
+//
+// ⚠️ El subrayado va EN REPOSO, no solo en hover: dentro de un bloque de
+// texto, WCAG 1.4.1 no acepta que el color sea lo único que distinga al
+// enlace. Fuera de un bloque de texto (una fila entera clickeable, un nombre
+// en una lista) esto NO aplica y ese enlace usa otro idioma: color de tinta,
+// sin subrayado, con la fila como afordancia.
+.ix-link {
+  color: var(--ix-color-primary);
+  text-decoration: underline;
+
+  @media (hover: hover) {
+    &:hover { color: var(--ix-color-primary-hover); }
+  }
+  &:active { color: var(--ix-color-primary-hover); transition: none; }
+}

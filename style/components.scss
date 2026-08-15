@@ -6,7 +6,7 @@
 //   1. reset y base
 //   2. animaciones / loaders
 //   3. layout estructural (shell, sidebar, topbar, container)
-//   4. primitives (avatar, card, btn, badge, spinner, divider)
+//   4. primitives (avatar, card, btn, badge, spinner, divider, link)
 //   5. datos (stat-card, table)
 //   6. formularios (forms, toggle)
 //   7. feedback (toast, modal)
@@ -53,6 +53,7 @@
 @forward 'components/badge';
 @forward 'components/spinner';
 @forward 'components/divider';
+@forward 'components/link';
 
 @forward 'components/stat-card';
 @forward 'components/table';
