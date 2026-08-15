@@ -161,5 +161,6 @@ html:has(dialog:modal) {
   cursor: pointer;
 
   @media (hover: hover) { &:hover { background: var(--ix-color-surface-alt); color: var(--ix-color-text); } }
+  &:active { background: var(--ix-color-surface-alt); color: var(--ix-color-text); }
 
 }

@@ -27,6 +27,28 @@ body { min-height: 100dvh; }
 // dio 2.90:1 — por debajo del 3:1 de WCAG 1.4.11. Con el anillo heredado, ese
 // componente no habría tenido motivo para declarar foco.
 //
+// ── La placa gris del toque ─────────────────────────────────────────
+//
+// Android pinta un rectángulo translúcido propio encima de todo lo que tocás
+// (`-webkit-tap-highlight-color`), y NO se va con el dedo: queda unos cientos
+// de milisegundos, así que al tocar un ítem de un menú se ve la huella mientras
+// el menú ya se cerró y la navegación todavía no llegó. Eso es lo que se lee
+// como "una sombra que se proyecta al fondo".
+//
+// Se apaga acá, y apagarla OBLIGA: cada componente tocable debe dar su propia
+// respuesta con `:active` —el mismo fondo que da su `:hover`—, porque un toque
+// sin ninguna respuesta es peor que una placa fea. No se pone un `:active`
+// general en este reset a propósito: le pintaría un bloque de fondo hasta a un
+// enlace en medio de un párrafo.
+//
+// ⚠️ No confundir con el `:hover` pegado (ver components.scss): son dos cosas
+// distintas —una la pinta el navegador al tocar, la otra la deja pegada el CSS
+// después de tocar— y hacen falta las dos correcciones.
+:where(a, button, summary, label, [role='button'], [tabindex]) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
 // Va en `:where()` a propósito: especificidad CERO. Es un piso, no una
 // imposición — cualquier componente que necesite algo distinto lo pisa sin
 // pelear con `!important`.

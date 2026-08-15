@@ -76,12 +76,24 @@
     .ix-btn-oauth__svg path:nth-child(4) { fill: #EA4335; } // rojo
   }
 }
+.ix-btn-oauth--google:active {
+  border-color: #4285F4;
+  // Orden oficial de los `<path>` en el logo de Google.
+  .ix-btn-oauth__svg path:nth-child(1) { fill: #4285F4; } // azul
+  .ix-btn-oauth__svg path:nth-child(2) { fill: #34A853; } // verde
+  .ix-btn-oauth__svg path:nth-child(3) { fill: #FBBC05; } // amarillo
+  .ix-btn-oauth__svg path:nth-child(4) { fill: #EA4335; } // rojo
+}
 
 @media (hover: hover) {
   .ix-btn-oauth--facebook:hover {
     border-color: #1877F2;
     .ix-btn-oauth__svg { color: #1877F2; }
   }
+}
+.ix-btn-oauth--facebook:active {
+  border-color: #1877F2;
+  .ix-btn-oauth__svg { color: #1877F2; }
 }
 
 @media (hover: hover) {
@@ -90,12 +102,20 @@
     .ix-btn-oauth__svg { color: #0077FF; }
   }
 }
+.ix-btn-oauth--vk:active {
+  border-color: #0077FF;
+  .ix-btn-oauth__svg { color: #0077FF; }
+}
 
 @media (hover: hover) {
   .ix-btn-oauth--github:hover {
     border-color: #24292E;
     .ix-btn-oauth__svg { color: #24292E; }
   }
+}
+.ix-btn-oauth--github:active {
+  border-color: #24292E;
+  .ix-btn-oauth__svg { color: #24292E; }
 }
 
 // ── Estado deshabilitado ─────────────────────────────────────────────

@@ -82,6 +82,10 @@
       color: var(--ix-color-text);
     }
   }
+  &:active {
+    border-color: var(--ix-color-border-focus);
+    color: var(--ix-color-text);
+  }
   &:focus-visible {
     outline: 2px solid var(--ix-color-border-focus);
     outline-offset: -2px;
@@ -181,6 +185,7 @@
   transition: background var(--ix-t-fast), color var(--ix-t-fast);
 
   @media (hover: hover) { &:hover { background: var(--ix-color-surface-alt); color: var(--ix-color-text); } }
+  &:active { background: var(--ix-color-surface-alt); color: var(--ix-color-text); }
   &:focus-visible { outline: 2px solid var(--ix-color-border-focus); outline-offset: -2px; }
   &.ix-topbar-nav-item--active {
     background: var(--ix-color-primary-subtle);
@@ -277,6 +282,9 @@
     &:hover {
       background: var(--ix-color-surface-alt);
     }
+  }
+  &:active {
+    background: var(--ix-color-surface-alt);
   }
 }
 

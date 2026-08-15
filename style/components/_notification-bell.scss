@@ -82,6 +82,9 @@
       background: var(--ix-color-surface-alt);
     }
   }
+  &:active {
+    background: var(--ix-color-surface-alt);
+  }
 
   &--warn {
     .ix-notification-bell__item-dot { background: var(--ix-color-warning); }
