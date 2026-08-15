@@ -119,7 +119,7 @@
 // envolverlo en un contenedor de 44×44 o usar padding del padre —
 // el botón en sí es chico a propósito (toolbars densas).
 .ix-btn-icon {
-  width: 28px; height: 28px;
+  width: 28px; height: 28px;   // = --md, el valor por defecto
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--ix-color-border-interactive, var(--ix-color-border));
   border-radius: var(--ix-r-sm);
@@ -132,6 +132,13 @@
   &:active:not(:disabled) { border-color: var(--ix-color-primary); color: var(--ix-color-primary); background: var(--ix-color-primary-subtle); transition: none; }
   &:disabled { opacity: 0.4; cursor: not-allowed; }
 }
+// 24px: cuando el botón acompaña a algo que tiene que dominar —un nombre, un
+// título— y no puede pelearle la mirada. El mínimo de WCAG 2.5.8 son 24px de
+// BLANCO TÁCTIL, no de píxeles visibles: el consumidor lo agranda con un
+// `::after` desbordado, así que lo de acá es solo cuánto se ve.
+.ix-btn-icon--sm { width: 24px; height: 24px; }
+.ix-btn-icon--md { width: 28px; height: 28px; }
+
 .ix-btn-icon--danger {
   border-color: var(--ix-color-danger-border-interactive, var(--ix-color-danger-border));
   color: var(--ix-color-danger);
