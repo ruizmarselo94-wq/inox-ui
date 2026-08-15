@@ -9,6 +9,15 @@
      * `::after` desbordado, que no ocupa lugar en el layout.
      */
     size?: 'sm' | 'md';
+    /**
+     * `outlined` (por defecto) dibuja el borde en reposo: sin relleno, ese
+     * borde ES lo que identifica al control. `bare` lo deja transparente y lo
+     * enciende recién al apuntar o al tocar — para cuando el glifo ya trae su
+     * propia forma cerrada (un lápiz sobre un papel, por ejemplo) y el borde
+     * quedaría siendo un marco alrededor de otro marco. El ANCHO del borde no
+     * cambia nunca: aparece el color, así que encenderlo no mueve nada.
+     */
+    variant?: 'outlined' | 'bare';
     danger?: boolean;
     disabled?: boolean;
     /** Tooltip en escritorio. Sirve de nombre accesible SOLO si no hay
@@ -24,6 +33,7 @@
 
   let {
     size = 'md',
+    variant = 'outlined',
     danger = false,
     disabled = false,
     title,
@@ -34,7 +44,8 @@
   }: Props = $props();
 
   const cls = $derived(
-    ['ix-btn-icon', `ix-btn-icon--${size}`, danger ? 'ix-btn-icon--danger' : '', extraClass]
+    ['ix-btn-icon', `ix-btn-icon--${size}`, `ix-btn-icon--${variant}`,
+      danger ? 'ix-btn-icon--danger' : '', extraClass]
       .filter(Boolean).join(' '),
   );
 </script>

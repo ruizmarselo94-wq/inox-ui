@@ -136,6 +136,15 @@
 // título— y no puede pelearle la mirada. El mínimo de WCAG 2.5.8 son 24px de
 // BLANCO TÁCTIL, no de píxeles visibles: el consumidor lo agranda con un
 // `::after` desbordado, así que lo de acá es solo cuánto se ve.
+// Sin borde en reposo: para glifos que ya traen su propia forma cerrada, donde
+// el borde del botón sería un marco alrededor de otro marco. No se saca el
+// borde, se le saca el COLOR — el ancho queda, así que encenderlo al apuntar o
+// al tocar no mueve un píxel. La identificación del control no se pierde: se
+// muda del reposo al estado, que es el mismo criterio del bloque de juego.
+.ix-btn-icon--bare {
+  border-color: transparent;
+}
+
 .ix-btn-icon--sm { width: 24px; height: 24px; }
 .ix-btn-icon--md { width: 28px; height: 28px; }
 
