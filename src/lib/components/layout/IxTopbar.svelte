@@ -4,7 +4,6 @@
   import type { NavSection, UserProfile } from '../../types.js';
   import { useShell } from '../../shell.svelte.js';
   import IxIcon from '../primitives/IxIcon.svelte';
-  import IxFlag from '../primitives/IxFlag.svelte';
   import IxThemePicker from '../primitives/IxThemePicker.svelte';
 
   interface Props {
@@ -119,8 +118,12 @@
 
   <!-- ── Centro: contexto operativo ──────────────────────────────────── -->
   <div class="ix-topbar__center">
+    <!-- Acá había un `<IxFlag country="PY">` con el país FIJO en el markup:
+         una bandera de Paraguay incrustada en un componente que se supone
+         agnóstico de producto, o sea un bug para cualquier consumidor que no
+         sea paraguayo. Se fue con IxFlag; si un contexto operativo necesita
+         mostrar país, lo pasa el consumidor. -->
     {#if user?.companyName}
-      <IxFlag country="PY" width={24} />
       <span class="ix-topbar__context-text">
         {user.companyName}
         {#if user.branchName}<span class="ix-topbar__context-sep">›</span>{user.branchName}{/if}

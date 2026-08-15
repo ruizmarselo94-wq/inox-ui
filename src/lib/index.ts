@@ -18,7 +18,6 @@ export type { ShellContext } from './shell.svelte.js';
 // ── Primitivos ────────────────────────────────────────────────────────────────
 export { default as IxAvatar }  from './components/primitives/IxAvatar.svelte';
 export { default as IxBadge }   from './components/primitives/IxBadge.svelte';
-export { default as IxFlag }         from './components/primitives/IxFlag.svelte';
 export { default as IxThemePicker }  from './components/primitives/IxThemePicker.svelte';
 export { default as IxBtn }          from './components/primitives/IxBtn.svelte';
 export { default as IxBtnIcon } from './components/primitives/IxBtnIcon.svelte';
