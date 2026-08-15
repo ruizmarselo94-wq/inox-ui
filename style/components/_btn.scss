@@ -48,17 +48,27 @@
 .ix-btn--lg   { padding: 13px 28px; font-size: 1.08rem; letter-spacing: 0.05em; }
 .ix-btn--full { width: 100%; }
 
+
+// ── LA RESPUESTA AL TOQUE ───────────────────────────────────────────
+// `.ix-btn` transiciona con `all 100ms` y un toque dura ~60-80: sin
+// `transition: none` el `:active` se está desvaneciendo HACIA adentro cuando el
+// dedo ya se fue, y no llega a verse nunca. El desvanecido de SALIDA sí queda
+// —lo aplica la regla base al soltar—, que es lo que evita que se sienta
+// brusco. Y no alcanzaba con tenerlo en `--primary`: las demás variantes tenían
+// hover (ahora detrás de `(hover: hover)`) y nada para el toque, o sea que en
+// un teléfono no daban ninguna señal.
 .ix-btn--primary {
   background: var(--ix-color-primary);
   color: var(--ix-color-primary-text);
   box-shadow: var(--ix-shadow-md);
   @media (hover: hover) { &:hover:not(:disabled) { background: var(--ix-color-primary-hover); } }
-  &:active:not(:disabled) { background: var(--ix-color-primary-hover); transform: scale(0.99); }
+  &:active:not(:disabled) { background: var(--ix-color-primary-hover); transform: scale(0.99); transition: none; }
 }
 .ix-btn--secondary {
   background: var(--ix-color-accent);
   color: var(--ix-color-accent-text);
   @media (hover: hover) { &:hover:not(:disabled) { background: var(--ix-color-accent-hover); } }
+  &:active:not(:disabled) { background: var(--ix-color-accent-hover); transform: scale(0.99); transition: none; }
 }
 .ix-btn--outline {
   background: transparent;
@@ -67,6 +77,7 @@
   border-color: var(--ix-color-border-interactive, var(--ix-color-border));
   color: var(--ix-color-text);
   @media (hover: hover) { &:hover:not(:disabled) { background: var(--ix-color-surface-alt); border-color: var(--ix-color-border-interactive-strong, var(--ix-color-border-strong)); } }
+  &:active:not(:disabled) { background: var(--ix-color-surface-alt); border-color: var(--ix-color-border-interactive-strong, var(--ix-color-border-strong)); transform: scale(0.99); transition: none; }
 }
 .ix-btn--ghost {
   background: transparent;
@@ -83,6 +94,12 @@
       color: var(--ix-color-text-inverse);
     }
   }
+  &:active:not(:disabled) {
+    background: var(--ix-color-ghost-hover-bg);
+    border-color: var(--ix-color-ghost-hover-border);
+    transform: scale(0.99);
+    transition: none;
+  }
 }
 .ix-btn--danger {
   background: var(--ix-color-danger-bg);
@@ -92,6 +109,7 @@
   border-color: var(--ix-color-danger-border-interactive, var(--ix-color-danger-border));
   color: var(--ix-color-danger);
   @media (hover: hover) { &:hover:not(:disabled) { background: var(--ix-color-danger); color: var(--ix-color-primary-text); } }
+  &:active:not(:disabled) { background: var(--ix-color-danger); color: var(--ix-color-primary-text); transition: none; }
 }
 
 // Botón cuadrado de sólo ícono. Útil en topbars y toolbars.
@@ -111,6 +129,7 @@
   transition: all var(--ix-t-fast);
   flex-shrink: 0;
   @media (hover: hover) { &:hover { border-color: var(--ix-color-primary); color: var(--ix-color-primary); background: var(--ix-color-primary-subtle); } }
+  &:active:not(:disabled) { border-color: var(--ix-color-primary); color: var(--ix-color-primary); background: var(--ix-color-primary-subtle); transition: none; }
   &:disabled { opacity: 0.4; cursor: not-allowed; }
 }
 .ix-btn-icon--danger {
