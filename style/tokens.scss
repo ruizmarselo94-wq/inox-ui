@@ -30,6 +30,29 @@
   --ix-sp-10: 2.5rem;
   --ix-sp-12: 3rem;
 
+  // ── Ritmo: los cinco niveles de separación ────────────────
+  //
+  // La escala de arriba dice CUÁNTO. Esto dice CUÁNDO, que es lo que en la
+  // práctica se elige mal.
+  //
+  // Sin nombres, todo el mundo alcanza el mismo token para todo: en una
+  // aplicación real medida, `sp-2` y `sp-3` se llevaban dos tercios de los
+  // usos y `sp-10` aparecía tres veces. El resultado no es feo — es PLANO:
+  // todo separado por lo mismo, así que nada se agrupa solo y el ojo no
+  // distingue "esto va junto" de "esto es otra cosa". La jerarquía se
+  // construye con el AIRE antes que con el color o el tamaño.
+  //
+  // Cinco niveles, y cada uno tiene UN trabajo. Si dudás entre dos, es señal
+  // de que el nivel está mal elegido, no de que falte un token.
+  //
+  // Usar SIEMPRE estos para separar; la escala cruda queda para lo que no es
+  // separación (padding interno, desplazamientos, tamaños).
+  --ix-gap-inline:  var(--ix-sp-2);   // dentro de un control: ícono ↔ texto
+  --ix-gap-item:    var(--ix-sp-3);   // entre ítems de una lista
+  --ix-gap-block:   var(--ix-sp-6);   // entre bloques de una sección
+  --ix-gap-section: var(--ix-sp-10);  // entre secciones de una pantalla
+  --ix-gap-zone:    var(--ix-sp-12);  // entre zonas / columnas
+
   // ── Radios ───────────────────────────────────────────────
   --ix-r-xs:   3px;
   --ix-r-sm:   4px;

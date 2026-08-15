@@ -97,7 +97,8 @@ Componentes CSS:
 ## Tokens estructurales (`style/tokens.scss`)
 
 ```
-Espaciado:  --ix-sp-1/2/3/4/5/6/8/10/12  (4px → 48px)
+Espaciado:  --ix-sp-1/2/3/4/5/6/8/10/12  (4px → 48px)  ← cuánto
+Ritmo:      --ix-gap-inline/item/block/section/zone            ← cuándo
 Radio:      --ix-r-xs/sm/md/lg/xl/full
 Fuentes:    --ix-font-ui, --ix-font-brand, --ix-font-mono
 Tamaños:    --ix-font-size-xs/sm/md/lg/xl/2xl/3xl/4xl
