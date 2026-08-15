@@ -97,7 +97,7 @@
   color: var(--ix-color-text-muted);
   line-height: 1;
 
-  &:hover { color: var(--ix-color-text); }
+  @media (hover: hover) { &:hover { color: var(--ix-color-text); } }
   &:disabled { opacity: 0.5; cursor: not-allowed; }
   // Solo el radio: el anillo lo pone el reset. Redondearlo evita que un
   // botón cuadrado reciba un anillo con esquinas vivas.
@@ -137,9 +137,11 @@
   cursor: pointer;
   transition: border-color var(--ix-t-fast), background var(--ix-t-fast);
 
-  &:hover:not(:disabled) {
-    border-color: var(--ix-color-border-strong);
-    background: var(--ix-color-ghost-hover-bg);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      border-color: var(--ix-color-border-strong);
+      background: var(--ix-color-ghost-hover-bg);
+    }
   }
   &:active:not(:disabled) { background: var(--ix-color-ghost-hover-border); }
   &:focus-visible { outline: 2px solid var(--ix-color-border-focus); outline-offset: 1px; }

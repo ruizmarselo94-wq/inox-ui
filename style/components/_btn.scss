@@ -52,13 +52,13 @@
   background: var(--ix-color-primary);
   color: var(--ix-color-primary-text);
   box-shadow: var(--ix-shadow-md);
-  &:hover:not(:disabled)  { background: var(--ix-color-primary-hover); }
+  @media (hover: hover) { &:hover:not(:disabled) { background: var(--ix-color-primary-hover); } }
   &:active:not(:disabled) { background: var(--ix-color-primary-hover); transform: scale(0.99); }
 }
 .ix-btn--secondary {
   background: var(--ix-color-accent);
   color: var(--ix-color-accent-text);
-  &:hover:not(:disabled)  { background: var(--ix-color-accent-hover); }
+  @media (hover: hover) { &:hover:not(:disabled) { background: var(--ix-color-accent-hover); } }
 }
 .ix-btn--outline {
   background: transparent;
@@ -66,7 +66,7 @@
   // 1.4.11), no el estructural de las tarjetas.
   border-color: var(--ix-color-border-interactive, var(--ix-color-border));
   color: var(--ix-color-text);
-  &:hover:not(:disabled) { background: var(--ix-color-surface-alt); border-color: var(--ix-color-border-interactive-strong, var(--ix-color-border-strong)); }
+  @media (hover: hover) { &:hover:not(:disabled) { background: var(--ix-color-surface-alt); border-color: var(--ix-color-border-interactive-strong, var(--ix-color-border-strong)); } }
 }
 .ix-btn--ghost {
   background: transparent;
@@ -76,10 +76,12 @@
   // sección JUGAR del lobby): fondo crema translúcido + borde y
   // texto un poco más visibles. La armonía con superficies claras
   // se mantiene porque el alpha es bajo.
-  &:hover:not(:disabled) {
-    background: var(--ix-color-ghost-hover-bg);
-    border-color: var(--ix-color-ghost-hover-border);
-    color: var(--ix-color-text-inverse);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: var(--ix-color-ghost-hover-bg);
+      border-color: var(--ix-color-ghost-hover-border);
+      color: var(--ix-color-text-inverse);
+    }
   }
 }
 .ix-btn--danger {
@@ -89,7 +91,7 @@
   // borde, así que también acá va el token interactivo y no el de los avisos.
   border-color: var(--ix-color-danger-border-interactive, var(--ix-color-danger-border));
   color: var(--ix-color-danger);
-  &:hover:not(:disabled) { background: var(--ix-color-danger); color: var(--ix-color-primary-text); }
+  @media (hover: hover) { &:hover:not(:disabled) { background: var(--ix-color-danger); color: var(--ix-color-primary-text); } }
 }
 
 // Botón cuadrado de sólo ícono. Útil en topbars y toolbars.
@@ -108,12 +110,12 @@
   cursor: pointer;
   transition: all var(--ix-t-fast);
   flex-shrink: 0;
-  &:hover { border-color: var(--ix-color-primary); color: var(--ix-color-primary); background: var(--ix-color-primary-subtle); }
+  @media (hover: hover) { &:hover { border-color: var(--ix-color-primary); color: var(--ix-color-primary); background: var(--ix-color-primary-subtle); } }
   &:disabled { opacity: 0.4; cursor: not-allowed; }
 }
 .ix-btn-icon--danger {
   border-color: var(--ix-color-danger-border-interactive, var(--ix-color-danger-border));
   color: var(--ix-color-danger);
   background: var(--ix-color-danger-bg);
-  &:hover { border-color: var(--ix-color-danger); color: var(--ix-color-primary-text); background: var(--ix-color-danger); }
+  @media (hover: hover) { &:hover { border-color: var(--ix-color-danger); color: var(--ix-color-primary-text); background: var(--ix-color-danger); } }
 }

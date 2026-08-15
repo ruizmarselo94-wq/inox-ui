@@ -66,28 +66,36 @@
 // Cada modificador pinta solo lo necesario: borde + ícono (para los
 // mono-color) o las cuatro paths individuales (para Google).
 
-.ix-btn-oauth--google:hover {
-  border-color: #4285F4;
-  // Orden oficial de los `<path>` en el logo de Google.
-  .ix-btn-oauth__svg path:nth-child(1) { fill: #4285F4; } // azul
-  .ix-btn-oauth__svg path:nth-child(2) { fill: #34A853; } // verde
-  .ix-btn-oauth__svg path:nth-child(3) { fill: #FBBC05; } // amarillo
-  .ix-btn-oauth__svg path:nth-child(4) { fill: #EA4335; } // rojo
+@media (hover: hover) {
+  .ix-btn-oauth--google:hover {
+    border-color: #4285F4;
+    // Orden oficial de los `<path>` en el logo de Google.
+    .ix-btn-oauth__svg path:nth-child(1) { fill: #4285F4; } // azul
+    .ix-btn-oauth__svg path:nth-child(2) { fill: #34A853; } // verde
+    .ix-btn-oauth__svg path:nth-child(3) { fill: #FBBC05; } // amarillo
+    .ix-btn-oauth__svg path:nth-child(4) { fill: #EA4335; } // rojo
+  }
 }
 
-.ix-btn-oauth--facebook:hover {
-  border-color: #1877F2;
-  .ix-btn-oauth__svg { color: #1877F2; }
+@media (hover: hover) {
+  .ix-btn-oauth--facebook:hover {
+    border-color: #1877F2;
+    .ix-btn-oauth__svg { color: #1877F2; }
+  }
 }
 
-.ix-btn-oauth--vk:hover {
-  border-color: #0077FF;
-  .ix-btn-oauth__svg { color: #0077FF; }
+@media (hover: hover) {
+  .ix-btn-oauth--vk:hover {
+    border-color: #0077FF;
+    .ix-btn-oauth__svg { color: #0077FF; }
+  }
 }
 
-.ix-btn-oauth--github:hover {
-  border-color: #24292E;
-  .ix-btn-oauth__svg { color: #24292E; }
+@media (hover: hover) {
+  .ix-btn-oauth--github:hover {
+    border-color: #24292E;
+    .ix-btn-oauth__svg { color: #24292E; }
+  }
 }
 
 // ── Estado deshabilitado ─────────────────────────────────────────────
@@ -98,6 +106,10 @@
 // "no permitido". Se combina con `aria-disabled="true"` y
 // `tabindex="-1"` en el markup para que asistivas y teclado lo
 // salteen sin romper la grilla.
+// Sin guard de puntero a propósito, al revés que el resto: acá el `:hover` no
+// AGREGA un estado, lo CANCELA (repite el aspecto deshabilitado para tapar los
+// hover de marca). Gatearlo lo dejaría sin efecto justo donde el hover pegado
+// del táctil lo haría falta.
 .ix-btn-oauth--disabled,
 .ix-btn-oauth--disabled:hover {
   opacity: 0.45;

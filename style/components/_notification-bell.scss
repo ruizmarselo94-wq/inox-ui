@@ -77,8 +77,10 @@
   font-size: 0.88rem;
   transition: background var(--ix-t-fast);
 
-  &:hover {
-    background: var(--ix-color-surface-alt);
+  @media (hover: hover) {
+    &:hover {
+      background: var(--ix-color-surface-alt);
+    }
   }
 
   &--warn {

@@ -160,6 +160,6 @@ html:has(dialog:modal) {
   line-height: 1;
   cursor: pointer;
 
-  &:hover { background: var(--ix-color-surface-alt); color: var(--ix-color-text); }
+  @media (hover: hover) { &:hover { background: var(--ix-color-surface-alt); color: var(--ix-color-text); } }
 
 }

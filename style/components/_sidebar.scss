@@ -95,7 +95,7 @@
   color: var(--ix-color-text-muted); cursor: pointer;
   border-radius: var(--ix-r-sm); flex-shrink: 0;
   transition: color var(--ix-t-fast), background var(--ix-t-fast);
-  &:hover { color: var(--ix-color-text); background: var(--ix-color-overlay); }
+  @media (hover: hover) { &:hover { color: var(--ix-color-text); background: var(--ix-color-overlay); } }
   &:focus-visible { box-shadow: var(--ix-focus-ring); outline: none; }
 }
 // ── Brand colapsado ───────────────────────────────────────────
@@ -161,9 +161,11 @@
   overflow: hidden;
   min-height: 32px;
 
-  &:hover {
-    background: var(--ix-color-surface-alt);
-    color: var(--ix-color-text);
+  @media (hover: hover) {
+    &:hover {
+      background: var(--ix-color-surface-alt);
+      color: var(--ix-color-text);
+    }
   }
   &:focus-visible {
     outline: 2px solid var(--ix-color-border-focus);
@@ -174,7 +176,7 @@
     color: var(--ix-color-primary-text);
     font-weight: 500;
     .ix-nav-item__icon { opacity: 1; }
-    &:hover { background: var(--ix-color-primary-hover); }
+    @media (hover: hover) { &:hover { background: var(--ix-color-primary-hover); } }
   }
 }
 .ix-nav-item__icon {

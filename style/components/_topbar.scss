@@ -76,9 +76,11 @@
   overflow: hidden;
   transition: border-color var(--ix-t-fast), background var(--ix-t-fast);
 
-  &:hover {
-    border-color: var(--ix-color-border-focus);
-    color: var(--ix-color-text);
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--ix-color-border-focus);
+      color: var(--ix-color-text);
+    }
   }
   &:focus-visible {
     outline: 2px solid var(--ix-color-border-focus);
@@ -178,7 +180,7 @@
   white-space: nowrap;
   transition: background var(--ix-t-fast), color var(--ix-t-fast);
 
-  &:hover { background: var(--ix-color-surface-alt); color: var(--ix-color-text); }
+  @media (hover: hover) { &:hover { background: var(--ix-color-surface-alt); color: var(--ix-color-text); } }
   &:focus-visible { outline: 2px solid var(--ix-color-border-focus); outline-offset: -2px; }
   &.ix-topbar-nav-item--active {
     background: var(--ix-color-primary-subtle);
@@ -267,8 +269,14 @@
   cursor: pointer;
   transition: background var(--ix-t-fast);
 
-  &--active, &:hover {
+  &--active {
     background: var(--ix-color-surface-alt);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background: var(--ix-color-surface-alt);
+    }
   }
 }
 

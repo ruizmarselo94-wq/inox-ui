@@ -24,6 +24,16 @@
 //     de tokens. Si un valor se repite y no tiene token, agregarlo
 //     a tokens.scss antes de usarlo aquí.
 // ============================================================
+// ── El hover, solo donde hay puntero ────────────────────────────────
+// Todo `:hover` de estos componentes va envuelto en `@media (hover: hover)`.
+// En una pantalla táctil el `:hover` queda PEGADO después del toque: el ítem
+// que tocaste se queda con el fondo marcado hasta que toques otra cosa, y en
+// una lista eso se lee como una selección que nadie hizo. `(hover: hover)`
+// distingue "puede apuntar" de "toca".
+//
+// La retroalimentación del toque es `:active`, que se va sola — por eso los
+// `:active` quedan FUERA del guard. Regla para cualquier componente nuevo:
+// hover adentro, active afuera.
 
 @forward 'components/reset';
 @forward 'components/skeleton';

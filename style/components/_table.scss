@@ -48,7 +48,7 @@
   }
   tbody tr {
     &:last-child td { border-bottom: none; }
-    &:hover td { background: var(--ix-color-surface-alt); }
+    @media (hover: hover) { &:hover td { background: var(--ix-color-surface-alt); } }
   }
   .ix-table__cell--primary { color: var(--ix-color-text); font-weight: 500; }
   .ix-table__cell--mono    { font-family: var(--ix-font-mono); font-size: 0.88rem; }
