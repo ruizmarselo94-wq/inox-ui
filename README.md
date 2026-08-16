@@ -103,7 +103,7 @@ Svelte 5. Detalle de props en el catálogo en vivo `/inox-ui` y en `CHANGELOG.md
 
 | Categoría | Componentes |
 |---|---|
-| **Primitivos** | `IxAvatar`, `IxBadge`, `IxBtn`, `IxBtnIcon`, `IxBtnOauth`, `IxCard`, `IxFlag`, `IxIcon`, `IxModal`, `IxNotificationBell`, `IxSpinner`, `IxThemePicker` |
+| **Primitivos** | `IxAvatar`, `IxBadge`, `IxBtn`, `IxBtnIcon`, `IxBtnOauth`, `IxCard`, `IxIcon`, `IxModal`, `IxNotificationBell`, `IxSpinner`, `IxThemePicker` |
 | **Formularios** | `IxInput`, `IxInputTel`, `IxSelect`, `IxToggle`, `IxToggleRow` |
 | **Layout** | `IxShell`, `IxSidebar`, `IxTopbar` |
 | **Datos** | `IxBarChart`, `IxDataTable`, `IxStatCard` |
