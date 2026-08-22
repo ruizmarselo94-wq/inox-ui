@@ -105,6 +105,26 @@ Tamaños:    --ix-font-size-xs/sm/md/lg/xl/2xl/3xl/4xl
 Sombras:    --ix-shadow-sm/md/lg
 Z-index:    --ix-z-base/raised/overlay/modal/toast/topbar
 Transición: --ix-t-fast/normal/slow, --ix-ease
+⚠️ **Las fuentes son opt-in, pero `--ix-font-mono` NO es opcional si usás formularios.**
+`_forms.scss` aplica `font-family: var(--ix-font-mono)` a `.ix-input`, `.ix-select`
+y `.ix-textarea` — o sea que **todo campo de formulario sale monoespaciado**. Si el
+consumidor no hace `@use 'style/fonts/jetbrains-mono'` y no sirve los `.woff2`, la
+cascada cae al `monospace` genérico del sistema, que es la fuente menos controlada
+del stack: Consolas en Windows, DejaVu Sans Mono en Linux, Menlo en macOS.
+
+Eso ya causó un bug real en LDT (2026-08-22): el guion bajo de un usuario como
+`qa_ana` se veía **invisible** en el input, porque cada una de esas fuentes dibuja
+`_` a una altura distinta y algunas lo dejan fuera del área visible del campo.
+Parecía recorte de CSS y no lo era —la caja tiene 28px para 14px de texto—: era una
+fuente que el design system pide y el producto nunca cargó.
+
+La monoespaciada en inputs **es intencional**: en un email o una contraseña,
+distinguir `l` de `1` y `O` de `0` importa. Por eso la respuesta correcta es cargar
+la fuente, no sacarla del componente.
+
+**Regla para el consumidor**: si usás `.ix-input`, cargá `fonts/jetbrains-mono` y
+copiá `assets/fonts/JetBrainsMono-{Regular,Medium}.woff2` a donde sirvas `/fonts/`.
+
 Colores (vacíos, el consumidor los llena):
             --ix-color-primary, --ix-color-primary-hover, --ix-color-primary-text
             --ix-color-accent, --ix-color-secondary, --ix-color-neutral
