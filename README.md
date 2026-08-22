@@ -272,3 +272,13 @@ Svelte gestiona el estado.
   política se formaliza cuando un segundo producto la consuma en producción.
 - **Futuro** — eventual publicación en un registro npm, si Stahl decide
   abrirlo. Decisión de negocio, sin fecha.
+
+## Licencia
+
+El **código** de Inox UI (componentes Svelte, SCSS, tipos) está bajo
+[MIT](LICENSE).
+
+⚠️ **Las fuentes tipográficas de `assets/fonts/` NO están cubiertas por esa
+licencia.** Son de terceros, se redistribuyen bajo la SIL Open Font License 1.1
+y la Ubuntu Font Licence 1.0, y cada una conserva la suya — ver
+[`assets/fonts/LICENSES.md`](assets/fonts/LICENSES.md).
