@@ -160,15 +160,22 @@ const ICONS: Record<string, [string, string]> = {
     '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
     'Actualizar',
   ],
-  // Dos flechas paralelas en VERTICAL, una hacia arriba y otra hacia abajo:
-  // intercambiar los dos extremos de un eje. Es el gesto de dar vuelta un
-  // tablero de ajedrez — se cambia qué color queda abajo—, y por eso el eje del
-  // ícono importa: `rotate-ccw` es un arco circular y se lee como recargar (su
-  // propia etiqueta acá dice "Repetir"), y un recorrido rectangular horizontal
-  // sugiere un volteo de izquierda a derecha, que es otra transformación.
-  'arrow-up-down':      [
-    '<path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/>',
-    'Intercambiar',
+  // El recorrido rectangular de dos flechas encadenadas, pero sobre el eje
+  // VERTICAL: da la sensación de "dar la vuelta", que es el gesto de girar un
+  // tablero de ajedrez — se intercambia qué color queda del lado del jugador.
+  //
+  // El eje importa y por eso ninguno de los vecinos sirve: `rotate-ccw` es un
+  // arco circular y se lee como recargar (su etiqueta acá dice "Repetir"); el
+  // mismo recorrido en horizontal sugiere un volteo izquierda↔derecha, que es
+  // otra transformación; y dos flechas rectas paralelas dicen "intercambiar"
+  // pero pierden la vuelta.
+  //
+  // Se rota con `<g transform>` en vez de reescribir el trazado a mano: es la
+  // MISMA figura girada 90°, exacta, sin recalcular arcos y sin que se
+  // desincronice si alguna vez cambia el original.
+  'repeat-vertical':    [
+    '<g transform="rotate(90 12 12)"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></g>',
+    'Dar la vuelta',
   ],
   'rotate-ccw':         [
     '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
