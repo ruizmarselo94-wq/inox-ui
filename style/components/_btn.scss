@@ -143,6 +143,24 @@
 // muda del reposo al estado, que es el mismo criterio del bloque de juego.
 .ix-btn-icon--bare {
   border-color: transparent;
+
+  // ⚠️ Y NO vuelve al apuntar ni al tocar. Ese era el punto que se escapaba:
+  // sacarlo en reposo porque el glifo ya trae su marco, y volver a dibujarlo
+  // en hover, es reponer el marco-sobre-marco justo cuando la persona está
+  // mirando el control. Con `square-pen` se ve literal — un cuadrado alrededor
+  // de un cuadrado.
+  //
+  // El estado no se pierde: el botón base ya cambia DOS cosas más en hover,
+  // el color del glifo (de `text-muted` a `primary`) y un lavado de fondo.
+  // Cualquiera de las dos alcanza para decir "esto responde", y ninguna agrega
+  // una forma nueva — que es el idioma que el resto del sistema ya usa: el
+  // color se intensifica con el estado, no aparece una caja.
+  //
+  // El foco NO entra acá: `:focus-visible` sigue dibujando su anillo, porque
+  // quien navega con teclado necesita saber DÓNDE está parado, y eso sí es
+  // información que ningún lavado reemplaza.
+  @media (hover: hover) { &:hover { border-color: transparent; } }
+  &:active:not(:disabled) { border-color: transparent; }
 }
 
 .ix-btn-icon--sm { width: 24px; height: 24px; }
