@@ -159,8 +159,21 @@
   // El foco NO entra acá: `:focus-visible` sigue dibujando su anillo, porque
   // quien navega con teclado necesita saber DÓNDE está parado, y eso sí es
   // información que ningún lavado reemplaza.
-  @media (hover: hover) { &:hover { border-color: transparent; } }
-  &:active:not(:disabled) { border-color: transparent; }
+  // Tampoco vuelve el FONDO. `bare` significa una cosa sola y conviene poder
+  // decirla en una línea: **responde el glifo, nada más**. Un lavado de fondo
+  // es una caja sin borde —ocupa el mismo rectángulo y se lee igual de caja—,
+  // así que dejarlo contradecía el modificador tanto como el borde.
+  //
+  // Queda el color del glifo, que pasa de `text-muted` a `primary`: es un
+  // cambio grande y no agrega ninguna forma nueva a la pantalla.
+  //
+  // ⚠️ `:focus-visible` NO entra acá y no es un olvido: quien navega con
+  // teclado necesita saber dónde está parado, y eso ningún cambio de color de
+  // trazo lo reemplaza. El anillo se sigue dibujando.
+  @media (hover: hover) {
+    &:hover { border-color: transparent; background: transparent; }
+  }
+  &:active:not(:disabled) { border-color: transparent; background: transparent; }
 }
 
 .ix-btn-icon--sm { width: 24px; height: 24px; }
