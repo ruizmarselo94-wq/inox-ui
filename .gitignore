@@ -3,3 +3,9 @@ dist
 .svelte-kit
 .DS_Store
 *.log
+
+# Nunca versionar configuración local ni secretos — el repo es público.
+.env
+.env.*
+!.env.example
+*.local
