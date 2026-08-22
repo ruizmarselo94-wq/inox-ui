@@ -22,6 +22,12 @@
 .ix-avatar--sm { width: 26px; height: 26px; }
 .ix-avatar--md { width: 32px; height: 32px; font-size: 0.92rem; }
 .ix-avatar--lg { width: 40px; height: 40px; font-size: 1.08rem; }
+// 64px: el avatar como SUJETO de la pantalla, no como acompañante — la cabecera
+// de un perfil. El salto respecto de `md` (32px) es el doble EXACTO, y ese es el
+// punto: a 40 contra 32 los dos círculos tienen el mismo contenido separados por
+// un 25%, y se leen como el mismo elemento en dos pantallas distintas en vez de
+// como dos roles. Con 2× no hay ambigüedad posible.
+.ix-avatar--xl { width: 64px; height: 64px; font-size: var(--ix-font-size-2xl); }
 
 // Foto: llena el círculo sin deformarse — `cover` recorta el excedente en vez de
 // estirar una foto no cuadrada. El `overflow: hidden` del contenedor la recorta.
