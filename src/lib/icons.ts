@@ -160,6 +160,14 @@ const ICONS: Record<string, [string, string]> = {
     '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
     'Actualizar',
   ],
+  // Dos flechas encadenadas en un recorrido rectangular: "alternar entre dos
+  // estados". Es el gesto de dar vuelta un tablero de ajedrez — se intercambia
+  // qué color queda abajo—, y por eso no sirve `rotate-ccw`, que es un arco
+  // circular y se lee como recargar (su propia etiqueta acá dice "Repetir").
+  'repeat':             [
+    '<path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>',
+    'Alternar',
+  ],
   'rotate-ccw':         [
     '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
     'Repetir',
