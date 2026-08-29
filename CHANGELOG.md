@@ -20,6 +20,22 @@ de verdad.
 
 Todo esto ya corre en los consumidores vía pin por SHA.
 
+### Added
+- **`--ix-color-surface-chrome`** — fondo de sidebar y topbar, opcional. Si el
+  consumidor no lo define, ambos siguen usando `--ix-color-surface`: nada
+  cambia para quien ya estaba. Existe porque es una decisión de identidad y no
+  de estilo — hay productos donde la navegación debe **adelantarse** (una
+  herramienta que se anuncia) y otros donde debe **retroceder**, quedando por
+  detrás del lienzo para que el contenido sea lo único que se ve. La librería
+  no elige por el producto: le da el control.
+
+### Fixed
+- **Cifras de ancho fijo en `.ix-table`.** Las tipografías de interfaz traen
+  cifras proporcionales por defecto, así que en una columna de importes los
+  dígitos no caían en la misma vertical y la columna bailaba de fila en fila.
+  `font-variant-numeric: tabular-nums` en `th`/`td` lo resuelve para cualquier
+  tabla, sin tocar el texto.
+
 Un solo anillo de foco para todo lo enfocable, heredado, en vez de uno por
 componente. Convivían **cuatro variantes** del mismo anillo dentro de la propia
 librería (con halo, sin halo, `outline: none` + halo, offset de 1px) y cada

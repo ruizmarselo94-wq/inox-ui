@@ -13,7 +13,7 @@
 .ix-sidebar {
   width: var(--ix-sidebar-w);
   min-width: var(--ix-sidebar-w);
-  background: var(--ix-color-surface);
+  background: var(--ix-color-surface-chrome, var(--ix-color-surface));
   border-right: 1px solid var(--ix-color-border);
   display: flex;
   flex-direction: column;

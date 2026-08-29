@@ -6,7 +6,7 @@
   top: 0;
   z-index: var(--ix-z-topbar);
   height: var(--ix-topbar-h);
-  background: var(--ix-color-surface);
+  background: var(--ix-color-surface-chrome, var(--ix-color-surface));
   border-bottom: 1px solid var(--ix-color-border);
   display: grid;
   grid-template-columns: 1fr auto 1fr;

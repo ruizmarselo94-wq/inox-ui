@@ -172,6 +172,14 @@
   --ix-color-surface-alt:      ;   // fondo alternativo (zebra, hover)
   --ix-color-surface-raised:   ;   // card elevada
   --ix-color-overlay:          ;   // modales, dropdowns
+  // Fondo del chrome (sidebar y topbar). Opcional: si el consumidor no lo
+  // define, el chrome usa --ix-color-surface, que es el comportamiento de
+  // siempre. Existe porque es una decisión de identidad, no de estilo: hay
+  // productos donde la navegación debe ADELANTARSE (una herramienta que se
+  // anuncia) y otros donde debe RETROCEDER, quedando por detrás del lienzo
+  // para que el contenido sea lo único que se ve. La librería no elige por
+  // el producto; le da el control.
+  --ix-color-surface-chrome:   ;
 
   // ── Texto ────────────────────────────────────────────────
   --ix-color-text:             ;   // texto principal
