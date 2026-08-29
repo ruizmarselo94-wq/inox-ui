@@ -9,9 +9,13 @@ Design system de Stahl. Dos capas completamente independientes:
 
 **La fuente canónica es este repo Git** (`github.com/stahlsoft/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/stahlsoft/inox-ui.git#<sha>`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Shijima) decide cuándo actualizar su referencia.
 
-**Versión:** `0.1.2`. Inox UI versiona de forma **independiente** de LDT/RustKnight y de los demás proyectos. Durante la etapa de bases se usa **versionado incremental simple** (`0.1.x`) por conveniencia — pasos chicos, sin semver estricto. **Revisar y formalizar la política de versionado cuando un segundo proyecto (Shijima) consuma Inox UI en producción**: ese es el disparador, igual que los usuarios reales dispararon el flujo de ramas en RustKnight.
-
-La versión es **informativa**: los consumidores pinean por **commit SHA** (no por rango de versión), así que describe el estado de la librería, no controla la resolución.
+**Versión: `0.1.0`, y ahí se queda.** No hay paquete publicado en ningún
+registro y cada consumidor fija Inox UI **por commit SHA**, así que el número no
+resuelve nada. Numerar releases que nunca se publicaron creaba un ciclo
+imaginario: se llegó a tener tres números distintos a la vez (`package.json`
+0.1.17, `CHANGELOG.md` 0.1.5, este archivo 0.1.2). **No bumpear la versión.**
+Lo que entra va a `[Unreleased]` del CHANGELOG. El primer número real se asigna
+el día que se publique en un registro.
 
 ## Prefijos
 

@@ -10,7 +10,8 @@ commit — no hay paquete npm publicado todavía.
 
 - Prefijo de clases CSS: `ix-`
 - Prefijo de tokens CSS: `--ix-`
-- Versión: `0.1.x` incremental durante la etapa de bases, sin semver estricto.
+- Versión: **`0.1.0` fija** — los consumidores fijan por commit SHA, así que el
+  número no resuelve nada. No se bumpea. Ver "Distribución y versioning".
 
 ---
 
@@ -267,9 +268,11 @@ Svelte gestiona el estado.
   La versión del `package.json` es **informativa**: los consumidores pinean
   por commit SHA, así que describe el estado de la librería, no controla la
   resolución.
-- **Versionado** — Inox UI versiona de forma independiente de los productos
-  que la consumen. Durante la etapa de bases, `0.1.x` incremental simple; la
-  política se formaliza cuando un segundo producto la consuma en producción.
+- **Versionado** — se queda en **`0.1.0`**. Como no hay paquete publicado y
+  cada consumidor fija por commit SHA, el número describe pero no controla:
+  bumpearlo simulaba releases que nunca ocurrieron. Lo que entra va a
+  `[Unreleased]` del CHANGELOG. El primer número real llega el día que Inox UI
+  se publique en un registro; ahí arranca SemVer de verdad.
 - **Futuro** — eventual publicación en un registro npm, si Stahl decide
   abrirlo. Decisión de negocio, sin fecha.
 

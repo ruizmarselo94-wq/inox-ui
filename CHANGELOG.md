@@ -3,11 +3,22 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.0.0/).
 Versionado: [Semantic Versioning](https://semver.org/).
 
+**Inox UI permanece en `0.1.0`.** No hay paquete publicado en ningún registro:
+cada consumidor la fija **por commit SHA**, así que el número de versión no
+resuelve nada — describe, no controla. Numerar releases que nunca se publicaron
+solo creaba la ilusión de un ciclo que no existe, y de hecho llegó a haber tres
+números distintos a la vez (`package.json` 0.1.17, este archivo 0.1.5,
+`CLAUDE.md` 0.1.2) porque ninguno significaba nada.
+
+Todo lo que entra desde entonces se acumula en `[Unreleased]`. El primer número
+real se asigna el día que Inox UI se publique en un registro; ahí empieza SemVer
+de verdad.
+
 ---
 
 ## [Unreleased]
 
-## [0.1.5] — 2026-08-08
+Todo esto ya corre en los consumidores vía pin por SHA.
 
 Un solo anillo de foco para todo lo enfocable, heredado, en vez de uno por
 componente. Convivían **cuatro variantes** del mismo anillo dentro de la propia
@@ -40,8 +51,6 @@ heredado ese componente no habría tenido motivo para declarar foco.
   en reposo de un control que tenga una. Si hay que conservarla, componer:
   `box-shadow: <su sombra>, var(--ix-focus-ring)`.
 
-## [0.1.4] — 2026-08-07
-
 El borde de los botones sin relleno pasa a cumplir WCAG 1.4.11. En un
 consumidor (LDT) se midió el borde de `outline`/`ghost`/`btn-icon` en **1.42:1**
 contra la superficie —menos de la mitad del 3:1 exigido— y el estado *hover* en
@@ -72,8 +81,6 @@ esos botones pasaba de sobra: lo que no se leía era el botón COMO botón.
   así que un tema que no lo defina se comporta exactamente como antes. No hay
   breaking change.
 
-## [0.1.3] — 2026-08-01
-
 La API pública de los componentes queda íntegramente en inglés americano —
 props en español eran una fuga del idioma de un consumidor dentro de la
 librería, y obligaban a todo producto nuevo a mezclar idiomas en sus templates.
@@ -91,8 +98,6 @@ librería, y obligaban a todo producto nuevo a mezclar idiomas en sus templates.
 ### Added
 - `.ix-row--inactive` en `_table.scss` — fila apagada para registros
   inactivos; los consumidores la redefinían localmente en cada página.
-
-## [0.1.2] — 2026-08-01
 
 El sistema de temas vuelve a su forma universal: **dos temas, `dark` y
 `light`**, sin dimensión de acento. Los temas extra y los acentos que se
@@ -112,8 +117,6 @@ producto define su paleta en su propio archivo de tema (`--ix-color-*` bajo
   (`.ix-theme-picker__*`) se elimina de `_topbar.scss`.
 - `shell.loadFromStorage()` solo acepta `dark`/`light` como valores guardados
   de `theme`; cualquier otro valor persistido cae al default.
-
-## [0.1.1] — 2026-07-25
 
 Primer release desde que RustKnight/LDT salió a producción. Cierra el ciclo de
 `IxAvatar` (el consumidor visual que ADR-0011 de LDT esperaba para poblar la
@@ -259,6 +262,8 @@ mientras se sientan las bases.
   navegador. Ahora usa el mismo anillo de marca (`--ix-color-border-focus`)
   que ya tenían botones e inputs. Consistencia visual, no un fix de
   accesibilidad — WCAG 2.4.7 ya se cumplía con el outline nativo.
+
+---
 
 ---
 
