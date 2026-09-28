@@ -103,6 +103,10 @@ const ICONS: Record<string, [string, string]> = {
     '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/>',
     'Ingresar',
   ],
+  'lock':               [
+    '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+    'Bloqueado',
+  ],
   'log-out':            [
     '<path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>',
     'Cerrar sesión',
@@ -140,6 +144,7 @@ const ICONS: Record<string, [string, string]> = {
     'Editar',
   ],
   'plus':               ['<path d="M5 12h14"/><path d="M12 5v14"/>', 'Agregar'],
+  'minus':              ['<path d="M5 12h14"/>', 'Quitar'],
   'handshake':          [
     '<path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/>',
     'Acuerdo',
@@ -282,8 +287,15 @@ const ICONS: Record<string, [string, string]> = {
   'zap':                ['<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>', 'Rayo'],
 };
 
+/**
+ * Un nombre que no está en el catálogo dibuja una cruz, para no dejar un hueco
+ * en la interfaz. Pero la cruz se parece a un `plus`, y así un botón de
+ * "quitar" pasó meses mostrando un "+": en desarrollo, además, avisa.
+ */
 export function getIconPaths(name: string): string {
-  return ICONS[name]?.[0] ?? '<path d="M12 2v20M2 12h20"/>';
+  const icon = ICONS[name];
+  if (!icon && import.meta.env?.DEV) console.warn(`[inox-ui] IxIcon: no existe el ícono "${name}"`);
+  return icon?.[0] ?? '<path d="M12 2v20M2 12h20"/>';
 }
 
 export function getIconLabel(name: string): string {

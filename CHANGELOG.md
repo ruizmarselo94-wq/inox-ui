@@ -21,6 +21,11 @@ de verdad.
 Todo esto ya corre en los consumidores vía pin por SHA.
 
 ### Added
+- **Íconos `minus` y `lock`.** `minus` faltaba y un consumidor lo usaba en un
+  botón de "quitar uno": el fallback dibujaba una cruz y el botón se veía como
+  un "+".
+- **`IxIcon` avisa en desarrollo cuando el nombre no existe.** El fallback
+  sigue siendo la cruz —mejor que un hueco—, pero ya no pasa en silencio.
 - **`--ix-color-surface-chrome`** — fondo de sidebar y topbar, opcional. Si el
   consumidor no lo define, ambos siguen usando `--ix-color-surface`: nada
   cambia para quien ya estaba. Existe porque es una decisión de identidad y no
