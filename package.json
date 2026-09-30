@@ -1,7 +1,7 @@
 {
-  "name": "@stahl/inox-ui",
+  "name": "@lantano/inox-ui",
   "version": "0.1.0",
-  "description": "Design system Stahl — tokens CSS universales + componentes Svelte",
+  "description": "Design system de Lantano — tokens CSS universales + componentes Svelte",
   "license": "UNLICENSED",
   "private": true,
   "type": "module",

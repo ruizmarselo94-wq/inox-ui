@@ -2,12 +2,12 @@
 
 ## Qué es Inox UI
 
-Design system de Stahl. Dos capas completamente independientes:
+Design system de Lantano. Dos capas completamente independientes:
 
 1. **CSS/SCSS universal** (`style/`) — funciona con cualquier framework o HTML puro. Sin dependencias JS.
-2. **Componentes Svelte 5** (`src/lib/`) — consumidos por los productos de Stahl. Requieren Svelte 5.
+2. **Componentes Svelte 5** (`src/lib/`) — consumidos por los productos de Lantano. Requieren Svelte 5.
 
-**La fuente canónica es este repo Git** (`github.com/stahlsoft/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/stahlsoft/inox-ui.git#<sha>`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Shijima) decide cuándo actualizar su referencia.
+**La fuente canónica es este repo Git** (`github.com/ruizmarselo94-wq/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/ruizmarselo94-wq/inox-ui.git#<sha>`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Shijima) decide cuándo actualizar su referencia.
 
 **Versión: `0.1.0`, y ahí se queda.** No hay paquete publicado en ningún
 registro y cada consumidor fija Inox UI **por commit SHA**, así que el número no
@@ -145,7 +145,7 @@ Colores (vacíos, el consumidor los llena):
 2. **Aggregator** — agregar `@forward 'components/nombre-componente'` en `style/components.scss`
 3. **Svelte** — crear `src/lib/components/categoria/IxNombreComponente.svelte` usando runes
 4. **Export** — agregar `export { default as IxNombreComponente } from '...'` en `src/lib/index.ts`
-5. **Catálogo** — agregar demo y código de ejemplo en `web/src/routes/inox-ui/+page.svelte` (Shijima)
+5. **Catálogo** — agregar demo y código de ejemplo en `web/src/routes/inox-ui/+page.svelte` (Didimio)
 
 ## Cómo agregar un ícono
 

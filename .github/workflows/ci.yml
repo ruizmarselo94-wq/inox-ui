@@ -2,7 +2,7 @@ name: CI
 
 # Inox UI se consume por FUENTE (los `exports` apuntan a `./src/lib`, no a un
 # `dist/`), así que un error de sintaxis o de tipos acá llega directo a los
-# consumidores (LDT, Shijima) al bumpear el pin. Este workflow es lo que lo evita.
+# consumidores (LDT, Didimio) al bumpear el pin. Este workflow es lo que lo evita.
 on:
   push:
     branches: [main]

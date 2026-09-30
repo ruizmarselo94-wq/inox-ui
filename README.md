@@ -1,11 +1,11 @@
 # Inox UI
 
-Design system de Stahl. **Estructura sin color: la identidad la pone cada producto.**
+Design system de Lantano. **Estructura sin color: la identidad la pone cada producto.**
 
 Provee tokens CSS, clases `ix-*` y componentes Svelte 5 para construir
 interfaces consistentes en todos los productos del estudio. **La fuente
-canónica es este repo** (`github.com/stahlsoft/inox-ui`). Los consumidores
-(RustKnight, Shijima) lo agregan como dependencia Git fijada a un tag o
+canónica es este repo** (`github.com/ruizmarselo94-wq/inox-ui`). Los consumidores
+(RustKnight, Didimio) lo agregan como dependencia Git fijada a un tag o
 commit — no hay paquete npm publicado todavía.
 
 - Prefijo de clases CSS: `ix-`
@@ -33,32 +33,32 @@ Las dos pueden usarse juntas o por separado.
 
 ## Agregar a un proyecto
 
-Inox UI se declara como dependencia Git fijada (`@stahl/inox-ui`, ver
+Inox UI se declara como dependencia Git fijada (`@lantano/inox-ui`, ver
 "Distribución y versioning") y se importa directo:
 
 ```ts
 // Componentes Svelte
-import { IxBtn, IxInput, IxShell, IxIcon } from '@stahl/inox-ui';
-import type { NavSection, Theme } from '@stahl/inox-ui';
+import { IxBtn, IxInput, IxShell, IxIcon } from '@lantano/inox-ui';
+import type { NavSection, Theme } from '@lantano/inox-ui';
 ```
 
 ```scss
 // Capa CSS universal completa
-@use '@stahl/inox-ui/style/main';
+@use '@lantano/inox-ui/style/main';
 
 // Fuentes opt-in (solo las que el proyecto usa)
-@use '@stahl/inox-ui/style/fonts/inter';
-@use '@stahl/inox-ui/style/fonts/jetbrains-mono';
+@use '@lantano/inox-ui/style/fonts/inter';
+@use '@lantano/inox-ui/style/fonts/jetbrains-mono';
 ```
 
 Imports SCSS selectivos (solo los componentes que el proyecto realmente usa —
 recomendado para reducir el CSS final):
 
 ```scss
-@use '@stahl/inox-ui/style/tokens';
-@use '@stahl/inox-ui/style/components/reset';
-@use '@stahl/inox-ui/style/components/btn';
-@use '@stahl/inox-ui/style/components/forms';
+@use '@lantano/inox-ui/style/tokens';
+@use '@lantano/inox-ui/style/components/reset';
+@use '@lantano/inox-ui/style/components/btn';
+@use '@lantano/inox-ui/style/components/forms';
 // ...solo los parciales que necesités
 ```
 
@@ -91,15 +91,15 @@ style/
     └── _pirata-one.scss _eb-garamond.scss
 ```
 
-Cada proyecto puede ignorar los temas de `themes/` y proveer el suyo (Shijima usa
-`web/src/styles/base/shijima-tema.scss`). Las propiedades de color se aplican vía
+Cada proyecto puede ignorar los temas de `themes/` y proveer el suyo (Didimio usa
+`web/src/styles/base/didimio-theme.scss`). Las propiedades de color se aplican vía
 `[data-theme="dark"|"light"]` en el `<html>` raíz.
 
 ---
 
 ## Componentes Svelte (25)
 
-Todos se importan desde la raíz del paquete (`@stahl/inox-ui`) y son componentes
+Todos se importan desde la raíz del paquete (`@lantano/inox-ui`) y son componentes
 Svelte 5. Detalle de props en el catálogo en vivo `/inox-ui` y en `CHANGELOG.md`.
 
 | Categoría | Componentes |
@@ -141,7 +141,7 @@ props extra.
 
 ```svelte
 <script lang="ts">
-  import { IxBtn, IxIcon } from '@stahl/inox-ui';
+  import { IxBtn, IxIcon } from '@lantano/inox-ui';
 </script>
 
 <IxBtn variant="primary" full onclick={guardar}>
@@ -201,14 +201,14 @@ tema que redefine los `--ix-color-*` para su identidad, aplicado por
 
 ```scss
 [data-theme="dark"] {
-  --ix-color-primary: #f97316;   // óxido (Shijima)
+  --ix-color-primary: #f97316;   // acento del producto
   --ix-color-accent:  #38bdf8;   // cian metálico
   // ...
 }
 ```
 
 Solo redefinir tokens `--ix-*`. Los tokens exclusivos del proyecto usan prefijo
-propio (Shijima: `--sh-*`).
+propio (Didimio: `--di-*`).
 
 ---
 
@@ -258,12 +258,12 @@ Svelte gestiona el estado.
 ## Distribución y versioning
 
 - **Fuente canónica** — repo Git propio en GitHub
-  (`github.com/stahlsoft/inox-ui`). Quien cambia Inox UI sube el commit a
+  (`github.com/ruizmarselo94-wq/inox-ui`). Quien cambia Inox UI sube el commit a
   `main` ahí; cada consumidor decide cuándo traerlo.
 - **Consumo** — dependencia Git fijada (tag o commit), no por path ni
   workspace local. Ejemplo (`package.json` del consumidor):
   ```json
-  "@stahl/inox-ui": "git+ssh://git@github.com/stahlsoft/inox-ui.git#<sha>"
+  "@lantano/inox-ui": "git+ssh://git@github.com/ruizmarselo94-wq/inox-ui.git#<sha>"
   ```
   La versión del `package.json` es **informativa**: los consumidores pinean
   por commit SHA, así que describe el estado de la librería, no controla la
@@ -273,7 +273,7 @@ Svelte gestiona el estado.
   bumpearlo simulaba releases que nunca ocurrieron. Lo que entra va a
   `[Unreleased]` del CHANGELOG. El primer número real llega el día que Inox UI
   se publique en un registro; ahí arranca SemVer de verdad.
-- **Futuro** — eventual publicación en un registro npm, si Stahl decide
+- **Futuro** — eventual publicación en un registro npm, si Lantano decide
   abrirlo. Decisión de negocio, sin fecha.
 
 ## Licencia

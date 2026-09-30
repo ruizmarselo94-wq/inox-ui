@@ -225,14 +225,14 @@ mientras se sientan las bases.
   lobby.
 - `IxIcon`: agregados `cpu` y `swords` (Lucide). LDT los usa en el lobby
   ("Contra la máquina" = motor de cálculo; "Contra un amigo" = duelo).
-  Shijima/Cthulhu los heredan automáticamente vía el set compartido.
+  Didimio/Cthulhu los heredan automáticamente vía el set compartido.
 - `IxModal` (`primitives/IxModal.svelte`): diálogo modal sobre `<dialog>`
   nativo — `showModal()` aporta top-layer, focus-trap, Esc y `::backdrop`
   sin JS extra. Props: `open` (bindable), `title`, `size` (`sm/md/lg/xl`),
   `onclose`, snippet `footer`. Reutiliza la caja `.ix-modal` que ya vivía en
   `_modal.scss`; se agregó `dialog.ix-modal` + `::backdrop` + botón
   `.ix-modal__close`. Cierra por Esc, clic en el backdrop o el botón. LDT lo
-  usa para configurar partida (vs-máquina / desafío a un amigo); Shijima
+  usa para configurar partida (vs-máquina / desafío a un amigo); Didimio
   también lo va a necesitar.
 - Ícono `robot` al catálogo Lucide (`src/lib/icons.ts`). Para "Contra la
   máquina" en LDT. Aparece automáticamente en el catálogo vía `ICON_NAMES`.
@@ -242,9 +242,9 @@ mientras se sientan las bases.
 - Layout `.ix-auth` (`_auth.scss`): split-screen de dos columnas para
   pantallas públicas — `.ix-auth__aside`, `.ix-auth__panel`, `.ix-auth__card`,
   `.ix-auth__title`, `.ix-auth__error`, `.ix-auth__form`. Reemplaza el grid
-  `.sh-login`/`.sh-setup` que Shijima duplicaba en `/login` y `/setup`.
+  `.di-login`/`.di-setup` que Didimio duplicaba en `/login` y `/setup`.
 - Íconos `hard-drive` y `rocket` al catálogo Lucide (`src/lib/icons.ts`).
-  Consumidos por el onboarding de Shijima. Aparecen automáticamente en el
+  Consumidos por el onboarding de Didimio. Aparecen automáticamente en el
   catálogo `/inox-ui` vía `ICON_NAMES`.
 - Utilidad `.ix-icon-box` (`_icon-box.scss`): contenedor de ícono con fondo
   suave + color saturado a juego, para feature cards / destacados. Variantes
@@ -369,7 +369,7 @@ valores cromáticos** — cada proyecto consumidor define su tema.
 - `_tema-oscuro.scss` — dark mode universal.
 
 Cada proyecto consumidor puede ignorar estos temas y proveer el
-suyo propio (p. ej. `shijima-tema.scss`). Las propiedades de color
+suyo propio (p. ej. `didimio-theme.scss`). Las propiedades de color
 se aplican via `[data-theme="dark/light"]` en el `<html>` raíz.
 Fallback sin JS: `@media (prefers-color-scheme)` con `:root:not([data-theme])`.
 

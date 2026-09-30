@@ -11,8 +11,8 @@ description: >-
 
 # Contribuir a Inox UI
 
-Inox UI es el design system de Shijima. Lo consumen **varios productos a la
-vez** —Lantano, RustKnight, y lo que venga—, cada uno fijándolo por commit SHA.
+Inox UI es el design system de Lantano. Lo consumen **varios productos a la
+vez** —Didimio, RustKnight, y lo que venga—, cada uno fijándolo por commit SHA.
 
 Todo lo que entra acá tiene que servirle a cualquiera de ellos. Esa es la
 única regla, y de ella salen todas las demás.
