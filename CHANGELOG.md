@@ -21,6 +21,14 @@ de verdad.
 Todo esto ya corre en los consumidores vía pin por SHA.
 
 ### Added
+- **Tercer modo de tema: `'system'`.** `Theme` pasa a
+  `'light' | 'dark' | 'system'`. Con `'system'` el shell quita `data-theme` y
+  el CSS sigue a `prefers-color-scheme`, así que la interfaz acompaña los
+  cambios de modo del sistema operativo con la app abierta, sin recargar y sin
+  listener. `IxThemePicker` cicla los tres (sol → luna → monitor). **Es un
+  agregado: el default del shell sigue siendo `'dark'` y nada del
+  comportamiento existente cambia** — un consumidor que solo guardaba
+  `'light'`/`'dark'` sigue igual.
 - **Íconos `minus` y `lock`.** `minus` faltaba y un consumidor lo usaba en un
   botón de "quitar uno": el fallback dibujaba una cruz y el botón se veía como
   un "+".

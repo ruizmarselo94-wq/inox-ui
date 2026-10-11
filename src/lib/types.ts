@@ -1,4 +1,4 @@
-export type Theme = 'dark' | 'light';
+export type Theme = 'light' | 'dark' | 'system';
 export type LayoutMode = 'sidebar' | 'topbar';
 export type BadgeVariant = 'ok' | 'warn' | 'err' | 'info' | 'neutral';
 export type BtnVariant = 'primary' | 'outline' | 'secondary' | 'ghost' | 'danger';

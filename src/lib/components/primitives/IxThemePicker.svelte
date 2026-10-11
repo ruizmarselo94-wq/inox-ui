@@ -4,9 +4,15 @@
 
   const shell = useShell();
 
-  const label = $derived(
-    shell.theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro',
-  );
+  // Tres modos, en el orden en que cicla el botón: claro → oscuro → sistema.
+  const meta = {
+    light:  { icon: 'sun',     next: 'oscuro'  },
+    dark:   { icon: 'moon',    next: 'sistema' },
+    system: { icon: 'monitor', next: 'claro'   },
+  } as const;
+
+  const current = $derived(meta[shell.theme]);
+  const label = $derived(`Tema: ${shell.theme}. Cambiar a ${current.next}`);
 </script>
 
 <button
@@ -16,5 +22,5 @@
   title={label}
   aria-label={label}
 >
-  <IxIcon name={shell.theme === 'dark' ? 'moon' : 'sun'} size={14} ariaHidden />
+  <IxIcon name={current.icon} size={14} ariaHidden />
 </button>

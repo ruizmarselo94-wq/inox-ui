@@ -30,7 +30,15 @@ function createShellContext(initial: {
   let mobileOpen = $state(false);
 
   function applyToDOM(t: Theme) {
-    document.documentElement.dataset['theme'] = t;
+    // 'system' = sin data-theme: el CSS sirve :root (claro) y, bajo
+    // @media (prefers-color-scheme: dark), oscuro. El navegador sigue los
+    // cambios del SO con la app abierta, sin recargar y sin JS — por eso
+    // 'system' no necesita un listener de matchMedia.
+    if (t === 'system') {
+      delete document.documentElement.dataset['theme'];
+    } else {
+      document.documentElement.dataset['theme'] = t;
+    }
   }
 
   return {
@@ -53,7 +61,8 @@ function createShellContext(initial: {
       writeStorage('sidebar_collapsed', collapsed ? '1' : '0');
     },
     toggleTheme() {
-      this.setTheme(theme === 'dark' ? 'light' : 'dark');
+      const next: Record<Theme, Theme> = { light: 'dark', dark: 'system', system: 'light' };
+      this.setTheme(next[theme]);
     },
     toggleMobile() {
       mobileOpen = !mobileOpen;
@@ -64,7 +73,7 @@ function createShellContext(initial: {
 
     loadFromStorage() {
       const t = readStorage('theme');
-      if (t === 'dark' || t === 'light') theme = t;
+      if (t === 'dark' || t === 'light' || t === 'system') theme = t;
       const lm = readStorage('layout_mode');
       if (lm === 'topbar' || lm === 'sidebar') layout = lm as LayoutMode;
       const col = readStorage('sidebar_collapsed');
