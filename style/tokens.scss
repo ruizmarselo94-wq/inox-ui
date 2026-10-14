@@ -84,6 +84,18 @@
   --ix-font-ubuntu:      'Ubuntu', system-ui, sans-serif;
   --ix-font-ubuntu-mono: 'Ubuntu Mono', monospace;
 
+  // Dos roles más, **opcionales**: no se declaran acá, se consumen con
+  // respaldo. Quien no los define ve la monoespaciada, igual que siempre.
+  //
+  //   --ix-font-input   lo que se escribe: .ix-input, .ix-select, .ix-textarea
+  //   --ix-font-chrome  la voz del chrome: ítems de navegación, insignias,
+  //                     subtítulo de tarjeta, rol del usuario, sección de la paleta
+  //
+  // Existen porque «monoespaciada» mezclaba dos cosas: el dato que tiene que
+  // leerse carácter por carácter —un código, una cifra en tabla— y una
+  // elección de estilo para el texto de la interfaz. La primera es de la
+  // librería; la segunda es identidad, y la decide el consumidor.
+
   // ── Escala tipográfica ───────────────────────────────────
   // Base: 1rem = 13px (html font-size: 81.25% × 16px browser default).
   // Escala con preferencias del usuario (WCAG 1.4.4).

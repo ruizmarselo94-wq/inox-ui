@@ -31,7 +31,7 @@
   color: var(--ix-color-text);
 }
 .ix-card__sub {
-  font-family: var(--ix-font-mono);
+  font-family: var(--ix-font-chrome, var(--ix-font-mono));
   font-size: 0.77rem;
   color: var(--ix-color-text-muted);
   margin-top: 2px;

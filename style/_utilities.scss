@@ -97,6 +97,11 @@
 .ix-font-brand { font-family: var(--ix-font-brand); }
 .ix-font-mono  { font-family: var(--ix-font-mono); }
 
+// Cifras de ancho fijo con la fuente que ya tenga el elemento: un total o una
+// columna de importes alinean sin pasar a monoespaciada. Las tablas ya lo
+// traen (_table.scss); esto es para lo que queda afuera.
+.ix-tabular-nums { font-variant-numeric: tabular-nums; }
+
 // ── Color de texto semántico ──────────────────────────────────
 .ix-color-text         { color: var(--ix-color-text); }
 .ix-color-text-muted   { color: var(--ix-color-text-muted); }

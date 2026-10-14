@@ -105,16 +105,18 @@ Espaciado:  --ix-sp-1/2/3/4/5/6/8/10/12  (4px → 48px)  ← cuánto
 Ritmo:      --ix-gap-inline/item/block/section/zone            ← cuándo
 Radio:      --ix-r-xs/sm/md/lg/xl/full
 Fuentes:    --ix-font-ui, --ix-font-brand, --ix-font-mono
+            (opcionales, con respaldo en mono: --ix-font-input, --ix-font-chrome)
 Tamaños:    --ix-font-size-xs/sm/md/lg/xl/2xl/3xl/4xl
 Sombras:    --ix-shadow-sm/md/lg
 Z-index:    --ix-z-base/raised/overlay/modal/toast/topbar
 Transición: --ix-t-fast/normal/slow, --ix-ease
 ⚠️ **Las fuentes son opt-in, pero `--ix-font-mono` NO es opcional si usás formularios.**
-`_forms.scss` aplica `font-family: var(--ix-font-mono)` a `.ix-input`, `.ix-select`
-y `.ix-textarea` — o sea que **todo campo de formulario sale monoespaciado**. Si el
-consumidor no hace `@use 'style/fonts/jetbrains-mono'` y no sirve los `.woff2`, la
-cascada cae al `monospace` genérico del sistema, que es la fuente menos controlada
-del stack: Consolas en Windows, DejaVu Sans Mono en Linux, Menlo en macOS.
+`_forms.scss` aplica `var(--ix-font-input, var(--ix-font-mono))` a `.ix-input`,
+`.ix-select` y `.ix-textarea` — o sea que, **salvo que el consumidor defina
+`--ix-font-input`, todo campo de formulario sale monoespaciado**. Si no hace
+`@use 'style/fonts/jetbrains-mono'` y no sirve los `.woff2`, la cascada cae al
+`monospace` genérico del sistema, que es la fuente menos controlada del stack:
+Consolas en Windows, DejaVu Sans Mono en Linux, Menlo en macOS.
 
 Eso ya causó un bug real en LDT (2026-08-22): el guion bajo de un usuario como
 `qa_ana` se veía **invisible** en el input, porque cada una de esas fuentes dibuja
@@ -122,12 +124,25 @@ Eso ya causó un bug real en LDT (2026-08-22): el guion bajo de un usuario como
 Parecía recorte de CSS y no lo era —la caja tiene 28px para 14px de texto—: era una
 fuente que el design system pide y el producto nunca cargó.
 
-La monoespaciada en inputs **es intencional**: en un email o una contraseña,
-distinguir `l` de `1` y `O` de `0` importa. Por eso la respuesta correcta es cargar
-la fuente, no sacarla del componente.
+La monoespaciada en inputs **es el valor por defecto, y es intencional**: en un
+email o una contraseña, distinguir `l` de `1` y `O` de `0` importa. Un
+consumidor puede apuntar `--ix-font-input` a otra familia —un producto donde
+lo que se escribe son nombres y descripciones, no credenciales—; es su
+decisión, y al tomarla deja la desambiguación para los campos que la
+necesiten, con `.ix-font-mono`.
+
+**`--ix-font-chrome` es lo mismo para el texto de la interfaz** que hoy va en
+mono por estilo y no por necesidad: ítems de navegación, insignias, subtítulo
+de tarjeta, rol del usuario, sección de la paleta. Sin definir, mono.
+
+**Los pesos que se piden tienen que existir como archivo.** Los componentes
+piden 400, 500, 600 y 700. Inter trae 400, 500 y 600; el 700 cae en el 600,
+que es real. Un peso que no existe no falla: el navegador lo fabrica
+engordando el más cercano.
 
 **Regla para el consumidor**: si usás `.ix-input`, cargá `fonts/jetbrains-mono` y
 copiá `assets/fonts/JetBrainsMono-{Regular,Medium}.woff2` a donde sirvas `/fonts/`.
+Con `fonts/inter`, van los **tres**: `Inter-{Regular,Medium,SemiBold}.woff2`.
 
 Colores (vacíos, el consumidor los llena):
             --ix-color-primary, --ix-color-primary-hover, --ix-color-primary-text

@@ -25,6 +25,15 @@ Todo esto ya corre en los consumidores vía pin por SHA.
   piden 600 once veces y 700 siete, y el catálogo solo traía 400 y 500: el
   navegador fabricaba el resto engordando el Medium. Ahora el 600 es el que
   dibujó quien hizo la fuente, y el 700 cae en él.
+- **Dos roles tipográficos opcionales: `--ix-font-input` y `--ix-font-chrome`.**
+  «Monoespaciada» mezclaba el dato que se lee carácter por carácter con una
+  elección de estilo para los campos y el chrome. Los dos se consumen con
+  respaldo en `--ix-font-mono`: **quien no los define no ve ningún cambio**.
+  `--ix-font-input` alcanza a `.ix-input`, `.ix-select` y `.ix-textarea`;
+  `--ix-font-chrome`, a los ítems de navegación, las insignias, el subtítulo
+  de tarjeta, el rol del usuario y la sección de la paleta.
+- **`.ix-tabular-nums`**: cifras de ancho fijo con la fuente que ya tenga el
+  elemento, para un total o una columna de importes fuera de una tabla.
 - **El texto de cada licencia**, junto a las fuentes y tomado de su origen:
   cuatro OFL y la UFL de Ubuntu. `LICENSES.md` lo marcaba como faltante desde
   que el repositorio es público.

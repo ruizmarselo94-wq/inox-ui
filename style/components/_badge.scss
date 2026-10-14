@@ -10,7 +10,7 @@
   align-items: center;
   padding: 2px 7px;
   border-radius: var(--ix-r-full);
-  font-family: var(--ix-font-mono);
+  font-family: var(--ix-font-chrome, var(--ix-font-mono));
   font-size: 0.77rem;
   font-weight: 600;
   border: 1px solid transparent;

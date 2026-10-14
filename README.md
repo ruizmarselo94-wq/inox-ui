@@ -178,6 +178,8 @@ estructura de color existe vacía y cada proyecto consumidor la llena en su tema
 - **Radios** — `--ix-r-xs/sm/md/lg/xl/full` (+ alias `--ix-radius-*`).
 - **Transiciones** — `--ix-t-fast/normal/slow`, `--ix-ease`.
 - **Tipografía (roles)** — `--ix-font-wordmark/brand/ui/mono` (+ `ubuntu`, `ubuntu-mono`).
+  Dos opcionales, con respaldo en `mono`: `--ix-font-input` (lo que se escribe) y
+  `--ix-font-chrome` (navegación, insignias).
 - **Tipografía (escala)** — `--ix-font-size-xs` … `--ix-font-size-4xl`, en `rem`
   (base `1rem = 13px` vía `html { font-size: 81.25% }`; escala con el zoom — WCAG 1.4.4).
 - **Layout** — `--ix-sidebar-w`, `--ix-sidebar-w-col`, `--ix-topbar-h`,

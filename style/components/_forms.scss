@@ -43,7 +43,7 @@
   min-height: 44px;
   font-size: var(--ix-font-size-md);   // antes: 0.92rem hardcodeado — ahora pareja con .ix-label
   color: var(--ix-color-text);
-  font-family: var(--ix-font-mono);
+  font-family: var(--ix-font-input, var(--ix-font-mono));
   outline: none;
   width: 100%;
   transition: border-color var(--ix-t-fast), box-shadow var(--ix-t-fast);

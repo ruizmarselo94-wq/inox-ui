@@ -162,7 +162,7 @@
   max-width: 120px;
 }
 .ix-topbar__user-role {
-  font-family: var(--ix-font-mono);
+  font-family: var(--ix-font-chrome, var(--ix-font-mono));
   font-size: 0.72rem;
   color: var(--ix-color-text-muted);
   white-space: nowrap;
@@ -302,7 +302,7 @@
 
 .ix-palette__item-section {
   font-size: 0.77rem;
-  font-family: var(--ix-font-mono);
+  font-family: var(--ix-font-chrome, var(--ix-font-mono));
   color: var(--ix-color-text-muted);
   flex-shrink: 0;
 }
