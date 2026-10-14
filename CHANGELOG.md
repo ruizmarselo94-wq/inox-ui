@@ -32,6 +32,9 @@ Todo esto ya corre en los consumidores vía pin por SHA.
   `--ix-font-input` alcanza a `.ix-input`, `.ix-select` y `.ix-textarea`;
   `--ix-font-chrome`, a los ítems de navegación, las insignias, el subtítulo
   de tarjeta, el rol del usuario y la sección de la paleta.
+- **`.ix-font-mono` alcanza al campo que tiene adentro.** Un `IxInput` con esa
+  clase vuelve a monoespaciada aunque el consumidor haya cambiado
+  `--ix-font-input`: es la salida para el campo que guarda un código.
 - **`.ix-tabular-nums`**: cifras de ancho fijo con la fuente que ya tenga el
   elemento, para un total o una columna de importes fuera de una tabla.
 - **El texto de cada licencia**, junto a las fuentes y tomado de su origen:

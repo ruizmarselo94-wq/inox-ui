@@ -95,7 +95,12 @@
 // para composición más suave.
 .ix-font-ui    { font-family: var(--ix-font-ui); }
 .ix-font-brand { font-family: var(--ix-font-brand); }
-.ix-font-mono  { font-family: var(--ix-font-mono); }
+.ix-font-mono  { font-family: var(--ix-font-mono); --ix-font-input: var(--ix-font-mono); }
+// ↑ También fija `--ix-font-input`: los componentes de formulario ponen la
+// clase del consumidor en su contenedor, no en el <input>, y el campo declara
+// su propia familia, así que no heredaría. Con la variable, un campo que
+// guarda un código vuelve a mono con `class="ix-font-mono"` aunque el
+// consumidor haya apuntado `--ix-font-input` a otra fuente.
 
 // Cifras de ancho fijo con la fuente que ya tenga el elemento: un total o una
 // columna de importes alinean sin pasar a monoespaciada. Las tablas ya lo
