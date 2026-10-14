@@ -39,6 +39,10 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **`.ix-auth__notice`**: un aviso en la tarjeta de las pantallas públicas que
+  no es un error —«Tu sesión venció», «Revisá tu correo»—. Mismo molde que
+  `.ix-auth__error`, con los tokens de información: pintarlo de rojo le dice a
+  la persona que hizo algo mal cuando no hizo nada.
 - **`Inter-SemiBold.woff2`, y su `@font-face` de peso 600.** Los componentes
   piden 600 once veces y 700 siete, y el catálogo solo traía 400 y 500: el
   navegador fabricaba el resto engordando el Medium. Ahora el 600 es el que

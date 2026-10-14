@@ -5,7 +5,8 @@
 // El contenido del aside y el max-width del card son libres —
 // cada página los define.
 // Tokens: --ix-color-bg/surface/surface-alt/border/text/text-muted/
-//   danger/danger-bg/danger-border, --ix-sp-*, --ix-r-xl, --ix-r-md,
+//   danger/danger-bg/danger-border, info/info-bg/info-border,
+//   --ix-sp-*, --ix-r-xl, --ix-r-md,
 //   --ix-shadow-lg, --ix-font-size-xl/sm
 .ix-auth {
   display: grid;
@@ -70,6 +71,18 @@
   border: 1px solid var(--ix-color-danger-border);
   border-radius: var(--ix-r-md);
   color: var(--ix-color-danger);
+  font-size: var(--ix-font-size-sm);
+}
+
+// Un aviso que no es un error: por qué la persona está viendo esta pantalla
+// —«Tu sesión venció»—. Mismo molde que __error, con el color de información:
+// pintarlo de rojo diría que hizo algo mal, y no hizo nada.
+.ix-auth__notice {
+  padding: var(--ix-sp-3) var(--ix-sp-4);
+  background: var(--ix-color-info-bg);
+  border: 1px solid var(--ix-color-info-border);
+  border-radius: var(--ix-r-md);
+  color: var(--ix-color-info);
   font-size: var(--ix-font-size-sm);
 }
 
