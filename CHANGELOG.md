@@ -23,7 +23,7 @@ Llega a cada consumidor cuando mueve su pin, no antes.
 ### Al mover el pin
 
 Lo que tiene que hacer un consumidor que trae estos cambios, y qué pasa si no
-lo hace. Verificado el 2026-10-14 contra un consumidor fijado cinco commits
+lo hace. Verificado el 2026-10-13 contra un consumidor fijado cinco commits
 atrás: compila sin errores y su CSS solo suma reglas.
 
 - **Copiar los cinco `.woff2` de Inter y JetBrains Mono** a donde sirva
