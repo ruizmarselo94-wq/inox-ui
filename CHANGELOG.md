@@ -18,7 +18,25 @@ de verdad.
 
 ## [Unreleased]
 
-Todo esto ya corre en los consumidores vía pin por SHA.
+Llega a cada consumidor cuando mueve su pin, no antes.
+
+### Al mover el pin
+
+Lo que tiene que hacer un consumidor que trae estos cambios, y qué pasa si no
+lo hace. Verificado el 2026-10-14 contra un consumidor fijado cinco commits
+atrás: compila sin errores y su CSS solo suma reglas.
+
+- **Copiar los cinco `.woff2` de Inter y JetBrains Mono** a donde sirva
+  `/fonts/`, incluido el nuevo `Inter-SemiBold.woff2`. Sin ese archivo, la
+  regla de peso 600 pide algo que no existe: cada texto en 600 deja un 404 en
+  la consola y se sigue viendo sintetizado, como hasta ahora. Sin los otros
+  cuatro, el `₲` y las letras del guaraní siguen saliendo de la fuente del
+  sistema.
+- **La monoespaciada deja de dibujar ligaduras** recién con sus archivos
+  nuevos: `->`, `!=` y `>=` pasan a verse como los caracteres que son.
+- Lo demás es aditivo. `--ix-font-input` y `--ix-font-chrome` caen en
+  `--ix-font-mono` si no se definen, `.ix-tabular-nums` no se aplica sola, y
+  el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
 - **`Inter-SemiBold.woff2`, y su `@font-face` de peso 600.** Los componentes

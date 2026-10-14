@@ -7,7 +7,7 @@ Design system de Lantano. Dos capas completamente independientes:
 1. **CSS/SCSS universal** (`style/`) — funciona con cualquier framework o HTML puro. Sin dependencias JS.
 2. **Componentes Svelte 5** (`src/lib/`) — consumidos por los productos de Lantano. Requieren Svelte 5.
 
-**La fuente canónica es este repo Git** (`github.com/ruizmarselo94-wq/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un tag o commit (ej. `git+ssh://git@github.com/ruizmarselo94-wq/inox-ui.git#<sha>`), no por path ni copia local. Quien modifica Inox UI sube el cambio a `main`; cada consumidor (RustKnight, Didimio) decide cuándo actualizar su referencia.
+**La fuente canónica es este repo Git** (`github.com/ruizmarselo94-wq/inox-ui`). No existe un paquete npm publicado aún — los consumidores lo agregan como dependencia Git fijada a un commit (ej. `git+ssh://git@github.com/ruizmarselo94-wq/inox-ui.git#<sha>`), no por path ni copia local. Un cambio entra a `main` como dice «Cómo entra un cambio», abajo; cada consumidor decide cuándo mover su referencia.
 
 **Versión: `0.1.0`, y ahí se queda.** No hay paquete publicado en ningún
 registro y cada consumidor fija Inox UI **por commit SHA**, así que el número no
@@ -16,6 +16,38 @@ imaginario: se llegó a tener tres números distintos a la vez (`package.json`
 0.1.17, `CHANGELOG.md` 0.1.5, este archivo 0.1.2). **No bumpear la versión.**
 Lo que entra va a `[Unreleased]` del CHANGELOG. El primer número real se asigna
 el día que se publique en un registro.
+
+## Cómo entra un cambio
+
+**`main` es lo publicado.** Inox UI no se despliega, así que no tiene
+`production` ni stages: cualquier commit de `main` puede quedar fijado por un
+consumidor en cualquier momento, y uno de ellos corre en producción. Tener una
+sola rama endurece las reglas, no las afloja:
+
+1. **Nunca directo a `main`.** Rama de tarea `<tipo>/<descripción>` —el tipo
+   del commit, la descripción en inglés—, pull request, CI en verde y la
+   aprobación del mantenedor. Se mergea **en local** con
+   `git merge --ff-only`: conserva el SHA que se probó y la firma.
+2. **Antes de entrar, se prueba en cada consumidor.** El que pidió el cambio,
+   en su propio PR con el pin apuntando a la rama. El que está en producción,
+   compilado en una copia aparte —sin tocar su repo—: svelte-check y el SCSS
+   de su `main.scss`, primero con su pin actual y después con el nuevo,
+   comparando el CSS que recibiría.
+3. **La historia de `main` no se reescribe nunca.** Un pin es un SHA; si
+   desaparece, la instalación del consumidor deja de resolver. Nada de
+   `--force`, `rebase` ni `reset` sobre `main`.
+4. **Un consumidor fija solo SHAs que están en `main`.** El de una rama vale
+   mientras dura su PR; si la rama se rebasea, el SHA cambia y el pin queda
+   colgado.
+5. **Lo incompatible lleva `!`** en el commit y una entrada en «Al mover el
+   pin» del CHANGELOG: qué tiene que hacer el consumidor y qué pasa si no lo
+   hace.
+6. **Siempre todo arriba.** Ningún trabajo queda solo en el disco: cada commit
+   verificado se sube, y una sesión termina con el árbol limpio y `main` igual
+   a `origin/main`.
+
+El porqué de cada regla está en el vault de Lantano, `convenciones-git`,
+«Una librería: Inox UI».
 
 ## Prefijos
 
