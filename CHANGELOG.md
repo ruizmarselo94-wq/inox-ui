@@ -21,6 +21,16 @@ de verdad.
 Todo esto ya corre en los consumidores vía pin por SHA.
 
 ### Added
+- **`Inter-SemiBold.woff2`, y su `@font-face` de peso 600.** Los componentes
+  piden 600 once veces y 700 siete, y el catálogo solo traía 400 y 500: el
+  navegador fabricaba el resto engordando el Medium. Ahora el 600 es el que
+  dibujó quien hizo la fuente, y el 700 cae en él.
+- **El texto de cada licencia**, junto a las fuentes y tomado de su origen:
+  cuatro OFL y la UFL de Ubuntu. `LICENSES.md` lo marcaba como faltante desde
+  que el repositorio es público.
+- **`scripts/subset-fonts.py`**: cómo se generan Inter y JetBrains Mono, con
+  qué caracteres y qué features. No corre en el build; reproduce los binarios
+  byte a byte.
 - **Tercer modo de tema: `'system'`.** `Theme` pasa a
   `'light' | 'dark' | 'system'`. Con `'system'` el shell quita `data-theme` y
   el CSS sigue a `prefers-color-scheme`, así que la interfaz acompaña los
@@ -61,6 +71,19 @@ fondo claro y dio 2.90:1 — por debajo del 3:1 de WCAG 1.4.11. Con el anillo
 heredado ese componente no habría tenido motivo para declarar foco.
 
 ### Changed
+- **Inter y JetBrains Mono se generan acá, ya no son los de Google Fonts.** Su
+  subset «latin» no trae el signo del guaraní (`₲`) ni las letras con tilde
+  del idioma (ẽ ĩ ũ ỹ): un producto con precios en Paraguay dibujaba el signo
+  con la fuente de cada máquina. Los nuevos salen de Inter 4.1 y JetBrains
+  Mono 2.304, y suman flechas, `≈` y `✓`. Inter pasa de ~24 a ~30 KB por
+  archivo.
+- **⚠️ JetBrains Mono ya no trae ligaduras.** Es la variante NL: `->`, `!=`,
+  `--`, `>=` y `www` se dibujan como los caracteres que son. Los archivos
+  anteriores traían 138 ligaduras de programación, activas por defecto, y en
+  un código o un SKU eso cambia lo que se ve. Es el único cambio visible para
+  un consumidor que mueva su pin, y solo si mostraba esas secuencias en mono.
+  Los archivos bajan de ~21 a ~15 KB.
+  JetBrains Mono **no tiene `₲`** en ninguna versión: ver `LICENSES.md`.
 - `_reset.scss` define el anillo canónico para
   `a, button, summary, input, select, textarea, [tabindex]`, en **`:where()`**
   (especificidad cero): es un piso, no una imposición, y cualquier componente lo

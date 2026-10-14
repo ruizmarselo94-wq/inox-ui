@@ -3,42 +3,55 @@
 Este directorio **redistribuye** archivos `.woff2` de fuentes de terceros. Todas
 son libres, pero libre no quiere decir sin condiciones: las licencias bajo las
 que están exigen que **el texto de la licencia y el aviso de copyright viajen
-con los archivos**.
-
-⚠️ Mientras el repositorio fue privado esto no aplicaba —no había
-redistribución—. Desde que es público, sí.
+con los archivos**. Por eso cada familia tiene su licencia acá al lado, tomada
+de su origen y sin transcribir.
 
 ## Qué hay acá
 
-| Archivos | Fuente | Licencia | Origen |
+| Archivos | Fuente y versión | Licencia | Origen |
 |---|---|---|---|
-| `EBGaramond-{Regular,Italic,SemiBold}.woff2` | EB Garamond | SIL Open Font License 1.1 | <https://fonts.google.com/specimen/EB+Garamond> |
-| `Inter-{Regular,Medium}.woff2` | Inter | SIL Open Font License 1.1 | <https://fonts.google.com/specimen/Inter> |
-| `JetBrainsMono-{Regular,Medium}.woff2` | JetBrains Mono | SIL Open Font License 1.1 | <https://fonts.google.com/specimen/JetBrains+Mono> |
-| `PirataOne-Regular.woff2` | Pirata One | SIL Open Font License 1.1 | <https://fonts.google.com/specimen/Pirata+One> |
-| `Ubuntu-{Regular,Italic,Medium}.woff2` | Ubuntu | Ubuntu Font Licence 1.0 | <https://fonts.google.com/specimen/Ubuntu> |
-| `UbuntuMono-Regular.woff2` | Ubuntu Mono | Ubuntu Font Licence 1.0 | <https://fonts.google.com/specimen/Ubuntu+Mono> |
+| `Inter-{Regular,Medium,SemiBold}.woff2` | Inter 4.1 | [`OFL-Inter.txt`](OFL-Inter.txt) | <https://github.com/rsms/inter/releases> |
+| `JetBrainsMono-{Regular,Medium}.woff2` | JetBrains Mono NL 2.304 | [`OFL-JetBrainsMono.txt`](OFL-JetBrainsMono.txt) | <https://github.com/JetBrains/JetBrainsMono/releases> |
+| `EBGaramond-{Regular,Italic,SemiBold}.woff2` | EB Garamond | [`OFL-EBGaramond.txt`](OFL-EBGaramond.txt) | <https://fonts.google.com/specimen/EB+Garamond> |
+| `PirataOne-Regular.woff2` | Pirata One | [`OFL-PirataOne.txt`](OFL-PirataOne.txt) | <https://fonts.google.com/specimen/Pirata+One> |
+| `Ubuntu-{Regular,Italic,Medium}.woff2` · `UbuntuMono-Regular.woff2` | Ubuntu · Ubuntu Mono | [`UFL-Ubuntu.txt`](UFL-Ubuntu.txt) | <https://fonts.google.com/specimen/Ubuntu> |
 
-## Lo que falta y por qué no lo escribí de memoria
+Las cuatro `OFL-*` son la SIL Open Font License 1.1; lo que cambia de una a
+otra es el aviso de copyright, y por eso no se unifican. `UFL-Ubuntu.txt` es la
+Ubuntu Font Licence 1.0 y cubre las dos familias: el texto es el mismo.
 
-**Falta el texto íntegro de cada licencia**, y tiene que estar: la OFL lo pide
-explícitamente para cualquier redistribución.
+## Inter y JetBrains Mono se generan acá
 
-No lo transcribí porque un texto legal reproducido de memoria puede salir
-alterado, y una licencia con una palabra cambiada es peor que ninguna. Se
-obtiene del propio origen: cada descarga de Google Fonts trae su `OFL.txt`, y
-Ubuntu trae su `LICENCE.txt`.
+No son los archivos de Google Fonts. Su subset «latin» no trae el signo del
+guaraní (`₲`, U+20B2) ni las letras con tilde del idioma guaraní (ẽ ĩ ũ ỹ), y
+un producto que muestra precios en Paraguay dibujaba ese signo con la fuente
+que tuviera cada máquina.
 
-**Cómo completarlo**, una sola vez:
+Se arman desde las descargas oficiales con `scripts/subset-fonts.py`, que dice
+exactamente qué caracteres y qué features entran. El resultado es
+determinista: correrlo de nuevo sobre las mismas versiones da los mismos bytes.
 
-1. Bajar cada familia desde el enlace de la tabla.
-2. Copiar el `OFL.txt` de cada una acá como `OFL-<Fuente>.txt` (o uno solo si el
-   texto es idéntico, indicando en esta tabla a qué familias cubre).
-3. Copiar el `LICENCE.txt` de Ubuntu como `UFL-Ubuntu.txt`.
+| | Trae | No trae |
+|---|---|---|
+| **Inter** | Latín con acentos y ñ, guaraní, `₲` `€`, flechas `← ↑ → ↓`, `≈` `−` `✓`, cifras tabulares (`tnum`) | Variantes de estilo (`ss01`…, `cv01`…): no se usan y pesan |
+| **JetBrains Mono** | Lo mismo, salvo lo de la columna de al lado | **`₲`: la fuente no lo tiene**, en ninguna versión. **Ligaduras**: es la variante NL, a propósito — en un código, `->` son dos caracteres |
 
-⚠️ **Al agregar una fuente nueva, se agrega su licencia en el mismo commit.** Es
-la única forma de que esto no vuelva a quedar atrás — nadie audita un directorio
-de binarios dos años después.
+Quien muestre importes con `₲` en monoespaciada tiene que poner en su
+`--ix-font-mono` una segunda familia que sí lo traiga —Inter—, o el signo cae
+en la fuente del sistema.
+
+Las demás familias siguen siendo las de Google Fonts, sin modificar.
+
+⚠️ **Pirata One declara nombre reservado.** La OFL prohíbe redistribuir una
+versión modificada con ese nombre, y recortarla es modificarla: ese archivo se
+sirve tal cual sale de su origen y **no pasa por el script**.
+
+## Al agregar una fuente
+
+**Su licencia entra en el mismo commit**, como archivo propio y tomada del
+origen, nunca escrita de memoria: un texto legal con una palabra cambiada es
+peor que ninguno. Es la única forma de que esto no quede atrás — nadie audita
+un directorio de binarios dos años después.
 
 ## Nota sobre el alcance
 
