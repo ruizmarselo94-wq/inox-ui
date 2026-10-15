@@ -93,6 +93,12 @@ atrás: compila sin errores y su CSS solo suma reglas.
   la salida, con 44 px de área de toque; la barra pasa a 56 px de alto
   (`--ix-topbar-h`), y el panel de la campana ocupa el ancho bajo la barra en
   vez de salirse por la izquierda.
+- **Sin pesos que no tienen archivo en el tablero.** El valor de
+  `IxStatCard`, el nombre de la marca del sidebar y el contador y el título de
+  la campana pedían 700, y las fuentes llegan hasta 600: el navegador lo
+  fingía engordando la letra. Pasan a 600, y el valor de `IxStatCard` usa
+  cifras de ancho fijo. Quedan con 700 el avatar, `.ix-font-bold` y la marca
+  del topbar en modo `topbar`, que no están en esta pasada.
 - **Cifras de ancho fijo en `.ix-table`.** Las tipografías de interfaz traen
   cifras proporcionales por defecto, así que en una columna de importes los
   dígitos no caían en la misma vertical y la columna bailaba de fila en fila.

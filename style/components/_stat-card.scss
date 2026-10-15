@@ -37,9 +37,10 @@
   align-items: baseline;
   gap: 0.25rem;
   font-size: 1.69rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ix-color-text);
   font-family: var(--ix-font-brand);
+  font-variant-numeric: tabular-nums;
   line-height: 1.1;
 }
 .ix-stat-card__unit {
