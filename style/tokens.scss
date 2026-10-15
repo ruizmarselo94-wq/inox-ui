@@ -248,3 +248,9 @@
   // Por convención, doble box-shadow para destacar sobre el fondo.
   --ix-focus-ring:             ;
 }
+
+// En un celular la barra superior lleva botones de 44 px, el área de toque
+// mínima: con 48 px de alto no quedaba aire entre ellos y el borde.
+@media (max-width: 767px) {
+  :root { --ix-topbar-h: 56px; }
+}

@@ -47,6 +47,19 @@
   overflow: hidden;
 }
 
+// En un celular la campana no está en el borde derecho, y el panel anclado a
+// ella se salía de la pantalla por la izquierda: ocupa el ancho, bajo la barra.
+@media (max-width: 767px) {
+  .ix-notification-bell__panel {
+    position: fixed;
+    top: calc(var(--ix-topbar-h) + 4px);
+    left: var(--ix-sp-2);
+    right: var(--ix-sp-2);
+    min-width: 0;
+    max-width: none;
+  }
+}
+
 .ix-notification-bell__header {
   display: flex;
   align-items: center;

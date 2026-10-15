@@ -87,6 +87,12 @@ atrás: compila sin errores y su CSS solo suma reglas.
   no elige por el producto: le da el control.
 
 ### Fixed
+- **La barra superior entra en un celular.** Debajo de 768 px el contexto
+  operativo, el buscador con su atajo y el nombre del usuario se pisaban en
+  una sola fila. Ahora quedan el menú, la búsqueda como ícono, las acciones y
+  la salida, con 44 px de área de toque; la barra pasa a 56 px de alto
+  (`--ix-topbar-h`), y el panel de la campana ocupa el ancho bajo la barra en
+  vez de salirse por la izquierda.
 - **Cifras de ancho fijo en `.ix-table`.** Las tipografías de interfaz traen
   cifras proporcionales por defecto, así que en una columna de importes los
   dígitos no caían en la misma vertical y la columna bailaba de fila en fila.
