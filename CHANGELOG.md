@@ -87,6 +87,11 @@ atrás: compila sin errores y su CSS solo suma reglas.
   no elige por el producto: le da el control.
 
 ### Fixed
+- **`IxToggle` apagado se ve.** La pista usaba `--ix-color-overlay`, el
+  fondo de modales y desplegables: en un tema claro era blanca, con la perilla
+  blanca, sobre una tarjeta blanca. Ahora es un borde de control
+  (`--ix-color-border-interactive-strong`, con caída a los bordes de siempre),
+  que llega a 3:1 contra el fondo.
 - **La barra superior entra en un celular.** Debajo de 768 px el contexto
   operativo, el buscador con su atajo y el nombre del usuario se pisaban en
   una sola fila. Ahora quedan el menú, la búsqueda como ícono, las acciones y

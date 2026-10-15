@@ -27,11 +27,15 @@
   margin: 0;
   cursor: inherit;
 }
+// Apagado, la pista es un borde de control y no una superficie: con
+// `--ix-color-overlay` —el fondo de modales y desplegables— un tema claro la
+// pintaba blanca, con la perilla blanca, sobre una tarjeta blanca. El control
+// apagado no se veía. Un borde de control llega a 3:1 contra el fondo.
 .ix-toggle__track {
   width: 34px;
   height: 20px;
   border-radius: var(--ix-r-full);
-  background: var(--ix-color-overlay);
+  background: var(--ix-color-border-interactive-strong, var(--ix-color-border-interactive, var(--ix-color-border)));
   transition: background var(--ix-t-fast);
   pointer-events: none;
   position: relative;
