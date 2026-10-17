@@ -87,6 +87,10 @@ atrás: compila sin errores y su CSS solo suma reglas.
   no elige por el producto: le da el control.
 
 ### Fixed
+- **`IxThemePicker` nombra el tema en español.** El tooltip decía «Tema:
+  system. Cambiar a claro»: mostraba el nombre del modo en el código. Ahora
+  dice «Tema del sistema. Cambiar a claro», «Tema claro. Cambiar a oscuro» y
+  «Tema oscuro. Cambiar al del sistema». Solo cambia el texto.
 - **`IxToggle` apagado se ve.** La pista usaba `--ix-color-overlay`, el
   fondo de modales y desplegables: en un tema claro era blanca, con la perilla
   blanca, sobre una tarjeta blanca. Ahora es un borde de control

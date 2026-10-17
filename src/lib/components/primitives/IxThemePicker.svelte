@@ -5,14 +5,16 @@
   const shell = useShell();
 
   // Tres modos, en el orden en que cicla el botón: claro → oscuro → sistema.
+  // El nombre es el que lee la persona: el del código —`system`— se colaba
+  // en el tooltip en inglés.
   const meta = {
-    light:  { icon: 'sun',     next: 'oscuro'  },
-    dark:   { icon: 'moon',    next: 'sistema' },
-    system: { icon: 'monitor', next: 'claro'   },
+    light:  { icon: 'sun',     name: 'claro',       next: 'a oscuro'       },
+    dark:   { icon: 'moon',    name: 'oscuro',      next: 'al del sistema' },
+    system: { icon: 'monitor', name: 'del sistema', next: 'a claro'        },
   } as const;
 
   const current = $derived(meta[shell.theme]);
-  const label = $derived(`Tema: ${shell.theme}. Cambiar a ${current.next}`);
+  const label = $derived(`Tema ${current.name}. Cambiar ${current.next}`);
 </script>
 
 <button
