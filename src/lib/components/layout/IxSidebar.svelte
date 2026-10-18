@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import type { Snippet } from 'svelte';
   import type { NavSection, UserProfile } from '../../types.js';
   import { useShell } from '../../shell.svelte.js';
   import IxIcon from '../primitives/IxIcon.svelte';
@@ -11,6 +12,8 @@
     appName?: string;
     version?: string;
     onSignOut?: () => void;
+    /** El pie del menú, si el consumidor quiere más que `appName version`. */
+    footer?: Snippet;
   }
 
   let {
@@ -20,6 +23,7 @@
     appName = 'App',
     version = 'v0.1',
     onSignOut,
+    footer,
   }: Props = $props();
 
   const shell = useShell();
@@ -90,6 +94,8 @@
   <!-- La versión es para soporte, no para el día a día: abajo, chica, y solo
        con el menú expandido. -->
   {#if !shell.collapsed}
-    <div class="ix-sidebar__footer">{appName} {version}</div>
+    <div class="ix-sidebar__footer">
+      {#if footer}{@render footer()}{:else}{appName} {version}{/if}
+    </div>
   {/if}
 </aside>

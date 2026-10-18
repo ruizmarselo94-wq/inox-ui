@@ -31,6 +31,11 @@
   const menuLabel = $derived(
     wide ? (shell.collapsed ? 'Expandir menú' : 'Contraer menú') : (shell.mobileOpen ? 'Cerrar menú' : 'Abrir menú'),
   );
+  // El ícono muestra la acción: en la computadora, contraer o expandir el
+  // panel; en el celular, abrir (≡) o cerrar (×).
+  const menuIcon = $derived(
+    wide ? (shell.collapsed ? 'panel-left-open' : 'panel-left-close') : (shell.mobileOpen ? 'x' : 'menu'),
+  );
   function toggleMenu() {
     if (wide) shell.toggleCollapsed();
     else shell.toggleMobile();
@@ -107,7 +112,10 @@
       aria-expanded={menuOpen}
       title={menuLabel}
     >
-      <IxIcon name={!wide && shell.mobileOpen ? 'x' : 'menu'} size={16} ariaHidden />
+      <!-- {#key}: el ícono nuevo entra con una transición corta. -->
+      {#key menuIcon}
+        <span class="ix-topbar__menu-glyph"><IxIcon name={menuIcon} size={16} ariaHidden /></span>
+      {/key}
     </button>
 
     <div class="ix-topbar__brand" aria-hidden="true"></div>

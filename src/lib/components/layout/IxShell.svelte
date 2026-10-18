@@ -17,6 +17,8 @@
     version?: string;
     onSignOut?: () => void;
     actions?: Snippet;
+    /** Lo que va al pie del menú lateral. Sin esto, `appName version`. */
+    sidebarFooter?: Snippet;
     children: Snippet;
   }
 
@@ -31,6 +33,7 @@
     version = 'v0.1',
     onSignOut,
     actions,
+    sidebarFooter,
     children,
   }: Props = $props();
 
@@ -50,7 +53,7 @@
     aria-hidden="true"
   ></div>
 
-  <IxSidebar {nav} {user} {logoSrc} {appName} {version} {onSignOut} />
+  <IxSidebar {nav} {user} {logoSrc} {appName} {version} {onSignOut} footer={sidebarFooter} />
   <div class="ix-main-container">
     <IxTopbar {nav} {user} {onSignOut} {actions} />
     <div class="ix-page-slot">

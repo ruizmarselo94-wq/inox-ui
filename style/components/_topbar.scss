@@ -112,6 +112,21 @@
 // ── Drawer toggle ─────────────────────────────────────────────
 // Visible cuando el sidebar es un drawer (viewport estrecho).
 // Especificidad (0,2,0) para ganar sobre .ix-btn-icon (0,1,0).
+// El ícono del botón de menú entra con una transición corta cuando cambia
+// —≡ a ×, contraer a expandir—, y sin ninguna si la persona pidió reducir el
+// movimiento.
+.ix-topbar__menu-glyph {
+  display: inline-flex;
+  animation: ix-menu-glyph-in 150ms var(--ix-ease);
+}
+@keyframes ix-menu-glyph-in {
+  from { opacity: 0; transform: rotate(-90deg) scale(0.8); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ix-topbar__menu-glyph { animation: none; }
+}
+
 // Con menú lateral el botón de menú se ve siempre: contrae y expande en la
 // computadora, abre y cierra en el celular. Con el modo barra superior, solo
 // en el celular, que es donde hay un menú que abrir.

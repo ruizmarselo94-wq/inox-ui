@@ -144,6 +144,13 @@ fondo claro y dio 2.90:1 — por debajo del 3:1 de WCAG 1.4.11. Con el anillo
 heredado ese componente no habría tenido motivo para declarar foco.
 
 ### Changed
+- **El botón de menú muestra lo que va a pasar.** En la computadora, un panel
+  con flecha —`panel-left-close` para contraer, `panel-left-open` para
+  expandir—; en el celular, ≡ para abrir y × para cerrar. El ícono nuevo entra
+  con una transición de 150 ms, y sin ninguna con `prefers-reduced-motion`,
+  igual que el cambio de ancho del menú.
+- **`IxShell` acepta `sidebarFooter`**, un snippet para el pie del menú
+  lateral. Sin él, sigue `appName version`.
 - **Un solo botón de menú.** El botón ≡ de `IxTopbar` se ve en todos los
   tamaños cuando hay menú lateral: en la computadora contrae y expande el
   menú, y en el celular lo abre y lo cierra, como en Carbon o Gmail. Lleva

@@ -22,6 +22,10 @@
               min-width var(--ix-t-normal) var(--ix-ease);
   overflow: hidden;
 }
+// Quien pidió reducir el movimiento ve el menú cambiar de ancho sin animación.
+@media (prefers-reduced-motion: reduce) {
+  .ix-sidebar { transition: none; }
+}
 .ix-sidebar--collapsed {
   width: var(--ix-sidebar-w-col);
   min-width: var(--ix-sidebar-w-col);

@@ -123,6 +123,16 @@ const ICONS: Record<string, [string, string]> = {
     '<line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>',
     'Menú',
   ],
+  // El botón de menú en la computadora: muestra lo que va a pasar —contraer o
+  // expandir el menú lateral—, no solo que hay un menú.
+  'panel-left-close':   [
+    '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/>',
+    'Contraer el menú',
+  ],
+  'panel-left-open':    [
+    '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/>',
+    'Expandir el menú',
+  ],
   'monitor':            [
     '<rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>',
     'Caja',
