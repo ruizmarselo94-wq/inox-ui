@@ -25,9 +25,11 @@ consumidor en cualquier momento, y uno de ellos corre en producción. Tener una
 sola rama endurece las reglas, no las afloja:
 
 1. **Nunca directo a `main`.** Rama de tarea `<tipo>/<descripción>` —el tipo
-   del commit, la descripción en inglés—, pull request, CI en verde y la
-   aprobación del mantenedor. Se mergea **en local** con
-   `git merge --ff-only`: conserva el SHA que se probó y la firma.
+   del commit, la descripción en inglés—, pull request y CI en verde. La
+   aprobación del mantenedor va en la puerta solo si en el repo escribe
+   código más de una persona: mientras sea uno, el agente mergea en verde y
+   avisa (vault: `convenciones-git`, «La puerta a `main`»). Se mergea **en
+   local** con `git merge --ff-only`: conserva el SHA que se probó y la firma.
 2. **Antes de entrar, se prueba en cada consumidor.** El que pidió el cambio,
    en su propio PR con el pin apuntando a la rama. El que está en producción,
    compilado en una copia aparte —sin tocar su repo—: svelte-check y el SCSS
