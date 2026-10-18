@@ -62,9 +62,11 @@
   padding: var(--ix-sp-4);
   border-bottom: 1px solid var(--ix-color-border);
 }
+// Un escalón arriba de la etiqueta de un campo, que va en `md`: con el mismo
+// tamaño, el título no se distinguía de los campos que tiene abajo.
 .ix-modal__title {
   font-family: var(--ix-font-brand);
-  font-size: 1.08rem;
+  font-size: var(--ix-font-size-lg);
   font-weight: 600;
   color: var(--ix-color-text);
 }

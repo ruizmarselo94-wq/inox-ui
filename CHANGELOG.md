@@ -42,6 +42,10 @@ atrás: compila sin errores y su CSS solo suma reglas.
   de la flechita del encabezado del menú. La versión pasa al pie del menú.
   `.ix-brand__version` y `.ix-brand__collapse` ya no existen: si un
   consumidor los usaba en su propio marcado, pierden el estilo.
+- **El título de un `IxModal` sube un escalón**, a `--ix-font-size-lg`: con
+  13 px de base, de 14 a 16 px. Medía lo mismo que la etiqueta de un campo y
+  no se distinguía de ellos. No hay nada que hacer, salvo mirar un modal con
+  un título largo.
 - Lo demás es aditivo. `--ix-font-input` y `--ix-font-chrome` caen en
   `--ix-font-mono` si no se definen, `.ix-tabular-nums` no se aplica sola, y
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
