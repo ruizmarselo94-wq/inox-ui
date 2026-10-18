@@ -47,6 +47,11 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **`--ix-color-ghost-hover-text`, opcional**: el color del rótulo de un
+  botón fantasma al apuntar. Con respaldo en `--ix-color-text-inverse`:
+  **quien no lo define no ve ningún cambio**. Lo necesita quien pone
+  fantasmas sobre superficies claras, donde el inverso era blanco sobre gris
+  claro y el rótulo desaparecía justo al apuntarlo.
 - **`.ix-auth__notice`**: un aviso en la tarjeta de las pantallas públicas que
   no es un error —«Tu sesión venció», «Revisá tu correo»—. Mismo molde que
   `.ix-auth__error`, con los tokens de información: pintarlo de rojo le dice a

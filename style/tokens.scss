@@ -243,6 +243,11 @@
   // se sitúa sobre superficies oscuras (topbar, sección JUGAR).
   --ix-color-ghost-hover-bg:     ;
   --ix-color-ghost-hover-border: ;
+  // Opcional, con respaldo en --ix-color-text-inverse: el color del rótulo al
+  // apuntar. Lo define quien pone fantasmas sobre superficies claras, donde el
+  // inverso es blanco sobre gris claro.
+  //
+  //   --ix-color-ghost-hover-text
 
   // ── Focus ring (composite) ───────────────────────────────
   // Por convención, doble box-shadow para destacar sobre el fondo.

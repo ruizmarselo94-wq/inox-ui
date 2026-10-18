@@ -87,11 +87,16 @@
   // sección JUGAR del lobby): fondo crema translúcido + borde y
   // texto un poco más visibles. La armonía con superficies claras
   // se mantiene porque el alpha es bajo.
+  //
+  // El color del rótulo es opcional. Sobre una superficie clara el inverso es
+  // blanco sobre gris claro, y el rótulo desaparece justo cuando se lo apunta:
+  // quien pone fantasmas ahí define `--ix-color-ghost-hover-text`, y quien no,
+  // sigue con el inverso.
   @media (hover: hover) {
     &:hover:not(:disabled) {
       background: var(--ix-color-ghost-hover-bg);
       border-color: var(--ix-color-ghost-hover-border);
-      color: var(--ix-color-text-inverse);
+      color: var(--ix-color-ghost-hover-text, var(--ix-color-text-inverse));
     }
   }
   &:active:not(:disabled) {
