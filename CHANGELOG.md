@@ -34,6 +34,10 @@ atrás: compila sin errores y su CSS solo suma reglas.
   sistema.
 - **La monoespaciada deja de dibujar ligaduras** recién con sus archivos
   nuevos: `->`, `!=` y `>=` pasan a verse como los caracteres que son.
+- **Las tablas en un celular usan la mitad del margen lateral** por debajo de
+  640 px. Una tabla `.ix-table` se ve más apretada en el teléfono y deja de
+  desplazarse de costado; no hay nada que hacer, salvo revisar que una celda
+  con relleno propio siga viéndose bien.
 - Lo demás es aditivo. `--ix-font-input` y `--ix-font-chrome` caen en
   `--ix-font-mono` si no se definen, `.ix-tabular-nums` no se aplica sola, y
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
