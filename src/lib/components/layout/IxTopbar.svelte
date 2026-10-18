@@ -104,8 +104,11 @@
 
   <!-- ── Izquierda: drawer toggle + brand/nav (topbar mode) + buscador ── -->
   <div class="ix-topbar__left">
+    <!-- Sin borde (--bare): el dibujo del panel ya es un marco, y el borde del
+         botón lo enmarcaba dos veces. Responde el ícono, que se colorea al
+         apuntar; el anillo de foco sigue. -->
     <button
-      class="ix-btn-icon ix-topbar__hamburger"
+      class="ix-btn-icon ix-btn-icon--bare ix-topbar__hamburger"
       type="button"
       onclick={toggleMenu}
       aria-label={menuLabel}

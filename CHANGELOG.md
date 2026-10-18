@@ -153,6 +153,10 @@ fondo claro y dio 2.90:1 — por debajo del 3:1 de WCAG 1.4.11. Con el anillo
 heredado ese componente no habría tenido motivo para declarar foco.
 
 ### Changed
+- **El botón de menú va sin borde** (`.ix-btn-icon--bare`): el dibujo del
+  panel ya es un marco, y el borde del botón lo enmarcaba dos veces. Responde
+  el ícono, que se colorea al apuntar; el anillo de foco y el blanco táctil de
+  44 px en el celular siguen. Los demás íconos de la barra conservan el borde.
 - **El botón de menú muestra lo que va a pasar.** En la computadora, un panel
   con flecha —`panel-left-close` para contraer, `panel-left-open` para
   expandir—; en el celular, ≡ para abrir y × para cerrar. El ícono nuevo entra
