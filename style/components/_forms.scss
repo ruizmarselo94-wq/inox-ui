@@ -148,5 +148,8 @@
   &:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 
-.ix-field__hint  { font-size: 0.85rem; color: var(--ix-color-text-muted); }
-.ix-field__error { font-size: 0.85rem; color: var(--ix-color-danger); }
+// La ayuda y el error son texto para leer, en la fuente de la interfaz. Sin
+// declararla heredaban la del campo, y un campo con `.ix-font-mono` —el que
+// guarda un código— los mostraba en monoespaciada.
+.ix-field__hint  { font-family: var(--ix-font-ui); font-size: 0.85rem; color: var(--ix-color-text-muted); }
+.ix-field__error { font-family: var(--ix-font-ui); font-size: 0.85rem; color: var(--ix-color-danger); }

@@ -87,6 +87,12 @@ atrás: compila sin errores y su CSS solo suma reglas.
   no elige por el producto: le da el control.
 
 ### Fixed
+- **La ayuda y el error de un campo de código salen en la fuente de la
+  interfaz.** `.ix-font-mono` en un `IxInput` pone la monoespaciada en el
+  contenedor, y `.ix-field__hint` y `.ix-field__error` no declaraban fuente:
+  la heredaban, y un mensaje para leer salía como si fuera un código. Ahora
+  declaran `--ix-font-ui`, que es la que ya heredaban de la página en
+  cualquier otro campo.
 - **`IxThemePicker` nombra el tema en español.** El tooltip decía «Tema:
   system. Cambiar a claro»: mostraba el nombre del modo en el código. Ahora
   dice «Tema del sistema. Cambiar a claro», «Tema claro. Cambiar a oscuro» y
