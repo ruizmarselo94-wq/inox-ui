@@ -29,7 +29,7 @@
 [data-layout="topbar"] .ix-sidebar { display: none; }
 
 // ── Brand ─────────────────────────────────────────────────────
-// Slot superior del sidebar: logo + nombre + versión + botón colapsar.
+// Slot superior del sidebar: el enlace a Inicio, con logo y nombre.
 // height es SIEMPRE var(--ix-topbar-h) — la border-bottom se alinea
 // exactamente con el topbar en cualquier estado.
 .ix-brand {
@@ -75,49 +75,23 @@
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
-.ix-brand__version {
-  margin-left: auto;
-  font-family: var(--ix-font-mono);
+// ── Header ────────────────────────────────────────────────────
+// Un div con el enlace a Inicio. Contraído, el isotipo va centrado.
+.ix-sidebar--collapsed .ix-sidebar__header { justify-content: center; }
+
+// ── Pie: la versión ───────────────────────────────────────────
+// Para soporte, no para el día a día: chica, apagada, y solo con el menú
+// expandido.
+.ix-sidebar__footer {
+  flex-shrink: 0;
+  padding: var(--ix-sp-2) var(--ix-sp-4);
+  border-top: 1px solid var(--ix-color-border);
   font-size: 0.73rem;
   color: var(--ix-color-text-muted);
-  background: var(--ix-color-surface-alt);
-  border: 1px solid var(--ix-color-border);
-  border-radius: var(--ix-r-sm);
-  padding: 1px 5px;
   white-space: nowrap;
-  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.ix-brand__collapse {
-  margin-left: auto;
-  width: 22px; height: 22px;
-  display: flex; align-items: center; justify-content: center;
-  background: transparent; border: none;
-  color: var(--ix-color-text-muted); cursor: pointer;
-  border-radius: var(--ix-r-sm); flex-shrink: 0;
-  transition: color var(--ix-t-fast), background var(--ix-t-fast);
-  @media (hover: hover) { &:hover { color: var(--ix-color-text); background: var(--ix-color-overlay); } }
-  &:active { color: var(--ix-color-text); background: var(--ix-color-overlay); }
-  &:focus-visible { box-shadow: var(--ix-focus-ring); outline: none; }
-}
-// ── Brand colapsado ───────────────────────────────────────────
-// El header es un <button> con clase ix-brand + ix-sidebar__header.
-// Reseteamos el botón sin tocar border-bottom (inmutable).
-.ix-sidebar__header {
-  background:   transparent;
-  border-top:   none;
-  border-left:  none;
-  border-right: none;
-  // border-bottom proviene de .ix-brand — no se toca
-  width:        100%;
-  text-align:   left;
-}
-// Colapsado: isotipo centrado, cursor pointer, nada más
-.ix-sidebar--collapsed .ix-sidebar__header {
-  cursor:          pointer;
-  justify-content: center;
-  &:focus-visible  { box-shadow: var(--ix-focus-ring); outline: none; }
-}
-// Footer colapsado: solo avatar centrado — ocultar texto y logout
 
 // ── Nav (sidebar) ─────────────────────────────────────────────
 // Items con icono + label; soporta secciones y estado --active.

@@ -38,6 +38,10 @@ atrás: compila sin errores y su CSS solo suma reglas.
   640 px. Una tabla `.ix-table` se ve más apretada en el teléfono y deja de
   desplazarse de costado; no hay nada que hacer, salvo revisar que una celda
   con relleno propio siga viéndose bien.
+- **Quien use `IxShell` ve el botón ≡ también en la computadora**, en lugar
+  de la flechita del encabezado del menú. La versión pasa al pie del menú.
+  `.ix-brand__version` y `.ix-brand__collapse` ya no existen: si un
+  consumidor los usaba en su propio marcado, pierden el estilo.
 - Lo demás es aditivo. `--ix-font-input` y `--ix-font-chrome` caen en
   `--ix-font-mono` si no se definen, `.ix-tabular-nums` no se aplica sola, y
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
@@ -140,6 +144,14 @@ fondo claro y dio 2.90:1 — por debajo del 3:1 de WCAG 1.4.11. Con el anillo
 heredado ese componente no habría tenido motivo para declarar foco.
 
 ### Changed
+- **Un solo botón de menú.** El botón ≡ de `IxTopbar` se ve en todos los
+  tamaños cuando hay menú lateral: en la computadora contrae y expande el
+  menú, y en el celular lo abre y lo cierra, como en Carbon o Gmail. Lleva
+  `aria-expanded`. Se va la flechita de 14 px que contraía desde el
+  encabezado del menú, y el logo deja de expandir: siempre lleva al inicio.
+- **La versión pasa al pie del menú lateral**, chica y apagada
+  (`.ix-sidebar__footer`), y solo con el menú expandido. Estaba al lado de
+  la marca, como una insignia, y competía con ella.
 - **Inter y JetBrains Mono se generan acá, ya no son los de Google Fonts.** Su
   subset «latin» no trae el signo del guaraní (`₲`) ni las letras con tilde
   del idioma (ẽ ĩ ũ ỹ): un producto con precios en Paraguay dibujaba el signo

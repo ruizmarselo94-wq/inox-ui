@@ -16,6 +16,25 @@
   let { nav = [], user, onSignOut, actions }: Props = $props();
 
   const shell       = useShell();
+
+  // Un solo botón de menú, en el mismo lugar: en la computadora contrae y
+  // expande el menú; en el celular lo abre y lo cierra.
+  let wide = $state(false);
+  $effect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const sync = () => (wide = mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  });
+  const menuOpen  = $derived(wide ? !shell.collapsed : shell.mobileOpen);
+  const menuLabel = $derived(
+    wide ? (shell.collapsed ? 'Expandir menú' : 'Contraer menú') : (shell.mobileOpen ? 'Cerrar menú' : 'Abrir menú'),
+  );
+  function toggleMenu() {
+    if (wide) shell.toggleCollapsed();
+    else shell.toggleMobile();
+  }
   const avatarInitial = $derived(user?.name?.charAt(0)?.toUpperCase() ?? 'U');
 
   // ── Command palette ─────────────────────────────────────────
@@ -83,11 +102,12 @@
     <button
       class="ix-btn-icon ix-topbar__hamburger"
       type="button"
-      onclick={() => shell.toggleMobile()}
-      aria-label={shell.mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-      title={shell.mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+      onclick={toggleMenu}
+      aria-label={menuLabel}
+      aria-expanded={menuOpen}
+      title={menuLabel}
     >
-      <IxIcon name={shell.mobileOpen ? 'x' : 'menu'} size={16} ariaHidden />
+      <IxIcon name={!wide && shell.mobileOpen ? 'x' : 'menu'} size={16} ariaHidden />
     </button>
 
     <div class="ix-topbar__brand" aria-hidden="true"></div>

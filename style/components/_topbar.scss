@@ -112,7 +112,11 @@
 // ── Drawer toggle ─────────────────────────────────────────────
 // Visible cuando el sidebar es un drawer (viewport estrecho).
 // Especificidad (0,2,0) para ganar sobre .ix-btn-icon (0,1,0).
+// Con menú lateral el botón de menú se ve siempre: contrae y expande en la
+// computadora, abre y cierra en el celular. Con el modo barra superior, solo
+// en el celular, que es donde hay un menú que abrir.
 .ix-topbar .ix-topbar__hamburger { display: none; }
+[data-layout="sidebar"] .ix-topbar .ix-topbar__hamburger { display: flex; flex-shrink: 0; }
 @media (max-width: 767px) {
   .ix-topbar .ix-topbar__hamburger { display: flex; flex-shrink: 0; }
 }

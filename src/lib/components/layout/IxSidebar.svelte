@@ -48,15 +48,11 @@
 
 <aside class={sidebarCls} aria-label="Navegación">
 
-  {#if shell.collapsed}
-    <!-- Colapsado: solo isotipo centrado, header clickeable, sin indicadores extra -->
-    <button
-      class="ix-brand ix-sidebar__header"
-      type="button"
-      onclick={() => shell.toggleCollapsed()}
-      aria-label="Expandir menú"
-      title="Expandir menú"
-    >
+  <!-- La marca lleva a Inicio, contraído o no. Contraer y expandir es del
+       botón de menú de la barra de arriba: el mismo en la computadora y en
+       el celular. -->
+  <div class="ix-brand ix-sidebar__header">
+    <a class="ix-brand__home-link" href="/dashboard" aria-label="Ir al inicio" title={shell.collapsed ? appName : undefined}>
       <div class="ix-brand__logo-wrap">
         {#if logoSrc}
           <img class="ix-brand__logo-img" src={logoSrc} alt="{appName} logo" />
@@ -67,35 +63,9 @@
           </svg>
         {/if}
       </div>
-    </button>
-  {:else}
-    <!-- Expandido: logo+nombre como link Home, chevron colapsa -->
-    <div class="ix-brand ix-sidebar__header">
-      <a class="ix-brand__home-link" href="/dashboard" aria-label="Ir al dashboard">
-        <div class="ix-brand__logo-wrap">
-          {#if logoSrc}
-            <img class="ix-brand__logo-img" src={logoSrc} alt="{appName} logo" />
-          {:else}
-            <svg class="ix-brand__logo-img" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect width="24" height="24" rx="6" fill="var(--ix-color-primary)" />
-              <path d="M7 8h10M7 12h7M7 16h4" stroke="white" stroke-width="2" stroke-linecap="round" />
-            </svg>
-          {/if}
-        </div>
-        <span class="ix-brand__name">{appName}</span>
-      </a>
-      <span class="ix-brand__version">{version}</span>
-      <button
-        class="ix-brand__collapse"
-        type="button"
-        onclick={() => shell.toggleCollapsed()}
-        aria-label="Colapsar menú"
-        title="Colapsar menú"
-      >
-        <IxIcon name="chevron-left" size={14} ariaHidden />
-      </button>
-    </div>
-  {/if}
+      {#if !shell.collapsed}<span class="ix-brand__name">{appName}</span>{/if}
+    </a>
+  </div>
 
   <nav class="ix-nav" aria-label="Navegación principal">
     {#each nav as section (section.label)}
@@ -117,5 +87,9 @@
     {/each}
   </nav>
 
-
+  <!-- La versión es para soporte, no para el día a día: abajo, chica, y solo
+       con el menú expandido. -->
+  {#if !shell.collapsed}
+    <div class="ix-sidebar__footer">{appName} {version}</div>
+  {/if}
 </aside>
