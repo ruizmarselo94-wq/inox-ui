@@ -87,6 +87,10 @@ atrás: compila sin errores y su CSS solo suma reglas.
   no elige por el producto: le da el control.
 
 ### Fixed
+- **Una tabla entra en el celular.** Por debajo de 640 px cada celda usa la
+  mitad de su margen lateral (`--ix-sp-2` en vez de `--ix-sp-4`): con tres o
+  cuatro columnas, un rem de cada lado se comía el ancho y la tabla se
+  desplazaba de costado.
 - **La ayuda y el error de un campo de código salen en la fuente de la
   interfaz.** `.ix-font-mono` en un `IxInput` pone la monoespaciada en el
   contenedor, y `.ix-field__hint` y `.ix-field__error` no declaraban fuente:

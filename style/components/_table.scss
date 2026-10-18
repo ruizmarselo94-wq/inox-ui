@@ -59,6 +59,13 @@
   th, td                   { font-variant-numeric: tabular-nums; }
   .ix-table__actions       { display: flex; align-items: center; gap: var(--ix-sp-1); }
   .ix-table__empty         { text-align: center; color: var(--ix-color-text-muted); padding: var(--ix-sp-8); }
+
+  // En una pantalla angosta cada celda cede la mitad de su margen lateral: el
+  // ancho de un celular no alcanza para tres o cuatro columnas con un rem de
+  // cada lado, y la tabla terminaba desplazándose de costado.
+  @media (max-width: 639px) {
+    th, td { padding-left: var(--ix-sp-2); padding-right: var(--ix-sp-2); }
+  }
 }
 
 // Fila apagada — registros inactivos/deshabilitados en cualquier tabla.
