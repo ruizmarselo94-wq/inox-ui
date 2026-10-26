@@ -150,10 +150,12 @@ const ICONS: Record<string, [string, string]> = {
     '<path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/>',
     'Productos',
   ],
+  'pause':              ['<rect width="4" height="16" x="6" y="4"/><rect width="4" height="16" x="14" y="4"/>', 'Pausar'],
   'pencil':             [
     '<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/>',
     'Editar',
   ],
+  'play':               ['<polygon points="5 3 19 12 5 21 5 3"/>', 'Reproducir'],
   'plus':               ['<path d="M5 12h14"/><path d="M12 5v14"/>', 'Agregar'],
   'minus':              ['<path d="M5 12h14"/>', 'Quitar'],
   'handshake':          [
