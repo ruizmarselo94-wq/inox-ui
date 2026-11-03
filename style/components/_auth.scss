@@ -59,7 +59,7 @@
 }
 
 .ix-auth__title {
-  font-size: var(--ix-font-size-xl);
+  font-size: var(--ix-font-size-auth-title, var(--ix-font-size-xl));
   font-weight: 600;
   color: var(--ix-color-text);
   margin: 0;

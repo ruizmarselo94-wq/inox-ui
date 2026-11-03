@@ -51,6 +51,12 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **Tres tamaños opcionales para formularios y títulos**:
+  `--ix-font-size-field` —etiqueta y campo—, `--ix-font-size-modal-title` y
+  `--ix-font-size-auth-title`. Se consumen con respaldo en la escala de
+  siempre: **quien no los define no ve ningún cambio**. Los necesita quien
+  sube la raíz a 16px, donde los formularios quedaban más grandes que las
+  tablas; achicar la escala entera achicaba también los totales grandes.
 - **Cambio de contexto en la barra**, opcional: `IxShell` e `IxTopbar` aceptan
   `contexts` (`ContextOption[]`), `onContextSelect` y `contextLabel`. Con dos
   o más opciones, el primer nivel del contexto —en Didimio, la empresa— se

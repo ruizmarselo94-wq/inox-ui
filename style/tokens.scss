@@ -108,6 +108,20 @@
   --ix-font-size-3xl: 2.46rem;  // ≈32px
   --ix-font-size-4xl: 3.08rem;  // ≈40px
 
+  // Tres tamaños más, **opcionales** como `--ix-font-input`: no se declaran
+  // acá, se consumen con respaldo, y quien no los define ve la escala de
+  // arriba, igual que siempre.
+  //
+  //   --ix-font-size-field        la etiqueta y lo que se escribe: .ix-label,
+  //                               .ix-input, .ix-select, .ix-textarea (md)
+  //   --ix-font-size-modal-title  .ix-modal__title (lg)
+  //   --ix-font-size-auth-title   .ix-auth__title (xl)
+  //
+  // Existen para un consumidor que sube la raíz a 16px: la escala, pensada
+  // para 13px, crece con ella, y los formularios quedaban más grandes que
+  // las tablas de al lado. Los totales grandes también usan lg y xl, así que
+  // achicar la escala entera no sirve.
+
   // ── Layout ───────────────────────────────────────────────
   --ix-sidebar-w:     220px;
   --ix-sidebar-w-col: 52px;

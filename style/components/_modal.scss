@@ -66,7 +66,7 @@
 // tamaño, el título no se distinguía de los campos que tiene abajo.
 .ix-modal__title {
   font-family: var(--ix-font-brand);
-  font-size: var(--ix-font-size-lg);
+  font-size: var(--ix-font-size-modal-title, var(--ix-font-size-lg));
   font-weight: 600;
   color: var(--ix-color-text);
 }
