@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { goto } from '$app/navigation';
-  import type { NavSection, UserProfile } from '../../types.js';
+  import type { NavSection, UserProfile, ContextOption } from '../../types.js';
   import { useShell } from '../../shell.svelte.js';
   import IxIcon from '../primitives/IxIcon.svelte';
   import IxThemePicker from '../primitives/IxThemePicker.svelte';
@@ -11,9 +11,62 @@
     user?:       UserProfile;
     onSignOut?: () => void;
     actions?:       Snippet;
+    /** A qué se puede pasar desde el primer nivel del contexto operativo. Con
+     *  dos o más y `onContextSelect`, ese nivel se vuelve el botón que abre la
+     *  lista; con menos, es texto, como siempre. */
+    contexts?:        ContextOption[];
+    onContextSelect?: (key: string) => void;
+    /** El rótulo del botón y de la lista: «Cambiar de empresa». */
+    contextLabel?:    string;
   }
 
-  let { nav = [], user, onSignOut, actions }: Props = $props();
+  let {
+    nav = [], user, onSignOut, actions, contexts = [], onContextSelect, contextLabel = 'Cambiar',
+  }: Props = $props();
+
+  // ── Cambio de contexto ──────────────────────────────────────
+  // El nombre de dónde se está es el control para pasarse a otro lado, como el
+  // de la organización en Xero o el de la tienda en Shopify. En el celular el
+  // contexto no entra en la barra, así que el mismo menú se abre desde un
+  // botón de ícono. La lista va fuera de la barra, fija bajo el botón que la
+  // abrió: el texto del contexto recorta lo que se le desborda.
+  const canSwitch  = $derived(contexts.length > 1 && onContextSelect !== undefined);
+  let switchOpen   = $state(false);
+  let switchPos    = $state({ top: 0, left: 0 });
+  let switchTrigger: HTMLElement | null = null;
+  let switchMenu   = $state<HTMLElement | null>(null);
+
+  function openSwitch(e: MouseEvent) {
+    switchTrigger = e.currentTarget as HTMLElement;
+    const r = switchTrigger.getBoundingClientRect();
+    const width = 240;
+    switchPos = { top: r.bottom + 6, left: Math.max(8, Math.min(r.left, window.innerWidth - width - 8)) };
+    switchOpen = true;
+    setTimeout(() => {
+      const items = switchMenu?.querySelectorAll<HTMLElement>('[role="menuitemradio"]');
+      const current = switchMenu?.querySelector<HTMLElement>('[aria-checked="true"]');
+      (current ?? items?.[0])?.focus();
+    }, 0);
+  }
+
+  function closeSwitch() {
+    switchOpen = false;
+    switchTrigger?.focus();
+  }
+
+  function pick(option: ContextOption) {
+    switchOpen = false;
+    if (!option.current) onContextSelect?.(option.key);
+    else switchTrigger?.focus();
+  }
+
+  function onSwitchKey(e: KeyboardEvent) {
+    const items = [...(switchMenu?.querySelectorAll<HTMLElement>('[role="menuitemradio"]') ?? [])];
+    const at = items.indexOf(document.activeElement as HTMLElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); items[(at + 1) % items.length]?.focus(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); items[(at - 1 + items.length) % items.length]?.focus(); }
+    else if (e.key === 'Escape' || e.key === 'Tab') { e.preventDefault(); closeSwitch(); }
+  }
 
   const shell       = useShell();
 
@@ -156,7 +209,21 @@
          mostrar país, lo pasa el consumidor. -->
     {#if user?.companyName}
       <span class="ix-topbar__context-text">
-        {user.companyName}
+        {#if canSwitch}
+          <button
+            class="ix-topbar__switch"
+            type="button"
+            onclick={openSwitch}
+            aria-haspopup="menu"
+            aria-expanded={switchOpen}
+            title={contextLabel}
+          >
+            <span class="ix-topbar__switch-label">{user.companyName}</span>
+            <IxIcon name="chevron-down" size={12} ariaHidden />
+          </button>
+        {:else}
+          {user.companyName}
+        {/if}
         {#if user.branchName}<span class="ix-topbar__context-sep">›</span>{user.branchName}{/if}
         {#if user.registerName}<span class="ix-topbar__context-sep">›</span>{user.registerName}{/if}
       </span>
@@ -165,6 +232,19 @@
 
   <!-- ── Derecha: acciones + user ─────────────────────────────────── -->
   <div class="ix-topbar__right">
+    {#if canSwitch}
+      <button
+        class="ix-btn-icon ix-topbar__switch-icon"
+        type="button"
+        onclick={openSwitch}
+        aria-haspopup="menu"
+        aria-expanded={switchOpen}
+        aria-label={user?.companyName ? `${contextLabel} · ${user.companyName}` : contextLabel}
+        title={contextLabel}
+      >
+        <IxIcon name="building-2" size={16} ariaHidden />
+      </button>
+    {/if}
     {#if actions}{@render actions()}{/if}
 
     <IxThemePicker />
@@ -198,6 +278,35 @@
   </div>
 
 </header>
+
+<!-- ── Cambio de contexto ───────────────────────────────────── -->
+{#if switchOpen}
+  <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+  <div class="ix-topbar__switch-overlay" onclick={() => (switchOpen = false)} aria-hidden="true"></div>
+  <div
+    bind:this={switchMenu}
+    class="ix-topbar__switch-menu"
+    role="menu"
+    tabindex="-1"
+    aria-label={contextLabel}
+    style={`top:${switchPos.top}px;left:${switchPos.left}px`}
+    onkeydown={onSwitchKey}
+  >
+    <p class="ix-topbar__switch-title" aria-hidden="true">{contextLabel}</p>
+    {#each contexts as option (option.key)}
+      <button
+        class="ix-topbar__switch-item"
+        type="button"
+        role="menuitemradio"
+        aria-checked={option.current === true}
+        onclick={() => pick(option)}
+      >
+        <span>{option.label}</span>
+        {#if option.current}<IxIcon name="check" size={14} ariaHidden />{/if}
+      </button>
+    {/each}
+  </div>
+{/if}
 
 <!-- ── Command palette ──────────────────────────────────────── -->
 {#if paletteOpen}

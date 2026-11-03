@@ -77,7 +77,7 @@ El porqué de cada regla está en el vault de Lantano, `convenciones-git`,
 **Layout** (`src/lib/components/layout/`):
 - `IxShell` — contenedor raíz de la app (sidebar + topbar + contenido)
 - `IxSidebar` — navegación lateral con collapse y drawer mobile
-- `IxTopbar` — barra superior con hamburguesa mobile y menú de usuario
+- `IxTopbar` — barra superior con hamburguesa mobile, menú de usuario y cambio de contexto (`contexts`, `onContextSelect`, `contextLabel`: con dos o más opciones, el primer nivel del contexto se vuelve el botón que abre la lista; en el celular, un botón de ícono)
 
 **Datos** (`src/lib/components/data/`):
 - `IxBarChart` — gráfico de barras CSS, props: `bars: {label, value}[]`, `height?`, `formatValue?`, `emptyText?`

@@ -1,7 +1,7 @@
 // ── Tipos ─────────────────────────────────────────────────────────────────────
 export type {
   Theme, LayoutMode, BadgeVariant, BtnVariant, BtnSize, AvatarSize,
-  ToastKind, NavItem, NavSection, UserProfile, DataColumn, AlertItem, AlertVariant,
+  ToastKind, NavItem, NavSection, UserProfile, ContextOption, DataColumn, AlertItem, AlertVariant,
 } from './types.js';
 
 // ── Íconos ────────────────────────────────────────────────────────────────────

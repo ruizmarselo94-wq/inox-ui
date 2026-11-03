@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { onMount, untrack } from 'svelte';
-  import type { Theme, LayoutMode, NavSection, UserProfile } from '../../types.js';
+  import type { Theme, LayoutMode, NavSection, UserProfile, ContextOption } from '../../types.js';
   import { provideShell } from '../../shell.svelte.js';
   import IxSidebar from './IxSidebar.svelte';
   import IxTopbar from './IxTopbar.svelte';
@@ -17,6 +17,10 @@
     version?: string;
     onSignOut?: () => void;
     actions?: Snippet;
+    /** A qué se puede pasar desde el contexto de la barra. Ver `IxTopbar`. */
+    contexts?: ContextOption[];
+    onContextSelect?: (key: string) => void;
+    contextLabel?: string;
     /** Lo que va al pie del menú lateral. Sin esto, `appName version`. */
     sidebarFooter?: Snippet;
     children: Snippet;
@@ -33,6 +37,9 @@
     version = 'v0.1',
     onSignOut,
     actions,
+    contexts,
+    onContextSelect,
+    contextLabel,
     sidebarFooter,
     children,
   }: Props = $props();
@@ -55,7 +62,7 @@
 
   <IxSidebar {nav} {user} {logoSrc} {appName} {version} {onSignOut} footer={sidebarFooter} />
   <div class="ix-main-container">
-    <IxTopbar {nav} {user} {onSignOut} {actions} />
+    <IxTopbar {nav} {user} {onSignOut} {actions} {contexts} {onContextSelect} {contextLabel} />
     <div class="ix-page-slot">
       {@render children()}
     </div>

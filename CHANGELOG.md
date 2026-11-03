@@ -51,6 +51,12 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **Cambio de contexto en la barra**, opcional: `IxShell` e `IxTopbar` aceptan
+  `contexts` (`ContextOption[]`), `onContextSelect` y `contextLabel`. Con dos
+  o más opciones, el primer nivel del contexto —en Didimio, la empresa— se
+  vuelve el botón que abre la lista, con la actual marcada; en el celular,
+  donde el contexto no entra, la abre un botón de ícono. Se recorre con las
+  flechas y se cierra con Esc. **Sin esas props, la barra queda igual.**
 - **`--ix-color-ghost-hover-text`, opcional**: el color del rótulo de un
   botón fantasma al apuntar. Con respaldo en `--ix-color-text-inverse`:
   **quien no lo define no ve ningún cambio**. Lo necesita quien pone

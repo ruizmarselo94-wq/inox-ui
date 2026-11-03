@@ -27,6 +27,15 @@ export interface UserProfile {
   registerName?: string | null;
 }
 
+/** Una de las opciones a las que se puede pasar desde el contexto operativo
+ *  de la barra —en un producto con varias empresas, cada una—. `current` marca
+ *  aquella en la que se está. */
+export interface ContextOption {
+  key:      string;
+  label:    string;
+  current?: boolean;
+}
+
 export interface DataColumn<T> {
   header: string;
   key: keyof T & string;

@@ -55,6 +55,91 @@
   color: var(--ix-color-border);
 }
 
+// ── Cambio de contexto ────────────────────────────────────────
+// El primer nivel del contexto como botón: se lee como el texto de al lado
+// hasta que se lo apunta. En el celular, donde el contexto no entra, lo
+// reemplaza un botón de ícono que abre la misma lista.
+.ix-topbar__switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  margin: 0 -6px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: var(--ix-r-sm);
+  background: transparent;
+  color: var(--ix-color-text);
+  font: inherit;
+  cursor: pointer;
+
+  &:hover { background: var(--ix-color-surface-alt); }
+  &:focus-visible {
+    outline: 2px solid var(--ix-color-primary);
+    outline-offset: 1px;
+  }
+}
+.ix-topbar__switch-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+// Con la barra delante: `.ix-btn-icon` se carga después y le ganaría.
+.ix-topbar .ix-topbar__switch-icon { display: none; }
+
+// Sin velo: es una lista corta, no un diálogo. La capa transparente solo
+// cierra al tocar afuera, y va sobre la barra para que tocar la barra también
+// cierre.
+.ix-topbar__switch-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--ix-z-topbar) + 1);
+}
+.ix-topbar__switch-menu {
+  position: fixed;
+  z-index: calc(var(--ix-z-topbar) + 2);
+  width: 240px;
+  max-height: min(360px, 70vh);
+  overflow-y: auto;
+  padding: var(--ix-sp-1);
+  border: 1px solid var(--ix-color-border);
+  border-radius: var(--ix-r-md);
+  background: var(--ix-color-surface);
+  box-shadow: var(--ix-shadow-lg);
+}
+.ix-topbar__switch-title {
+  margin: 0;
+  padding: var(--ix-sp-1) var(--ix-sp-2);
+  font-size: var(--ix-font-size-xs);
+  color: var(--ix-color-text-muted);
+}
+.ix-topbar__switch-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ix-sp-2);
+  width: 100%;
+  min-height: 40px;
+  padding: 0 var(--ix-sp-2);
+  border: 0;
+  border-radius: var(--ix-r-sm);
+  background: transparent;
+  color: var(--ix-color-text);
+  font: inherit;
+  font-size: var(--ix-font-size-sm);
+  text-align: left;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--ix-color-surface-alt);
+    outline: none;
+  }
+  &[aria-checked='true'] {
+    font-weight: 500;
+    color: var(--ix-color-primary);
+  }
+}
+
 // ── Search trigger ────────────────────────────────────────────
 .ix-topbar__search {
   flex: 1;
@@ -229,6 +314,8 @@
   .ix-topbar__user-info,
   .ix-topbar__search-label,
   .ix-topbar__search-kbd { display: none; }
+  .ix-topbar .ix-topbar__switch-icon { display: inline-flex; }
+  .ix-topbar__switch-item { min-height: 44px; }
 
   .ix-topbar .ix-btn-icon,
   .ix-topbar .ix-topbar__search {
