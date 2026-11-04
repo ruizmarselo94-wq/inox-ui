@@ -1,7 +1,7 @@
 // ── Tipos ─────────────────────────────────────────────────────────────────────
 export type {
   Theme, LayoutMode, BadgeVariant, BtnVariant, BtnSize, AvatarSize,
-  ToastKind, NavItem, NavSection, UserProfile, ContextOption, DataColumn, AlertItem, AlertVariant,
+  ToastKind, NavItem, NavSection, UserProfile, ContextOption, TabItem, DataColumn, AlertItem, AlertVariant,
 } from './types.js';
 
 // ── Íconos ────────────────────────────────────────────────────────────────────
@@ -27,6 +27,7 @@ export { default as IxIcon }    from './components/primitives/IxIcon.svelte';
 export { default as IxSpinner }           from './components/primitives/IxSpinner.svelte';
 export { default as IxModal }             from './components/primitives/IxModal.svelte';
 export { default as IxNotificationBell }  from './components/primitives/IxNotificationBell.svelte';
+export { default as IxTabs }              from './components/primitives/IxTabs.svelte';
 
 // ── Formularios ───────────────────────────────────────────────────────────────
 export { default as IxInput }     from './components/forms/IxInput.svelte';

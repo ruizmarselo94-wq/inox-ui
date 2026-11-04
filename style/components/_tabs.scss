@@ -1,0 +1,61 @@
+// =============================================================================
+// Pestañas — .ix-tabs
+//
+// La elegida se marca con una línea del color primario debajo y el texto en
+// el color normal; las demás, en el apagado. La línea va en la pestaña y no en
+// un indicador que se mueve: sin JS que calcule posiciones, y con el mismo
+// dibujo en cualquier ancho.
+// =============================================================================
+
+.ix-tabs {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ix-tabs__list {
+  display: flex;
+  gap: var(--ix-sp-1);
+  border-bottom: 1px solid var(--ix-color-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &:focus { outline: none; }
+}
+
+.ix-tabs__tab {
+  flex: 0 0 auto;
+  min-height: 40px;
+  margin-bottom: -1px;
+  padding: 0 var(--ix-sp-3);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--ix-color-text-muted);
+  font: inherit;
+  font-size: var(--ix-font-size-field, var(--ix-font-size-md));
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--ix-t-fast), border-color var(--ix-t-fast);
+
+  &:hover { color: var(--ix-color-text); }
+  &:focus-visible {
+    outline: 2px solid var(--ix-color-primary);
+    outline-offset: -2px;
+    border-radius: var(--ix-r-sm);
+  }
+  &[aria-selected='true'] {
+    color: var(--ix-color-text);
+    border-bottom-color: var(--ix-color-primary);
+  }
+}
+
+.ix-tabs__panel {
+  padding-top: var(--ix-sp-4);
+
+  &:focus-visible {
+    outline: 2px solid var(--ix-color-primary);
+    outline-offset: 2px;
+    border-radius: var(--ix-r-sm);
+  }
+}

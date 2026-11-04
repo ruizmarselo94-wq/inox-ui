@@ -30,6 +30,12 @@ export interface UserProfile {
 /** Una de las opciones a las que se puede pasar desde el contexto operativo
  *  de la barra —en un producto con varias empresas, cada una—. `current` marca
  *  aquella en la que se está. */
+/** Una pestaña de `IxTabs`: `key` es lo que vale cuando está elegida. */
+export interface TabItem {
+  key:   string;
+  label: string;
+}
+
 export interface ContextOption {
   key:      string;
   label:    string;

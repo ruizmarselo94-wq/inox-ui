@@ -57,7 +57,7 @@ El porqué de cada regla está en el vault de Lantano, `convenciones-git`,
 - Tokens CSS: `--ix-*` — ejemplo: `--ix-sp-4`, `--ix-color-primary`, `--ix-r-md`
 - Inox UI **no define colores**. Los tokens `--ix-color-*` son variables vacías. Cada producto consumidor los llena en su propio archivo de tema.
 
-## Componentes disponibles (18)
+## Componentes disponibles (19)
 
 **Primitivos** (`src/lib/components/primitives/`):
 - `IxAvatar` — avatar con foto + fallback a inicial, props: `name`, `src?`, `size?` (`sm | md | lg`), `alt?`. Muestra la foto si carga; cae a la inicial sobre gradiente de marca si no hay `src` o la imagen falla (`onerror`)
@@ -67,6 +67,7 @@ El porqué de cada regla está en el vault de Lantano, `convenciones-git`,
 - `IxCard` — contenedor con superficie elevada
 - `IxIcon` — ícono SVG inline del catálogo Lucide, prop: `name`, `size`, `ariaHidden`
 - `IxSpinner` — indicador de carga animado, props: `size` (px), `label` (aria)
+- `IxTabs` — pestañas con el patrón de WAI-ARIA (flechas, Inicio y Fin), props: `tabs` (`TabItem[]`), `value` (bindable), `label` (aria), `onchange?`; el panel es el `children`, y el consumidor decide qué va según `value`
 
 **Formularios** (`src/lib/components/forms/`):
 - `IxInput` — campo de texto, props: `label`, `type`, `placeholder`, `error`, `disabled`, `required`

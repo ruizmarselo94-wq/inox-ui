@@ -51,6 +51,11 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **`IxTabs`**: pestañas con el patrón de WAI-ARIA —la lista se recorre con
+  las flechas, Inicio y Fin; solo la elegida entra en el orden del Tab—, y un
+  panel atado a ellas. Las usa Didimio para pasar de un documento impreso a
+  otro en Configuración. Nadie que no lo use ve cambios: el CSS suma reglas
+  `.ix-tabs*` y nada más.
 - **Cinco tamaños opcionales para formularios y títulos**:
   `--ix-font-size-field` —etiqueta, campo y título de una opción—,
   `--ix-font-size-hint` —la ayuda, el error y la descripción de una opción—,
