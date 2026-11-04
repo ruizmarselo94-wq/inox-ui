@@ -27,7 +27,7 @@
   min-width: 44px;
   border-radius: var(--ix-r-sm);
   font-family: var(--ix-font-ui);
-  font-size: 1rem;
+  font-size: var(--ix-font-size-button, 1rem);
   font-weight: 500;
   letter-spacing: 0.03em;
   cursor: pointer;
@@ -44,7 +44,7 @@
 // 44px es demasiado. Override explícito a 32px — no apto para
 // targets primarios en interfaces mobile.
 .ix-btn--sm   { padding: 6px 14px;  font-size: 0.85rem; min-height: 32px; min-width: 0; }
-.ix-btn--md   { padding: 10px 20px; font-size: 1rem; }
+.ix-btn--md   { padding: 10px 20px; font-size: var(--ix-font-size-button, 1rem); }
 .ix-btn--lg   { padding: 13px 28px; font-size: 1.08rem; letter-spacing: 0.05em; }
 .ix-btn--full { width: 100%; }
 

@@ -51,8 +51,10 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
-- **Tres tamaños opcionales para formularios y títulos**:
-  `--ix-font-size-field` —etiqueta y campo—, `--ix-font-size-modal-title` y
+- **Cinco tamaños opcionales para formularios y títulos**:
+  `--ix-font-size-field` —etiqueta, campo y título de una opción—,
+  `--ix-font-size-hint` —la ayuda, el error y la descripción de una opción—,
+  `--ix-font-size-button`, `--ix-font-size-modal-title` y
   `--ix-font-size-auth-title`. Se consumen con respaldo en la escala de
   siempre: **quien no los define no ve ningún cambio**. Los necesita quien
   sube la raíz a 16px, donde los formularios quedaban más grandes que las

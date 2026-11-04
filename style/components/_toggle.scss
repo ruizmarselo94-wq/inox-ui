@@ -104,11 +104,11 @@
   min-width: 0;
 }
 .ix-toggle-row__title {
-  font-size: var(--ix-font-size-md);
+  font-size: var(--ix-font-size-field, var(--ix-font-size-md));
   font-weight: 500;
   color: var(--ix-color-text);
 }
 .ix-toggle-row__desc {
-  font-size: var(--ix-font-size-sm);
+  font-size: var(--ix-font-size-hint, var(--ix-font-size-sm));
   color: var(--ix-color-text-muted);
 }

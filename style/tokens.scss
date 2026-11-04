@@ -108,14 +108,21 @@
   --ix-font-size-3xl: 2.46rem;  // ≈32px
   --ix-font-size-4xl: 3.08rem;  // ≈40px
 
-  // Tres tamaños más, **opcionales** como `--ix-font-input`: no se declaran
+  // Cinco tamaños más, **opcionales** como `--ix-font-input`: no se declaran
   // acá, se consumen con respaldo, y quien no los define ve la escala de
   // arriba, igual que siempre.
   //
   //   --ix-font-size-field        la etiqueta y lo que se escribe: .ix-label,
-  //                               .ix-input, .ix-select, .ix-textarea (md)
+  //                               .ix-input, .ix-select, .ix-textarea, y el
+  //                               título de .ix-toggle-row (md)
+  //   --ix-font-size-hint         la ayuda y el error de un campo, y la
+  //                               descripción de .ix-toggle-row (0.85rem · sm)
+  //   --ix-font-size-button       .ix-btn y .ix-btn--md (1rem)
   //   --ix-font-size-modal-title  .ix-modal__title (lg)
   //   --ix-font-size-auth-title   .ix-auth__title (xl)
+  //
+  // La ayuda va aparte del campo para que la jerarquía no se invierta: un
+  // título de opción achicado quedaba más chico que su descripción.
   //
   // Existen para un consumidor que sube la raíz a 16px: la escala, pensada
   // para 13px, crece con ella, y los formularios quedaban más grandes que
