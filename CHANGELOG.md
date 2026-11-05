@@ -184,6 +184,8 @@ fondo claro y dio 2.90:1 — por debajo del 3:1 de WCAG 1.4.11. Con el anillo
 heredado ese componente no habría tenido motivo para declarar foco.
 
 ### Changed
+- **El botón del menú mide 32 px, con el ícono de 18**, a la altura del
+  buscador de al lado; a 28 con 16 se veía chico. En el celular sigue en 44.
 - **Contraer el menú ya no da un saltito.** Los ítems se centraban de golpe
   en la barra todavía ancha —el ícono saltaba de x=16 a x=102— y volvían
   deslizándose. Ahora el ícono y el logo quedan quietos —el relleno izquierdo

@@ -162,11 +162,11 @@
 
   <!-- ── Izquierda: drawer toggle + brand/nav (topbar mode) + buscador ── -->
   <div class="ix-topbar__left">
-    <!-- Sin borde (--bare): el dibujo del panel ya es un marco, y el borde del
-         botón lo enmarcaba dos veces. Responde el ícono, que se colorea al
-         apuntar; el anillo de foco sigue. -->
+    <!-- Sin borde (--bare), como el ≡ de Gmail: responde el ícono, que se
+         colorea al apuntar; el anillo de foco sigue. 32 px con el ícono de 18:
+         a 28 con 16 se veía chico al lado del buscador, que mide 32. -->
     <button
-      class="ix-btn-icon ix-btn-icon--bare ix-topbar__hamburger"
+      class="ix-btn-icon ix-btn-icon--bare ix-btn-icon--lg ix-topbar__hamburger"
       type="button"
       onclick={toggleMenu}
       aria-label={menuLabel}
@@ -175,7 +175,7 @@
     >
       <!-- {#key}: el ícono nuevo entra con una transición corta. -->
       {#key menuIcon}
-        <span class="ix-topbar__menu-glyph"><IxIcon name={menuIcon} size={16} ariaHidden /></span>
+        <span class="ix-topbar__menu-glyph"><IxIcon name={menuIcon} size={18} ariaHidden /></span>
       {/key}
     </button>
 
