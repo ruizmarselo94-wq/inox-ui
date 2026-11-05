@@ -163,8 +163,9 @@
   <!-- ── Izquierda: drawer toggle + brand/nav (topbar mode) + buscador ── -->
   <div class="ix-topbar__left">
     <!-- Sin borde (--bare), como el ≡ de Gmail: responde el ícono, que se
-         colorea al apuntar; el anillo de foco sigue. 32 px con el ícono de 18:
-         a 28 con 16 se veía chico al lado del buscador, que mide 32. -->
+         colorea al apuntar; el anillo de foco sigue. 32 px con el ícono de 20:
+         el dibujo del ≡ ocupa dos tercios de su caja, así que a 16 sus líneas
+         medían 10,7 px, y a 18 el cambio no se veía. -->
     <button
       class="ix-btn-icon ix-btn-icon--bare ix-btn-icon--lg ix-topbar__hamburger"
       type="button"
@@ -173,9 +174,11 @@
       aria-expanded={menuOpen}
       title={menuLabel}
     >
-      <!-- {#key}: el ícono nuevo entra con una transición corta. -->
-      {#key menuIcon}
-        <span class="ix-topbar__menu-glyph"><IxIcon name={menuIcon} size={18} ariaHidden /></span>
+      <!-- {#key}: con cada cambio del menú el ícono entra con un giro corto,
+           también en la computadora, donde sigue siendo el ≡: se ve que el
+           toque hizo algo, sin competir con el movimiento del menú. -->
+      {#key menuOpen}
+        <span class="ix-topbar__menu-glyph"><IxIcon name={menuIcon} size={20} ariaHidden /></span>
       {/key}
     </button>
 
