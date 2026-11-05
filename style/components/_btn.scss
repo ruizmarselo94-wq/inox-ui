@@ -183,6 +183,7 @@
 
 .ix-btn-icon--sm { width: 24px; height: 24px; }
 .ix-btn-icon--md { width: 28px; height: 28px; }
+.ix-btn-icon--lg { width: 32px; height: 32px; }   // = la altura de .ix-btn--sm
 
 .ix-btn-icon--danger {
   border-color: var(--ix-color-danger-border-interactive, var(--ix-color-danger-border));

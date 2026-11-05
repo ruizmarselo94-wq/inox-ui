@@ -4,11 +4,13 @@
   interface Props {
     /**
      * `sm` (24px) para cuando el botón acompaña a otra cosa y no puede
-     * competir con ella; `md` (28px, por defecto) para barras y toolbars.
+     * competir con ella; `md` (28px, por defecto) para barras y toolbars;
+     * `lg` (32px) al lado de un `IxBtn size="sm"`, que mide eso: una fila de
+     * acciones con texto y con íconos queda de una sola altura.
      * El blanco táctil no sale de acá: el consumidor lo agranda con un
      * `::after` desbordado, que no ocupa lugar en el layout.
      */
-    size?: 'sm' | 'md';
+    size?: 'sm' | 'md' | 'lg';
     /**
      * `outlined` (por defecto) dibuja el borde en reposo: sin relleno, ese
      * borde ES lo que identifica al control. `bare` lo deja transparente y lo

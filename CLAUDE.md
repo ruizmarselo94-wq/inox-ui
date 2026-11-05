@@ -62,7 +62,7 @@ El porqué de cada regla está en el vault de Lantano, `convenciones-git`,
 **Primitivos** (`src/lib/components/primitives/`):
 - `IxAvatar` — avatar con foto + fallback a inicial, props: `name`, `src?`, `size?` (`sm | md | lg`), `alt?`. Muestra la foto si carga; cae a la inicial sobre gradiente de marca si no hay `src` o la imagen falla (`onerror`)
 - `IxBtn` — botón con variants: `primary | outline | secondary | ghost | danger`, sizes: `sm | md | lg`
-- `IxBtnIcon` — botón de solo ícono, props: `title` (a11y), `danger`, `disabled`
+- `IxBtnIcon` — botón de solo ícono, props: `title` (a11y), `danger`, `disabled`, `size` (`sm` 24px · `md` 28px · `lg` 32px, la altura de un `IxBtn` sm)
 - `IxBadge` — etiqueta de estado, variants: `ok | warn | err | info | neutral`
 - `IxCard` — contenedor con superficie elevada
 - `IxIcon` — ícono SVG inline del catálogo Lucide, prop: `name`, `size`, `ariaHidden`

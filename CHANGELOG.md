@@ -51,6 +51,10 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **`IxBtnIcon size="lg"`** (32px), la altura de un `IxBtn size="sm"`: una
+  fila de acciones con botones de texto y de ícono queda de una sola altura.
+  Antes el ícono medía 28px al lado de botones de 32px. Nadie que no lo use ve
+  cambios: suma la regla `.ix-btn-icon--lg`.
 - **Ícono `receipt-text`** (Lucide): un recibo con renglones. Lo usa Didimio
   para imprimir la precuenta de un pedido, que es la lista de lo consumido y
   no un cobro —por eso sin el signo de moneda de `receipt`—.
