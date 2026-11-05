@@ -21,6 +21,7 @@
     contexts?: ContextOption[];
     onContextSelect?: (key: string) => void;
     contextLabel?: string;
+    contextAction?: { label: string; onSelect: () => void };
     /** Lo que va al pie del menú lateral. Sin esto, `appName version`. */
     sidebarFooter?: Snippet;
     children: Snippet;
@@ -40,6 +41,7 @@
     contexts,
     onContextSelect,
     contextLabel,
+    contextAction,
     sidebarFooter,
     children,
   }: Props = $props();
@@ -62,7 +64,7 @@
 
   <IxSidebar {nav} {user} {logoSrc} {appName} {version} {onSignOut} footer={sidebarFooter} />
   <div class="ix-main-container">
-    <IxTopbar {nav} {user} {onSignOut} {actions} {contexts} {onContextSelect} {contextLabel} />
+    <IxTopbar {nav} {user} {onSignOut} {actions} {contexts} {onContextSelect} {contextLabel} {contextAction} />
     <div class="ix-page-slot">
       {@render children()}
     </div>
