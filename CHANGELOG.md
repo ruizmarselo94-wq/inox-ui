@@ -51,6 +51,9 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **Ícono `receipt-text`** (Lucide): un recibo con renglones. Lo usa Didimio
+  para imprimir la precuenta de un pedido, que es la lista de lo consumido y
+  no un cobro —por eso sin el signo de moneda de `receipt`—.
 - **`IxTabs`**: pestañas con el patrón de WAI-ARIA —la lista se recorre con
   las flechas, Inicio y Fin; solo la elegida entra en el orden del Tab—, y un
   panel atado a ellas. Las usa Didimio para pasar de un documento impreso a
