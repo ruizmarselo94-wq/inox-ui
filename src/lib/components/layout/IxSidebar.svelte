@@ -67,7 +67,7 @@
           </svg>
         {/if}
       </div>
-      {#if !shell.collapsed}<span class="ix-brand__name">{appName}</span>{/if}
+      <span class="ix-brand__name">{appName}</span>
     </a>
   </div>
 
@@ -92,10 +92,9 @@
   </nav>
 
   <!-- La versión es para soporte, no para el día a día: abajo, chica, y solo
-       con el menú expandido. -->
-  {#if !shell.collapsed}
-    <div class="ix-sidebar__footer">
-      {#if footer}{@render footer()}{:else}{appName} {version}{/if}
-    </div>
-  {/if}
+       con el menú expandido. Contraído, el texto se desvanece y el pie queda,
+       para que nada cambie de alto mientras la barra se angosta. -->
+  <div class="ix-sidebar__footer">
+    <span>{#if footer}{@render footer()}{:else}{appName} {version}{/if}</span>
+  </div>
 </aside>

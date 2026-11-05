@@ -40,6 +40,7 @@ const ICONS: Record<string, [string, string]> = {
   'chevron-down':       ['<path d="m6 9 6 6 6-6"/>', 'Expandir'],
   'chevron-left':       ['<path d="m15 18-6-6 6-6"/>', 'Colapsar'],
   'chevron-right':      ['<path d="m9 18 6-6-6-6"/>', 'Expandir'],
+  'chevrons-up-down':   ['<path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/>', 'Elegir'],
   'clipboard-list':     [
     '<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect width="6" height="4" x="9" y="3" rx="1"/><path d="M9 12h6"/><path d="M9 16h6"/>',
     'Comprobantes',

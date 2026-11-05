@@ -51,6 +51,11 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **`IxTopbar contextAction`**: una acción al pie de la lista de contextos
+  —«Nueva empresa»—, separada de las opciones. Con ella el botón aparece
+  aunque haya una sola opción: es como se descubre que se puede tener otra.
+- **Ícono `chevrons-up-down`** (Lucide): elegir de una lista, sin apuntar a
+  ningún lado.
 - **`IxBtnIcon size="lg"`** (32px), la altura de un `IxBtn size="sm"`: una
   fila de acciones con botones de texto y de ícono queda de una sola altura.
   Antes el ícono medía 28px al lado de botones de 32px. Nadie que no lo use ve
@@ -179,6 +184,17 @@ fondo claro y dio 2.90:1 — por debajo del 3:1 de WCAG 1.4.11. Con el anillo
 heredado ese componente no habría tenido motivo para declarar foco.
 
 ### Changed
+- **Contraer el menú ya no da un saltito.** Los ítems se centraban de golpe
+  en la barra todavía ancha —el ícono saltaba de x=16 a x=102— y volvían
+  deslizándose. Ahora el ícono y el logo quedan quietos —el relleno izquierdo
+  ya los centra en el ancho contraído— y los textos se desvanecen. Los títulos
+  de sección se alinean con los íconos. El pie queda con el menú contraído,
+  vacío, para que nada cambie de alto.
+- **El botón del menú es la hamburguesa también en la computadora**, como en
+  Gmail y YouTube. El panel con flecha no se leía a 16 px.
+- **El contexto de la barra se separa con «·»** y el cambio de contexto usa
+  `chevrons-up-down`: la «›» se leía como una ruta y, junto al «▾», apuntaba
+  a dos lados a la vez.
 - **El botón de menú va sin borde** (`.ix-btn-icon--bare`): el dibujo del
   panel ya es un marco, y el borde del botón lo enmarcaba dos veces. Responde
   el ícono, que se colorea al apuntar; el anillo de foco y el blanco táctil de

@@ -18,10 +18,14 @@
     onContextSelect?: (key: string) => void;
     /** El rótulo del botón y de la lista: «Cambiar de empresa». */
     contextLabel?:    string;
+    /** Una acción al pie de la lista: «Nueva empresa». Con ella, el botón
+     *  aparece aunque haya una sola opción —es la forma de descubrir que se
+     *  puede tener otra—, como «Crear cuenta» en el selector de Stripe. */
+    contextAction?:   { label: string; onSelect: () => void };
   }
 
   let {
-    nav = [], user, onSignOut, actions, contexts = [], onContextSelect, contextLabel = 'Cambiar',
+    nav = [], user, onSignOut, actions, contexts = [], onContextSelect, contextLabel = 'Cambiar', contextAction,
   }: Props = $props();
 
   // ── Cambio de contexto ──────────────────────────────────────
@@ -30,7 +34,8 @@
   // contexto no entra en la barra, así que el mismo menú se abre desde un
   // botón de ícono. La lista va fuera de la barra, fija bajo el botón que la
   // abrió: el texto del contexto recorta lo que se le desborda.
-  const canSwitch  = $derived(contexts.length > 1 && onContextSelect !== undefined);
+  const canSwitch  = $derived(onContextSelect !== undefined && (contexts.length > 1 || contextAction !== undefined));
+  const MENU_ITEMS = '[role="menuitemradio"], [role="menuitem"]';
   let switchOpen   = $state(false);
   let switchPos    = $state({ top: 0, left: 0 });
   let switchTrigger: HTMLElement | null = null;
@@ -43,7 +48,7 @@
     switchPos = { top: r.bottom + 6, left: Math.max(8, Math.min(r.left, window.innerWidth - width - 8)) };
     switchOpen = true;
     setTimeout(() => {
-      const items = switchMenu?.querySelectorAll<HTMLElement>('[role="menuitemradio"]');
+      const items = switchMenu?.querySelectorAll<HTMLElement>(MENU_ITEMS);
       const current = switchMenu?.querySelector<HTMLElement>('[aria-checked="true"]');
       (current ?? items?.[0])?.focus();
     }, 0);
@@ -61,7 +66,7 @@
   }
 
   function onSwitchKey(e: KeyboardEvent) {
-    const items = [...(switchMenu?.querySelectorAll<HTMLElement>('[role="menuitemradio"]') ?? [])];
+    const items = [...(switchMenu?.querySelectorAll<HTMLElement>(MENU_ITEMS) ?? [])];
     const at = items.indexOf(document.activeElement as HTMLElement);
     if (e.key === 'ArrowDown') { e.preventDefault(); items[(at + 1) % items.length]?.focus(); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); items[(at - 1 + items.length) % items.length]?.focus(); }
@@ -84,11 +89,11 @@
   const menuLabel = $derived(
     wide ? (shell.collapsed ? 'Expandir menú' : 'Contraer menú') : (shell.mobileOpen ? 'Cerrar menú' : 'Abrir menú'),
   );
-  // El ícono muestra la acción: en la computadora, contraer o expandir el
-  // panel; en el celular, abrir (≡) o cerrar (×).
-  const menuIcon = $derived(
-    wide ? (shell.collapsed ? 'panel-left-open' : 'panel-left-close') : (shell.mobileOpen ? 'x' : 'menu'),
-  );
+  // La hamburguesa es «el menú» en cualquier equipo, como en Gmail y YouTube:
+  // en la computadora contrae y expande; en el celular abre, y el menú abierto
+  // se cierra con la ×. El panel con flecha de antes era más preciso, pero a
+  // 16 px la flecha no se leía y nadie fuera de un editor lo reconoce.
+  const menuIcon = $derived(!wide && shell.mobileOpen ? 'x' : 'menu');
   function toggleMenu() {
     if (wide) shell.toggleCollapsed();
     else shell.toggleMobile();
@@ -219,13 +224,13 @@
             title={contextLabel}
           >
             <span class="ix-topbar__switch-label">{user.companyName}</span>
-            <IxIcon name="chevron-down" size={12} ariaHidden />
+            <IxIcon name="chevrons-up-down" size={13} ariaHidden />
           </button>
         {:else}
           {user.companyName}
         {/if}
-        {#if user.branchName}<span class="ix-topbar__context-sep">›</span>{user.branchName}{/if}
-        {#if user.registerName}<span class="ix-topbar__context-sep">›</span>{user.registerName}{/if}
+        {#if user.branchName}<span class="ix-topbar__context-sep" aria-hidden="true">·</span>{user.branchName}{/if}
+        {#if user.registerName}<span class="ix-topbar__context-sep" aria-hidden="true">·</span>{user.registerName}{/if}
       </span>
     {/if}
   </div>
@@ -305,6 +310,17 @@
         {#if option.current}<IxIcon name="check" size={14} ariaHidden />{/if}
       </button>
     {/each}
+    {#if contextAction}
+      <button
+        class="ix-topbar__switch-item ix-topbar__switch-action"
+        type="button"
+        role="menuitem"
+        onclick={() => { switchOpen = false; contextAction.onSelect(); }}
+      >
+        <IxIcon name="plus" size={14} ariaHidden />
+        <span>{contextAction.label}</span>
+      </button>
+    {/if}
   </div>
 {/if}
 

@@ -50,9 +50,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+// Un punto y no «›»: la flecha se leía como una ruta que se puede recorrer, y
+// sucursal y caja no se tocan. Junto al ⇅ de cambiar de empresa, dos flechas
+// apuntaban a dos lados a la vez.
 .ix-topbar__context-sep {
-  margin: 0 3px;
-  color: var(--ix-color-border);
+  margin: 0 6px;
+  color: var(--ix-color-text-muted);
+  opacity: 0.6;
 }
 
 // ── Cambio de contexto ────────────────────────────────────────
@@ -138,6 +142,15 @@
     font-weight: 500;
     color: var(--ix-color-primary);
   }
+}
+// La acción al pie de la lista, separada de las opciones: no es un lugar al
+// que pasarse, es algo que se hace.
+.ix-topbar__switch-action {
+  justify-content: flex-start;
+  margin-top: var(--ix-sp-1);
+  border-top: 1px solid var(--ix-color-border);
+  border-radius: 0 0 var(--ix-r-sm) var(--ix-r-sm);
+  color: var(--ix-color-text-muted);
 }
 
 // ── Search trigger ────────────────────────────────────────────

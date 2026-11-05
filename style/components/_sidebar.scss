@@ -22,9 +22,29 @@
               min-width var(--ix-t-normal) var(--ix-ease);
   overflow: hidden;
 }
+// Al contraer, nada se mueve: la barra se angosta por encima de los íconos y
+// del logo, que ya quedan centrados en el ancho contraído, y los textos se
+// desvanecen. Antes los ítems se centraban de golpe en la barra todavía ancha
+// —el ícono saltaba de x=16 a x=102— y volvían deslizándose.
+.ix-brand__name,
+.ix-nav__section-label,
+.ix-nav-item__label,
+.ix-sidebar__footer > * {
+  transition: opacity var(--ix-t-fast) var(--ix-ease);
+}
+.ix-sidebar--collapsed {
+  .ix-brand__name,
+  .ix-nav__section-label,
+  .ix-nav-item__label,
+  .ix-sidebar__footer > * { opacity: 0; }
+}
 // Quien pidió reducir el movimiento ve el menú cambiar de ancho sin animación.
 @media (prefers-reduced-motion: reduce) {
-  .ix-sidebar { transition: none; }
+  .ix-sidebar,
+  .ix-brand__name,
+  .ix-nav__section-label,
+  .ix-nav-item__label,
+  .ix-sidebar__footer > * { transition: none; }
 }
 .ix-sidebar--collapsed {
   width: var(--ix-sidebar-w-col);
@@ -80,8 +100,8 @@
   white-space: nowrap;
 }
 // ── Header ────────────────────────────────────────────────────
-// Un div con el enlace a Inicio. Contraído, el isotipo va centrado.
-.ix-sidebar--collapsed .ix-sidebar__header { justify-content: center; }
+// Un div con el enlace a Inicio. El isotipo no se mueve al contraer: con el
+// relleno de la marca ya queda centrado en el ancho contraído.
 
 // ── Pie: la versión ───────────────────────────────────────────
 // Para soporte, no para el día a día: chica, apagada, y solo con el menú
@@ -107,27 +127,29 @@
   scrollbar-width: thin;
   scrollbar-color: var(--ix-color-overlay) transparent;
 }
+// El relleno izquierdo que deja el ícono de un ítem centrado en el menú
+// contraído; ancho, es el mismo, así que contraer no mueve el ícono. Los
+// títulos de sección lo comparten para alinearse con los íconos.
+$nav-inset: calc((var(--ix-sidebar-w-col) - 2 * var(--ix-sp-2) - 15px) / 2);
+
 .ix-nav__section-label {
   font-size: 0.73rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ix-color-text-muted);
-  padding: 0 var(--ix-sp-2);
+  padding: 0 var(--ix-sp-2) 0 $nav-inset;
   margin: var(--ix-sp-6) 0 var(--ix-sp-1);
   white-space: nowrap;
   overflow: hidden;
 }
 .ix-nav > div:first-child .ix-nav__section-label { margin-top: 0; }
-.ix-sidebar--collapsed .ix-nav__section-label { visibility: hidden; }
-.ix-sidebar--collapsed .ix-nav-item__label    { display: none; }
-.ix-sidebar--collapsed .ix-nav-item           { justify-content: center; padding: var(--ix-sp-2); }
 
 .ix-nav-item {
   display: flex;
   align-items: center;
   gap: var(--ix-sp-2);
-  padding: var(--ix-sp-2) var(--ix-sp-2);
+  padding: var(--ix-sp-2) var(--ix-sp-2) var(--ix-sp-2) $nav-inset;
   border-radius: var(--ix-r-sm);
   cursor: pointer;
   color: var(--ix-color-text-muted);
