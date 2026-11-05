@@ -22,10 +22,18 @@
      *  aparece aunque haya una sola opción —es la forma de descubrir que se
      *  puede tener otra—, como «Crear cuenta» en el selector de Stripe. */
     contextAction?:   { label: string; onSelect: () => void };
+    /** Reactiva un contexto dado de baja. A uno dado de baja no se puede
+     *  entrar, así que es el único lugar desde donde se lo puede volver a
+     *  activar: van al pie de la lista, bajo `inactiveLabel`, con
+     *  `restoreLabel`. Sin esto, no se muestran. */
+    onContextRestore?: (key: string) => void;
+    inactiveLabel?:    string;
+    restoreLabel?:     string;
   }
 
   let {
     nav = [], user, onSignOut, actions, contexts = [], onContextSelect, contextLabel = 'Cambiar', contextAction,
+    onContextRestore, inactiveLabel = 'Inactivos', restoreLabel = 'Reactivar',
   }: Props = $props();
 
   // ── Cambio de contexto ──────────────────────────────────────
@@ -34,7 +42,12 @@
   // contexto no entra en la barra, así que el mismo menú se abre desde un
   // botón de ícono. La lista va fuera de la barra, fija bajo el botón que la
   // abrió: el texto del contexto recorta lo que se le desborda.
-  const canSwitch  = $derived(onContextSelect !== undefined && (contexts.length > 1 || contextAction !== undefined));
+  const activeContexts   = $derived(contexts.filter((c) => !c.inactive));
+  const inactiveContexts = $derived(onContextRestore ? contexts.filter((c) => c.inactive) : []);
+  const canSwitch  = $derived(
+    onContextSelect !== undefined
+      && (activeContexts.length > 1 || contextAction !== undefined || inactiveContexts.length > 0),
+  );
   const MENU_ITEMS = '[role="menuitemradio"], [role="menuitem"]';
   let switchOpen   = $state(false);
   let switchPos    = $state({ top: 0, left: 0 });
@@ -301,7 +314,7 @@
     onkeydown={onSwitchKey}
   >
     <p class="ix-topbar__switch-title" aria-hidden="true">{contextLabel}</p>
-    {#each contexts as option (option.key)}
+    {#each activeContexts as option (option.key)}
       <button
         class="ix-topbar__switch-item"
         type="button"
@@ -323,6 +336,21 @@
         <IxIcon name="plus" size={14} ariaHidden />
         <span>{contextAction.label}</span>
       </button>
+    {/if}
+    {#if inactiveContexts.length > 0}
+      <p class="ix-topbar__switch-title ix-topbar__switch-title--inactive" aria-hidden="true">{inactiveLabel}</p>
+      {#each inactiveContexts as option (option.key)}
+        <button
+          class="ix-topbar__switch-item ix-topbar__switch-inactive"
+          type="button"
+          role="menuitem"
+          aria-label={`${restoreLabel} ${option.label}`}
+          onclick={() => { switchOpen = false; onContextRestore?.(option.key); }}
+        >
+          <span>{option.label}</span>
+          <span class="ix-topbar__switch-restore">{restoreLabel}</span>
+        </button>
+      {/each}
     {/if}
   </div>
 {/if}

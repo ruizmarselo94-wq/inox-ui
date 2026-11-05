@@ -143,6 +143,19 @@
     color: var(--ix-color-primary);
   }
 }
+// Los dados de baja, al pie: el nombre apagado y la acción a la derecha. No se
+// pasa a ellos —no se puede entrar a uno dado de baja—, se los reactiva.
+.ix-topbar__switch-title--inactive {
+  margin-top: var(--ix-sp-1);
+  border-top: 1px solid var(--ix-color-border);
+  padding-top: var(--ix-sp-2);
+}
+.ix-topbar__switch-inactive { color: var(--ix-color-text-muted); }
+.ix-topbar__switch-restore {
+  font-size: var(--ix-font-size-xs);
+  color: var(--ix-color-primary);
+}
+
 // La acción al pie de la lista, separada de las opciones: no es un lugar al
 // que pasarse, es algo que se hace.
 .ix-topbar__switch-action {

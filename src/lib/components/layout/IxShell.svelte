@@ -22,6 +22,9 @@
     onContextSelect?: (key: string) => void;
     contextLabel?: string;
     contextAction?: { label: string; onSelect: () => void };
+    onContextRestore?: (key: string) => void;
+    inactiveLabel?: string;
+    restoreLabel?: string;
     /** Lo que va al pie del menú lateral. Sin esto, `appName version`. */
     sidebarFooter?: Snippet;
     children: Snippet;
@@ -42,6 +45,9 @@
     onContextSelect,
     contextLabel,
     contextAction,
+    onContextRestore,
+    inactiveLabel,
+    restoreLabel,
     sidebarFooter,
     children,
   }: Props = $props();
@@ -64,7 +70,7 @@
 
   <IxSidebar {nav} {user} {logoSrc} {appName} {version} {onSignOut} footer={sidebarFooter} />
   <div class="ix-main-container">
-    <IxTopbar {nav} {user} {onSignOut} {actions} {contexts} {onContextSelect} {contextLabel} {contextAction} />
+    <IxTopbar {nav} {user} {onSignOut} {actions} {contexts} {onContextSelect} {contextLabel} {contextAction} {onContextRestore} {inactiveLabel} {restoreLabel} />
     <div class="ix-page-slot">
       {@render children()}
     </div>

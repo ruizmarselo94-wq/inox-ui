@@ -40,6 +40,9 @@ export interface ContextOption {
   key:      string;
   label:    string;
   current?: boolean;
+  /** Dado de baja: no se puede pasar a él, solo reactivarlo —ver
+   *  `onContextRestore` en `IxTopbar`—. Va al pie de la lista. */
+  inactive?: boolean;
 }
 
 export interface DataColumn<T> {

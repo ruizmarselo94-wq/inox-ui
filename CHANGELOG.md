@@ -51,6 +51,11 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **`IxTopbar onContextRestore`**: los contextos con `inactive` —dados de
+  baja— van al pie de la lista, bajo `inactiveLabel`, con `restoreLabel`
+  («Reactivar»). A uno dado de baja no se puede entrar, así que la lista es el
+  único lugar desde donde se lo reactiva. Sin `onContextRestore` no se
+  muestran.
 - **`IxTopbar contextAction`**: una acción al pie de la lista de contextos
   —«Nueva empresa»—, separada de las opciones. Con ella el botón aparece
   aunque haya una sola opción: es como se descubre que se puede tener otra.
