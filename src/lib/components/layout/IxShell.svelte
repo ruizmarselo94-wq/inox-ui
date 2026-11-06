@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { onMount, untrack } from 'svelte';
-  import type { Theme, LayoutMode, NavSection, UserProfile, ContextOption } from '../../types.js';
+  import type { Theme, LayoutMode, NavSection, UserProfile, ContextOption, PlaceGroup } from '../../types.js';
   import { provideShell } from '../../shell.svelte.js';
   import IxSidebar from './IxSidebar.svelte';
   import IxTopbar from './IxTopbar.svelte';
@@ -25,6 +25,9 @@
     onContextRestore?: (key: string) => void;
     inactiveLabel?: string;
     restoreLabel?: string;
+    places?: PlaceGroup[];
+    onPlaceSelect?: (key: string) => void;
+    placeLabel?: string;
     /** Lo que va al pie del menú lateral. Sin esto, `appName version`. */
     sidebarFooter?: Snippet;
     children: Snippet;
@@ -48,6 +51,9 @@
     onContextRestore,
     inactiveLabel,
     restoreLabel,
+    places,
+    onPlaceSelect,
+    placeLabel,
     sidebarFooter,
     children,
   }: Props = $props();
@@ -70,7 +76,7 @@
 
   <IxSidebar {nav} {user} {logoSrc} {appName} {version} {onSignOut} footer={sidebarFooter} />
   <div class="ix-main-container">
-    <IxTopbar {nav} {user} {onSignOut} {actions} {contexts} {onContextSelect} {contextLabel} {contextAction} {onContextRestore} {inactiveLabel} {restoreLabel} />
+    <IxTopbar {nav} {user} {onSignOut} {actions} {contexts} {onContextSelect} {contextLabel} {contextAction} {onContextRestore} {inactiveLabel} {restoreLabel} {places} {onPlaceSelect} {placeLabel} />
     <div class="ix-page-slot">
       {@render children()}
     </div>

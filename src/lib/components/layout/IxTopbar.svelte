@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { goto } from '$app/navigation';
-  import type { NavSection, UserProfile, ContextOption } from '../../types.js';
+  import type { NavSection, UserProfile, ContextOption, PlaceGroup } from '../../types.js';
   import { useShell } from '../../shell.svelte.js';
   import IxIcon from '../primitives/IxIcon.svelte';
   import IxThemePicker from '../primitives/IxThemePicker.svelte';
@@ -29,11 +29,19 @@
     onContextRestore?: (key: string) => void;
     inactiveLabel?:    string;
     restoreLabel?:     string;
+    /** El segundo nivel del contexto —dónde se trabaja dentro de él: en
+     *  Didimio, la sucursal y la caja—, agrupado. Con dos o más opciones y
+     *  `onPlaceSelect`, «Sucursal · Caja» se vuelve el botón que abre la
+     *  lista; elegir una opción elige también su grupo. */
+    places?:        PlaceGroup[];
+    onPlaceSelect?: (key: string) => void;
+    placeLabel?:    string;
   }
 
   let {
     nav = [], user, onSignOut, actions, contexts = [], onContextSelect, contextLabel = 'Cambiar', contextAction,
     onContextRestore, inactiveLabel = 'Inactivos', restoreLabel = 'Reactivar',
+    places = [], onPlaceSelect, placeLabel = 'Cambiar de lugar',
   }: Props = $props();
 
   // ── Cambio de contexto ──────────────────────────────────────
@@ -76,6 +84,43 @@
     switchOpen = false;
     if (!option.current) onContextSelect?.(option.key);
     else switchTrigger?.focus();
+  }
+
+  // ── El lugar dentro del contexto ────────────────────────────
+  // La misma forma que el cambio de contexto, con la lista agrupada: en
+  // Didimio, cada sucursal con sus cajas.
+  const canPlace = $derived(
+    onPlaceSelect !== undefined && places.reduce((n, g) => n + g.options.length, 0) > 1,
+  );
+  let placeOpen    = $state(false);
+  let placePos     = $state({ top: 0, left: 0 });
+  let placeTrigger: HTMLElement | null = null;
+  let placeMenu    = $state<HTMLElement | null>(null);
+
+  function openPlace(e: MouseEvent) {
+    placeTrigger = e.currentTarget as HTMLElement;
+    const r = placeTrigger.getBoundingClientRect();
+    const width = 240;
+    placePos = { top: r.bottom + 6, left: Math.max(8, Math.min(r.left, window.innerWidth - width - 8)) };
+    placeOpen = true;
+    setTimeout(() => {
+      const current = placeMenu?.querySelector<HTMLElement>('[aria-checked="true"]');
+      (current ?? placeMenu?.querySelector<HTMLElement>(MENU_ITEMS))?.focus();
+    }, 0);
+  }
+
+  function pickPlace(option: ContextOption) {
+    placeOpen = false;
+    if (!option.current) onPlaceSelect?.(option.key);
+    else placeTrigger?.focus();
+  }
+
+  function onPlaceKey(e: KeyboardEvent) {
+    const items = [...(placeMenu?.querySelectorAll<HTMLElement>(MENU_ITEMS) ?? [])];
+    const at = items.indexOf(document.activeElement as HTMLElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); items[(at + 1) % items.length]?.focus(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); items[(at - 1 + items.length) % items.length]?.focus(); }
+    else if (e.key === 'Escape' || e.key === 'Tab') { e.preventDefault(); placeOpen = false; placeTrigger?.focus(); }
   }
 
   function onSwitchKey(e: KeyboardEvent) {
@@ -245,8 +290,25 @@
         {:else}
           {user.companyName}
         {/if}
-        {#if user.branchName}<span class="ix-topbar__context-sep" aria-hidden="true">·</span>{user.branchName}{/if}
-        {#if user.registerName}<span class="ix-topbar__context-sep" aria-hidden="true">·</span>{user.registerName}{/if}
+        {#if canPlace && (user.branchName || user.registerName)}
+          <span class="ix-topbar__context-sep" aria-hidden="true">·</span>
+          <button
+            class="ix-topbar__switch"
+            type="button"
+            onclick={openPlace}
+            aria-haspopup="menu"
+            aria-expanded={placeOpen}
+            title={placeLabel}
+          >
+            <span class="ix-topbar__switch-label">
+              {user.branchName}{#if user.branchName && user.registerName}<span class="ix-topbar__context-sep" aria-hidden="true">·</span>{/if}{user.registerName}
+            </span>
+            <IxIcon name="chevrons-up-down" size={13} ariaHidden />
+          </button>
+        {:else}
+          {#if user.branchName}<span class="ix-topbar__context-sep" aria-hidden="true">·</span>{user.branchName}{/if}
+          {#if user.registerName}<span class="ix-topbar__context-sep" aria-hidden="true">·</span>{user.registerName}{/if}
+        {/if}
       </span>
     {/if}
   </div>
@@ -352,6 +414,39 @@
         </button>
       {/each}
     {/if}
+  </div>
+{/if}
+
+<!-- ── El lugar dentro del contexto ─────────────────────────── -->
+{#if placeOpen}
+  <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+  <div class="ix-topbar__switch-overlay" onclick={() => (placeOpen = false)} aria-hidden="true"></div>
+  <div
+    bind:this={placeMenu}
+    class="ix-topbar__switch-menu"
+    role="menu"
+    tabindex="-1"
+    aria-label={placeLabel}
+    style={`top:${placePos.top}px;left:${placePos.left}px`}
+    onkeydown={onPlaceKey}
+  >
+    <p class="ix-topbar__switch-title" aria-hidden="true">{placeLabel}</p>
+    {#each places as group (group.label)}
+      <p class="ix-topbar__switch-group" aria-hidden="true">{group.label}</p>
+      {#each group.options as option (option.key)}
+        <button
+          class="ix-topbar__switch-item"
+          type="button"
+          role="menuitemradio"
+          aria-checked={option.current === true}
+          aria-label={`${group.label} · ${option.label}`}
+          onclick={() => pickPlace(option)}
+        >
+          <span>{option.label}</span>
+          {#if option.current}<IxIcon name="check" size={14} ariaHidden />{/if}
+        </button>
+      {/each}
+    {/each}
   </div>
 {/if}
 

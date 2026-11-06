@@ -45,6 +45,13 @@ export interface ContextOption {
   inactive?: boolean;
 }
 
+/** Un grupo de la lista de lugares de la barra —una sucursal con sus cajas—.
+ *  Ver `places` en `IxTopbar`. */
+export interface PlaceGroup {
+  label:   string;
+  options: ContextOption[];
+}
+
 export interface DataColumn<T> {
   header: string;
   key: keyof T & string;

@@ -143,6 +143,16 @@
     color: var(--ix-color-primary);
   }
 }
+// El grupo de la lista de lugares —una sucursal—, con sus opciones debajo.
+.ix-topbar__switch-group {
+  margin: var(--ix-sp-2) 0 0;
+  padding: var(--ix-sp-1) var(--ix-sp-2) 0;
+  font-size: var(--ix-font-size-xs);
+  font-weight: 600;
+  color: var(--ix-color-text);
+}
+.ix-topbar__switch-group + .ix-topbar__switch-item { margin-top: 2px; }
+
 // Los dados de baja, al pie: el nombre apagado y la acción a la derecha. No se
 // pasa a ellos —no se puede entrar a uno dado de baja—, se los reactiva.
 .ix-topbar__switch-title--inactive {

@@ -51,6 +51,10 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **`IxTopbar places`**: el segundo nivel del contexto —en Didimio, la
+  sucursal y la caja—, una lista agrupada (`PlaceGroup`) que se abre desde
+  «Sucursal · Caja ⇅» con `onPlaceSelect`. Elegir una opción elige su grupo.
+  Con una sola opción queda como texto, como antes.
 - **`IxTopbar onContextRestore`**: los contextos con `inactive` —dados de
   baja— van al pie de la lista, bajo `inactiveLabel`, con `restoreLabel`
   («Reactivar»). A uno dado de baja no se puede entrar, así que la lista es el
