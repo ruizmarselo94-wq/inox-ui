@@ -61,12 +61,17 @@ $sidebar-text-out: 80ms;
     transition: opacity $sidebar-text-out ease-in;
   }
   // Los «…» del recorte los dibuja el pie, no el texto: no se desvanecen.
-  .ix-sidebar__footer { text-overflow: clip; }
+  .ix-sidebar__footer {
+    text-overflow: clip;
+    border-top-color: transparent;
+    transition: border-color $sidebar-text-out ease-in;
+  }
 }
 // Quien pidió reducir el movimiento ve el menú cambiar de ancho sin animación.
 @media (prefers-reduced-motion: reduce) {
   .ix-sidebar,
   .ix-sidebar :is(.ix-brand__name, .ix-nav__section-label, .ix-nav-item__label),
+  .ix-sidebar .ix-sidebar__footer,
   .ix-sidebar .ix-sidebar__footer > * { transition: none; }
 }
 .ix-sidebar--collapsed {
@@ -129,10 +134,13 @@ $sidebar-text-out: 80ms;
 // ── Pie: la versión ───────────────────────────────────────────
 // Para soporte, no para el día a día: chica, apagada, y solo con el menú
 // expandido.
+// Contraído, la raya se desvanece con la versión: quedaba una caja vacía. El
+// pie sigue ocupando su lugar, para que nada cambie de alto.
 .ix-sidebar__footer {
   flex-shrink: 0;
   padding: var(--ix-sp-2) var(--ix-sp-4);
   border-top: 1px solid var(--ix-color-border);
+  transition: border-color $sidebar-text-in ease-out $sidebar-text-wait;
   font-size: 0.73rem;
   color: var(--ix-color-text-muted);
   white-space: nowrap;

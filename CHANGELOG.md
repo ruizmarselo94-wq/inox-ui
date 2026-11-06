@@ -38,6 +38,9 @@ atrás: compila sin errores y su CSS solo suma reglas.
   640 px. Una tabla `.ix-table` se ve más apretada en el teléfono y deja de
   desplazarse de costado; no hay nada que hacer, salvo revisar que una celda
   con relleno propio siga viéndose bien.
+- **La búsqueda rápida es un `<dialog>`**: `.ix-palette-overlay` ya no existe,
+  y el velo es `.ix-palette::backdrop`. Un consumidor que estilaba esa clase
+  pierde el estilo; uno que no, no tiene nada que hacer.
 - **Quien use `IxShell` ve el botón ≡ también en la computadora**, en lugar
   de la flechita del encabezado del menú. La versión pasa al pie del menú.
   `.ix-brand__version` y `.ix-brand__collapse` ya no existen: si un
@@ -150,6 +153,12 @@ atrás: compila sin errores y su CSS solo suma reglas.
   no elige por el producto: le da el control.
 
 ### Fixed
+- **Con la búsqueda abierta, la barra de arriba ya no responde.** El velo
+  quedaba debajo de la barra: en el celular se podía tocar el ≡ y el menú se
+  abría debajo de la búsqueda. Ahora es un `<dialog>` modal, en la capa
+  superior, como `IxModal`.
+- **Un ítem del menú dice su nombre al apuntarlo solo si está contraído**: con
+  el menú expandido, el globo repetía el texto que ya estaba a la vista.
 - **`IxInputTel` agrupa un teléfono fijo como fijo**: «021 600 200» y no
   «0216 002 00». El celular, que empieza con 09, sigue en 4 / 3 / 3; un fijo
   lleva el código de área de 3 y el resto de a 3 —con 7 dígitos, 3 / 4—.
@@ -219,6 +228,14 @@ heredado ese componente no habría tenido motivo para declarar foco.
   al mismo ritmo— y la mitad de velocidad en el pico. Abre en 240 ms y cierra
   en 200. Los textos van en orden: al cerrar se van primero, y al abrir esperan
   a que el menú haya hecho lugar, en vez de quedar destapados por el borde.
+- **El ≡ se lava al apuntarlo**, como un ítem del menú: el cambio de color
+  solo, de gris a violeta, tenía el mismo brillo y en el tema claro casi no se
+  veía.
+- **Contraído, el pie del menú no deja una caja vacía**: la raya se desvanece
+  junto con la versión, y el pie sigue ocupando su lugar.
+- **En el celular, el menú se cierra al elegir una pantalla** —o con
+  cualquier navegación—, como el cajón de Material o de Gmail. Abierto, tapaba
+  la pantalla que se acababa de pedir.
 - **El botón del menú es la hamburguesa también en la computadora**, como en
   Gmail y YouTube. El panel con flecha no se leía a 16 px.
 - **El contexto de la barra se separa con «·»** y el cambio de contexto usa

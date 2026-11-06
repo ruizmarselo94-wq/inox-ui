@@ -163,6 +163,20 @@
   let query       = $state('');
   let activeIdx   = $state(0);
   let inputEl     = $state<HTMLInputElement | null>(null);
+  let paletteEl   = $state<HTMLDialogElement | null>(null);
+
+  // showModal() la lleva a la capa superior: queda sobre la barra y lo de atrás
+  // no responde. El estado manda; el <dialog> lo sigue.
+  $effect(() => {
+    const el = paletteEl;
+    if (!el) return;
+    if (paletteOpen && !el.open) {
+      el.showModal();
+      inputEl?.focus();
+    } else if (!paletteOpen && el.open) {
+      el.close();
+    }
+  });
 
   const allItems = $derived(
     nav.flatMap(s => s.items.map(item => ({ ...item, section: s.label })))
@@ -186,7 +200,6 @@
     paletteOpen = true;
     query       = '';
     activeIdx   = 0;
-    setTimeout(() => inputEl?.focus(), 0);
   }
 
   function closePalette() {
@@ -203,7 +216,11 @@
     if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx + 1, results.length - 1); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(activeIdx - 1, 0); }
     else if (e.key === 'Enter' && results[activeIdx]) { navigate(results[activeIdx].href); }
-    else if (e.key === 'Escape') { closePalette(); }
+  }
+
+  /** Esc lo cierra el navegador; un toque en el velo llega al <dialog> mismo. */
+  function onPaletteClick(e: MouseEvent) {
+    if (e.target === paletteEl) closePalette();
   }
 
   function onGlobalKey(e: KeyboardEvent) {
@@ -451,19 +468,16 @@
 {/if}
 
 <!-- ── Command palette ──────────────────────────────────────── -->
-{#if paletteOpen}
-  <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-  <div class="ix-palette-overlay" onclick={closePalette} aria-hidden="true"></div>
-
-  <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-  <div
-    class="ix-palette"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Búsqueda rápida"
-    tabindex="-1"
-    onkeydown={onPaletteKey}
-  >
+<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_noninteractive_element_interactions -->
+<dialog
+  bind:this={paletteEl}
+  class="ix-palette"
+  aria-label="Búsqueda rápida"
+  onkeydown={onPaletteKey}
+  onclick={onPaletteClick}
+  onclose={closePalette}
+>
+  {#if paletteOpen}
     <div class="ix-palette__header">
       <IxIcon name="search" size={16} ariaHidden />
       <input
@@ -509,5 +523,5 @@
         <span><kbd>Esc</kbd> cerrar</span>
       </div>
     {/if}
-  </div>
-{/if}
+  {/if}
+</dialog>

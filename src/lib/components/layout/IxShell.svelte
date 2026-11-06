@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { onMount, untrack } from 'svelte';
+  import { afterNavigate } from '$app/navigation';
   import type { Theme, LayoutMode, NavSection, UserProfile, ContextOption, PlaceGroup } from '../../types.js';
   import { provideShell } from '../../shell.svelte.js';
   import IxSidebar from './IxSidebar.svelte';
@@ -59,6 +60,12 @@
   }: Props = $props();
 
   const shell = untrack(() => provideShell({ theme, layout, collapsed }));
+
+  // En el celular el menú es una capa encima de la pantalla: elegida una, se
+  // cierra, como el cajón de navegación de Material, Gmail o Shopify. Abierto,
+  // tapaba la pantalla que se acababa de pedir. Cualquier navegación lo cierra:
+  // un ítem, la marca, la búsqueda o el botón de volver.
+  afterNavigate(() => shell.closeMobile());
 
   onMount(() => {
     shell.loadFromStorage();

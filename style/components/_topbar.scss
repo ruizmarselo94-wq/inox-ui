@@ -255,6 +255,17 @@
 // computadora, abre y cierra en el celular. Con el modo barra superior, solo
 // en el celular, que es donde hay un menú que abrir.
 .ix-topbar .ix-topbar__hamburger { display: none; }
+// Al apuntarlo se lava el fondo, como un ítem del menú que controla. `bare`
+// —que responda solo el ícono— es para los íconos que traen su propio marco;
+// el ≡ no lo tiene, y el cambio de color solo, de gris a violeta, tenía el
+// mismo brillo: en el tema claro casi no se veía.
+.ix-topbar .ix-topbar__hamburger {
+  border-radius: var(--ix-r-sm);
+  @media (hover: hover) {
+    &:hover { background: var(--ix-color-surface-alt); color: var(--ix-color-text); }
+  }
+  &:active:not(:disabled) { background: var(--ix-color-surface-alt); color: var(--ix-color-text); }
+}
 [data-layout="sidebar"] .ix-topbar .ix-topbar__hamburger { display: flex; flex-shrink: 0; }
 @media (max-width: 767px) {
   .ix-topbar .ix-topbar__hamburger { display: flex; flex-shrink: 0; }
@@ -374,29 +385,32 @@
 }
 
 // ── Command palette ───────────────────────────────────────────
-.ix-palette-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: var(--ix-z-overlay);
-}
-
+// Un <dialog> abierto con showModal(): va a la capa superior del navegador,
+// por encima de la barra —que tiene el z-index más alto del sistema— y deja
+// todo lo de atrás sin responder, al mouse y al teclado. Con un <div> y un
+// velo propio, la barra quedaba arriba del velo: en el celular se podía tocar
+// el ≡ y el menú se abría debajo de la búsqueda.
 .ix-palette {
   position: fixed;
-  top: 16%;
-  left: 50%;
+  inset: 16% auto auto 50%;
   transform: translateX(-50%);
+  margin: 0;
+  padding: 0;
   width: min(560px, 92vw);
+  max-width: none;
   max-height: 62vh;
   background: var(--ix-color-surface);
+  color: inherit;
   border: 1px solid var(--ix-color-border);
   border-radius: var(--ix-r-lg);
   box-shadow: var(--ix-shadow-lg);
-  display: flex;
   flex-direction: column;
   overflow: hidden;
-  z-index: var(--ix-z-modal);
 }
+// `display` solo abierto: el del autor le gana al `display: none` con que el
+// navegador oculta un <dialog> cerrado.
+.ix-palette[open] { display: flex; }
+.ix-palette::backdrop { background: rgba(0, 0, 0, 0.55); }
 
 .ix-palette__header {
   display: flex;

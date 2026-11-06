@@ -79,7 +79,7 @@
           <a
             href={item.href}
             class={isActive(item.href) ? 'ix-nav-item ix-nav-item--active' : 'ix-nav-item'}
-            title={item.label}
+            title={shell.collapsed ? item.label : undefined}
           >
             <span class="ix-nav-item__icon" aria-hidden="true">
               <IxIcon name={item.icon} size={15} ariaHidden />
@@ -92,8 +92,8 @@
   </nav>
 
   <!-- La versión es para soporte, no para el día a día: abajo, chica, y solo
-       con el menú expandido. Contraído, el texto se desvanece y el pie queda,
-       para que nada cambie de alto mientras la barra se angosta. -->
+       con el menú expandido. Contraído, el texto y la raya se desvanecen y el
+       pie queda, para que nada cambie de alto mientras la barra se angosta. -->
   <div class="ix-sidebar__footer">
     <span>{#if footer}{@render footer()}{:else}{appName} {version}{/if}</span>
   </div>
