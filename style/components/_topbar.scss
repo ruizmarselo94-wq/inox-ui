@@ -49,6 +49,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  // Los botones de cambio llevan margen negativo para leerse como el texto de
+  // al lado; sin este relleno, el recorte se comía la primera letra.
+  padding: 0 6px;
 }
 // Un punto y no «›»: la flecha se leía como una ruta que se puede recorrer, y
 // sucursal y caja no se tocan. Junto al ⇅ de cambiar de empresa, dos flechas
