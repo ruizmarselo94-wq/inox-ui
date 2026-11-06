@@ -44,9 +44,12 @@
 
   // Formato Paraguay — agrupa para legibilidad sin forzar longitud (móviles, fijos
   // y números internacionales conviven):
-  //   - Local (empieza con 0):   0981 774 666   (4 / 3 / 3 …)
-  //   - Internacional (con +):   +595 981 774 666
-  //   - Otro:                    grupos de 3
+  //   - Celular (empieza con 09): 0981 774 666   (4 / 3 / 3)
+  //   - Fijo (otro 0):            021 600 200    (el código de área de 3 y el
+  //                                resto de a 3; con 7 dígitos, 3 / 4)
+  //   - Internacional (con +):    +595 981 774 666
+  //   - Otro:                     grupos de 3
+  // Un fijo se agrupaba como celular: «021 600 200» salía «0216 002 00».
   // Idempotente: format(format(x)) === format(x).
   function format(input: string): string {
     const intl   = input.trimStart().startsWith('+');
@@ -55,8 +58,13 @@
     if (intl) {
       return `+${[digits.slice(0, 3), ...chunk(digits.slice(3), 3)].filter(Boolean).join(' ')}`;
     }
-    if (digits.startsWith('0')) {
+    if (digits.startsWith('09')) {
       return [digits.slice(0, 4), ...chunk(digits.slice(4), 3)].filter(Boolean).join(' ');
+    }
+    if (digits.startsWith('0')) {
+      const rest = digits.slice(3);
+      const groups = rest.length === 7 ? [rest.slice(0, 3), rest.slice(3)] : chunk(rest, 3);
+      return [digits.slice(0, 3), ...groups].filter(Boolean).join(' ');
     }
     return chunk(digits, 3).join(' ');
   }

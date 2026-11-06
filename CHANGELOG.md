@@ -144,6 +144,9 @@ atrás: compila sin errores y su CSS solo suma reglas.
   no elige por el producto: le da el control.
 
 ### Fixed
+- **`IxInputTel` agrupa un teléfono fijo como fijo**: «021 600 200» y no
+  «0216 002 00». El celular, que empieza con 09, sigue en 4 / 3 / 3; un fijo
+  lleva el código de área de 3 y el resto de a 3 —con 7 dígitos, 3 / 4—.
 - **Una tabla entra en el celular.** Por debajo de 640 px cada celda usa la
   mitad de su margen lateral (`--ix-sp-2` en vez de `--ix-sp-4`): con tres o
   cuatro columnas, un rem de cada lado se comía el ancho y la tabla se
