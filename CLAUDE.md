@@ -17,6 +17,14 @@ imaginario: se llegó a tener tres números distintos a la vez (`package.json`
 Lo que entra va a `[Unreleased]` del CHANGELOG. El primer número real se asigna
 el día que se publique en un registro.
 
+## Backlog
+
+Lo abierto vive en el vault de Lantano, `productos/inox-ui/backlog-inox-ui.md`:
+una lista plana, sin veredicto. El CHANGELOG se queda acá porque lo leen los
+consumidores antes de mover el pin. Cerrar algo es sacarlo del backlog y
+anotarlo en `[Unreleased]`, en el mismo cambio. Lo que pide un consumidor y no
+entra ahora va al backlog, no a un comentario ni a este archivo.
+
 ## Cómo entra un cambio
 
 **`main` es lo publicado.** Inox UI no se despliega, así que no tiene
