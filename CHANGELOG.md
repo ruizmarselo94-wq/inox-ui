@@ -51,6 +51,12 @@ atrás: compila sin errores y su CSS solo suma reglas.
   el tercer modo de tema deja el valor por defecto del shell en `'dark'`.
 
 ### Added
+- **Esqueletos de carga**: `IxSkeleton` (una barra), `IxSkeletonText` (líneas
+  de un párrafo) e `IxSkeletonTable` (los encabezados reales y filas del mismo
+  alto que las verdaderas), y `.ix-appear`, un fundido de 120 ms para el
+  contenido que llega. Lo que carga ocupa su lugar desde el principio, así
+  nada se corre cuando llegan los datos —como en Carbon, Shopify o Material—.
+  Sin animación si la persona pidió reducir el movimiento.
 - **`IxTopbar places`**: el segundo nivel del contexto —en Didimio, la
   sucursal y la caja—, una lista agrupada (`PlaceGroup`) que se abre desde
   «Sucursal · Caja ⇅» con `onPlaceSelect`. Elegir una opción elige su grupo.

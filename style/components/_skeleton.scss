@@ -11,3 +11,35 @@
   border-radius: var(--ix-r-sm);
   animation: ix-pulse 1.6s var(--ix-ease) infinite;
 }
+// La barra va en línea, con el alto de una línea de texto, para que una fila o
+// un párrafo que cargan midan lo mismo que el real.
+.ix-skeleton--bar { display: inline-block; vertical-align: middle; }
+
+.ix-skeleton-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+// Una celda que carga, con una o dos barras: el nombre y su línea de abajo.
+.ix-skeleton-table__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  // La barra de 0.9em en una línea de 1.5 mide como el texto de una celda.
+  min-height: 1.5em;
+  justify-content: center;
+}
+.ix-skeleton-table tbody tr { pointer-events: none; }
+
+// El contenido que llega entra con un fundido corto: el reemplazo del
+// esqueleto no se lee como un salto.
+@keyframes ix-appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.ix-appear { animation: ix-appear 120ms var(--ix-ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ix-skeleton, .ix-appear { animation: none; }
+}

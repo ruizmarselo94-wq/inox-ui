@@ -25,6 +25,8 @@ export { default as IxBtnOauth } from './components/primitives/IxBtnOauth.svelte
 export { default as IxCard }    from './components/primitives/IxCard.svelte';
 export { default as IxIcon }    from './components/primitives/IxIcon.svelte';
 export { default as IxSpinner }           from './components/primitives/IxSpinner.svelte';
+export { default as IxSkeleton }          from './components/primitives/IxSkeleton.svelte';
+export { default as IxSkeletonText }      from './components/primitives/IxSkeletonText.svelte';
 export { default as IxModal }             from './components/primitives/IxModal.svelte';
 export { default as IxNotificationBell }  from './components/primitives/IxNotificationBell.svelte';
 export { default as IxTabs }              from './components/primitives/IxTabs.svelte';
@@ -44,6 +46,7 @@ export { default as IxTopbar }  from './components/layout/IxTopbar.svelte';
 // ── Datos ─────────────────────────────────────────────────────────────────────
 export { default as IxBarChart }  from './components/data/IxBarChart.svelte';
 export { default as IxDataTable } from './components/data/IxDataTable.svelte';
+export { default as IxSkeletonTable }     from './components/data/IxSkeletonTable.svelte';
 export { default as IxStatCard }  from './components/data/IxStatCard.svelte';
 
 // ── Feedback ──────────────────────────────────────────────────────────────────

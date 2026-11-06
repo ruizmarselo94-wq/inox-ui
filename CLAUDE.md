@@ -67,6 +67,8 @@ El porqué de cada regla está en el vault de Lantano, `convenciones-git`,
 - `IxCard` — contenedor con superficie elevada
 - `IxIcon` — ícono SVG inline del catálogo Lucide, prop: `name`, `size`, `ariaHidden`
 - `IxSpinner` — indicador de carga animado, props: `size` (px), `label` (aria)
+- `IxSkeleton` — una barra de carga con la forma del dato, props: `width`, `height`
+- `IxSkeletonText` — líneas de texto que cargan, para el cuerpo de una tarjeta, props: `lines`, `label`
 - `IxTabs` — pestañas con el patrón de WAI-ARIA (flechas, Inicio y Fin), props: `tabs` (`TabItem[]`), `value` (bindable), `label` (aria), `onchange?`; el panel es el `children`, y el consumidor decide qué va según `value`
 
 **Formularios** (`src/lib/components/forms/`):
@@ -83,6 +85,7 @@ El porqué de cada regla está en el vault de Lantano, `convenciones-git`,
 **Datos** (`src/lib/components/data/`):
 - `IxBarChart` — gráfico de barras CSS, props: `bars: {label, value}[]`, `height?`, `formatValue?`, `emptyText?`
 - `IxDataTable` — tabla tipada con columnas configurables, genérico `<T>`
+- `IxSkeletonTable` — una tabla que carga: los encabezados reales y filas esqueleto del mismo alto que las verdaderas, props: `headers`, `rows`, `lines` (2 si la primera columna lleva nombre y una línea debajo), `label`. Con `.ix-appear`, el contenido que la reemplaza entra con un fundido de 120 ms
 - `IxStatCard` — tarjeta de métrica con label, valor, unidad y acento cromático
 
 **Feedback**:
