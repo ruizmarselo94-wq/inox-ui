@@ -10,6 +10,22 @@
 //     <nav class="ix-nav">…</nav>
 //     (footer eliminado — usuario vive en el topbar)
 //   </aside>
+// El movimiento del menú sigue al «productivo» de Carbon, el de las pantallas
+// de trabajo: una curva que reparte el recorrido en vez de hacerlo casi todo
+// en el medio, y una duración a la medida de una expansión. Con la curva
+// general, el 75 % de los 168 px se recorría en 96 ms, y el contenido de al
+// lado se corría al mismo ritmo. Abrir y cerrar no duran lo mismo: lo que
+// sale se va antes de lo que tarda en llegar lo que entra.
+$sidebar-ease:     cubic-bezier(0.2, 0, 0.38, 0.9);
+$sidebar-open:     240ms;
+$sidebar-close:    200ms;
+// Los textos, en orden: al cerrar se van primero; al abrir esperan a que el
+// menú haya hecho lugar —va por la mitad a los 100 ms—. Si aparecían junto
+// con el ancho, el borde los iba destapando como una cortina.
+$sidebar-text-in:  140ms;
+$sidebar-text-wait: 100ms;
+$sidebar-text-out: 80ms;
+
 .ix-sidebar {
   width: var(--ix-sidebar-w);
   min-width: var(--ix-sidebar-w);
@@ -18,8 +34,10 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  transition: width var(--ix-t-normal) var(--ix-ease),
-              min-width var(--ix-t-normal) var(--ix-ease);
+  // La transición que corre es la del estado de llegada: ésta al abrir, la
+  // de `--collapsed` al cerrar.
+  transition: width $sidebar-open $sidebar-ease,
+              min-width $sidebar-open $sidebar-ease;
   overflow: hidden;
 }
 // Al contraer, nada se mueve: la barra se angosta por encima de los íconos y
@@ -30,23 +48,26 @@
 .ix-nav__section-label,
 .ix-nav-item__label,
 .ix-sidebar__footer > * {
-  transition: opacity var(--ix-t-fast) var(--ix-ease);
+  transition: opacity $sidebar-text-in ease-out $sidebar-text-wait;
 }
 .ix-sidebar--collapsed {
+  transition-duration: $sidebar-close;
+
   .ix-brand__name,
   .ix-nav__section-label,
   .ix-nav-item__label,
-  .ix-sidebar__footer > * { opacity: 0; }
+  .ix-sidebar__footer > * {
+    opacity: 0;
+    transition: opacity $sidebar-text-out ease-in;
+  }
   // Los «…» del recorte los dibuja el pie, no el texto: no se desvanecen.
   .ix-sidebar__footer { text-overflow: clip; }
 }
 // Quien pidió reducir el movimiento ve el menú cambiar de ancho sin animación.
 @media (prefers-reduced-motion: reduce) {
   .ix-sidebar,
-  .ix-brand__name,
-  .ix-nav__section-label,
-  .ix-nav-item__label,
-  .ix-sidebar__footer > * { transition: none; }
+  .ix-sidebar :is(.ix-brand__name, .ix-nav__section-label, .ix-nav-item__label),
+  .ix-sidebar .ix-sidebar__footer > * { transition: none; }
 }
 .ix-sidebar--collapsed {
   width: var(--ix-sidebar-w-col);

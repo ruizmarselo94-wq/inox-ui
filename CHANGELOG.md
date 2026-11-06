@@ -213,6 +213,12 @@ heredado ese componente no habría tenido motivo para declarar foco.
   ya los centra en el ancho contraído— y los textos se desvanecen. Los títulos
   de sección se alinean con los íconos. El pie queda con el menú contraído,
   vacío, para que nada cambie de alto.
+- **Contraer y expandir el menú ya no es un golpe.** Sigue el movimiento
+  «productivo» de Carbon: una curva que reparte el recorrido —con la general,
+  el 75 % de los 168 px se hacía en 96 ms, y el contenido de al lado se corría
+  al mismo ritmo— y la mitad de velocidad en el pico. Abre en 240 ms y cierra
+  en 200. Los textos van en orden: al cerrar se van primero, y al abrir esperan
+  a que el menú haya hecho lugar, en vez de quedar destapados por el borde.
 - **El botón del menú es la hamburguesa también en la computadora**, como en
   Gmail y YouTube. El panel con flecha no se leía a 16 px.
 - **El contexto de la barra se separa con «·»** y el cambio de contexto usa
