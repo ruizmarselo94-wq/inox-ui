@@ -153,6 +153,11 @@ atrás: compila sin errores y su CSS solo suma reglas.
   no elige por el producto: le da el control.
 
 ### Fixed
+- **Al contraer el menú, la versión del pie ya no da un saltito.** Los «…»
+  del recorte los dibujaba el pie, y al contraer había que apagarlos de golpe:
+  el texto escondido aparecía un instante. Ahora los dibuja el texto y se van
+  con él. Los textos del menú se desvanecen en 60 ms, rápido al principio, antes
+  de que el borde los alcance.
 - **Con la búsqueda abierta, la barra de arriba ya no responde.** El velo
   quedaba debajo de la barra: en el celular se podía tocar el ≡ y el menú se
   abría debajo de la búsqueda. Ahora es un `<dialog>` modal, en la capa

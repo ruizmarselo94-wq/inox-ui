@@ -19,12 +19,13 @@
 $sidebar-ease:     cubic-bezier(0.2, 0, 0.38, 0.9);
 $sidebar-open:     240ms;
 $sidebar-close:    200ms;
-// Los textos, en orden: al cerrar se van primero; al abrir esperan a que el
-// menú haya hecho lugar —va por la mitad a los 100 ms—. Si aparecían junto
-// con el ancho, el borde los iba destapando como una cortina.
+// Los textos, en orden: al cerrar se van primero —rápido al principio, antes
+// de que el borde los alcance—; al abrir esperan a que el menú haya hecho
+// lugar —va por la mitad a los 100 ms—. Si aparecían junto con el ancho, el
+// borde los iba destapando como una cortina.
 $sidebar-text-in:  140ms;
 $sidebar-text-wait: 100ms;
-$sidebar-text-out: 80ms;
+$sidebar-text-out: 60ms;
 
 .ix-sidebar {
   width: var(--ix-sidebar-w);
@@ -58,13 +59,11 @@ $sidebar-text-out: 80ms;
   .ix-nav-item__label,
   .ix-sidebar__footer > * {
     opacity: 0;
-    transition: opacity $sidebar-text-out ease-in;
+    transition: opacity $sidebar-text-out ease-out;
   }
-  // Los «…» del recorte los dibuja el pie, no el texto: no se desvanecen.
   .ix-sidebar__footer {
-    text-overflow: clip;
     border-top-color: transparent;
-    transition: border-color $sidebar-text-out ease-in;
+    transition: border-color $sidebar-text-out ease-out;
   }
 }
 // Quien pidió reducir el movimiento ve el menú cambiar de ancho sin animación.
@@ -144,6 +143,13 @@ $sidebar-text-out: 80ms;
   font-size: 0.73rem;
   color: var(--ix-color-text-muted);
   white-space: nowrap;
+  overflow: hidden;
+}
+// Los «…» los dibuja el texto y no el pie, así se desvanecen con él. Cuando
+// los dibujaba el pie, al contraer había que apagarlos de golpe —si no,
+// quedaban solos— y el texto escondido aparecía un instante: un saltito.
+.ix-sidebar__footer > * {
+  display: block;
   overflow: hidden;
   text-overflow: ellipsis;
 }
