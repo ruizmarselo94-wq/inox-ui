@@ -30,6 +30,9 @@
   min-height: 1.5em;
   justify-content: center;
 }
+// Con nombre y una línea debajo, la celda mide lo que mide la real: el título
+// y su línea de detalle. Sin esto la fila esqueleto quedaba 14 px más baja.
+.ix-skeleton-table__cell--two { min-height: 2.9em; }
 .ix-skeleton-table tbody tr { pointer-events: none; }
 
 // El contenido que llega entra con un fundido corto: el reemplazo del

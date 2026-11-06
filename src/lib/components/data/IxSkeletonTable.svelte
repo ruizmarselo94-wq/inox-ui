@@ -35,7 +35,7 @@
           {#each headers as header, j (j)}
             <td>
               {#if header !== '' || j === 0}
-                <span class="ix-skeleton-table__cell">
+                <span class={lines === 2 && j === 0 ? 'ix-skeleton-table__cell ix-skeleton-table__cell--two' : 'ix-skeleton-table__cell'}>
                   <IxSkeleton width={width(i, j)} />
                   {#if lines === 2 && j === 0}<IxSkeleton width="40%" height="0.75em" />{/if}
                 </span>
