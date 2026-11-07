@@ -9,6 +9,14 @@ on:
   pull_request:
     branches: [main]
 
+# Un push nuevo a la misma rama deja vieja la corrida anterior: se cancela.
+# También en main: la corrida nueva verifica un árbol que incluye al commit
+# anterior, que ya pasó por su pull request. El mismo bloque en cada repo de
+# Lantano (convenciones-git).
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   verificar:
     name: Tipos y empaquetado
