@@ -153,6 +153,16 @@ atrás: compila sin errores y su CSS solo suma reglas.
   no elige por el producto: le da el control.
 
 ### Fixed
+- **`IxBarChart` entra siempre en su lugar.** Cada rótulo vivía dentro de su
+  columna y le imponía su ancho: desde unas 13 barras a 1024 px, o 10 en un
+  celular, las últimas quedaban fuera de la tarjeta. Ahora las barras se
+  achican, los rótulos van en su propia fila y se muestran uno cada 2, 3, 4,
+  6 o 12 según el lugar, y el espacio entre barras se ajusta al ancho.
+  Un valor en cero o negativo ya no dibuja una rayita de 4 px que se leía como
+  un valor chico: no dibuja barra, y una línea de base marca el cero. Los
+  rótulos van en Inter con cifras tabulares, no en mono, que es para códigos.
+  Suma `ariaLabel`: un lector de pantalla lee ese título y cada valor mayor que
+  cero, en vez de «Gráfico de barras» solo. Las props de antes siguen igual.
 - **Al contraer el menú, la versión del pie ya no da un saltito.** Los «…»
   del recorte los dibujaba el pie, y al contraer había que apagarlos de golpe:
   el texto escondido aparecía un instante. Ahora los dibuja el texto y se van
